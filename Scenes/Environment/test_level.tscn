@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjfxtt8e7sdxh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gw60e"]
+
+[node name="Level" type="Node2D"]
+
+[node name="BlockingMess" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(524, 296)
+scale = Vector2(696.125, 439.37497)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(1084, 281.00003)
+scale = Vector2(305.06256, 203.68747)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(469, 542)
+scale = Vector2(65.062454, 150.68752)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D5" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(50.99997, 301)
+scale = Vector2(254.0624, 169.68748)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(353, 656)
+scale = Vector2(338.06244, 203.6875)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(911.0002, 271.92184)
+scale = Vector2(173.06248, 93.84369)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D8" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(390, -58.000015)
+scale = Vector2(294.0624, 226.68748)
+mesh = SubResource("QuadMesh_gw60e")
+
+[node name="MeshInstance2D9" type="MeshInstance2D" parent="BlockingMess"]
+position = Vector2(392, 55)
+scale = Vector2(67.031204, 226.68748)
+mesh = SubResource("QuadMesh_gw60e")
