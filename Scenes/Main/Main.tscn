@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1deiakb00w8l"]
+
+[node name="Main" type="Node"]
+
+[node name="LevelManager" type="Node2D" parent="."]
+
+[node name="UIManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
