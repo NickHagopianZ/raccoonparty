@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="Script" uid="uid://san81denybsm" path="res://Scenes/Main/battler_manager.gd" id="2_i3fi7"]
-[ext_resource type="PackedScene" uid="uid://cjfxtt8e7sdxh" path="res://Scenes/Environment/test_level.tscn" id="2_o8wgc"]
-[ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Player/PlayerCharacter.tscn" id="3_o8wgc"]
+[ext_resource type="PackedScene" uid="uid://bhco6y8b6kmol" path="res://Scenes/Environment/House1.tscn" id="2_o8wgc"]
+[ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
 
 [node name="Main" type="Node"]
 
@@ -23,3 +23,4 @@ initial_level_scene = ExtResource("2_o8wgc")
 script = ExtResource("2_i3fi7")
 
 [node name="CharacterBody2D" parent="Main2D" instance=ExtResource("3_o8wgc")]
+speed = 30000.0

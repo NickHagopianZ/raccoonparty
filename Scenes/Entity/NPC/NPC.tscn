@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvolo5qyv4kb7"]
+
+[ext_resource type="Script" uid="uid://67u4dedxrwy1" path="res://Scenes/Entity/NPC/npc.gd" id="1_h3yth"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ri8vb"]
+size = Vector2(32, 64)
+
+[sub_resource type="Gradient" id="Gradient_kwlhr"]
+colors = PackedColorArray(0.99999887, 0.7213347, 0.6763794, 1, 0.25490198, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ri8vb"]
+gradient = SubResource("Gradient_kwlhr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kwlhr"]
+size = Vector2(15, 15)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u75bn"]
+size = Vector2(5, 5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u4vjm"]
+size = Vector2(20, 5)
+
+[node name="Node2D" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_h3yth")
+
+[node name="TempBody" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TempBody"]
+mesh = SubResource("QuadMesh_ri8vb")
+texture = SubResource("GradientTexture1D_ri8vb")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="TempBody"]
+position = Vector2(7, -10)
+mesh = SubResource("QuadMesh_kwlhr")
+
+[node name="MeshInstance2D6" type="MeshInstance2D" parent="TempBody"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(9, -10)
+mesh = SubResource("QuadMesh_u75bn")
+
+[node name="MeshInstance2D7" type="MeshInstance2D" parent="TempBody"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(8, -17)
+mesh = SubResource("QuadMesh_u4vjm")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 64)
+polygon = PackedVector2Array(32, 0, 0, 21.32, -32, 0, 0, -21.32)

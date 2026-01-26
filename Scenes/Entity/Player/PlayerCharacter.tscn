@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8mvr2eo5xp3o"]
+
+[ext_resource type="Script" uid="uid://oci4mlbbiwdf" path="res://Scenes/Entity/Player/player_character.gd" id="1_fhad2"]
+[ext_resource type="Texture2D" uid="uid://bqpyd7qpr7dle" path="res://Assets/UI/InteractBox.png" id="2_8hbf8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obv64"]
+radius = 50.0
+height = 300.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_xfpj1"]
+size = Vector2(32, 64)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2g1qh"]
+seed = 3
+frequency = 0.0031
+fractal_weighted_strength = 0.83
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xfpj1"]
+noise = SubResource("FastNoiseLite_2g1qh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2g1qh"]
+size = Vector2(15, 15)
+
+[sub_resource type="QuadMesh" id="QuadMesh_q1ate"]
+size = Vector2(5, 5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cn5ci"]
+size = Vector2(20, 5)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("camera", "interaction_area", "interact_sprite", "body_sprite")]
+collision_layer = 4
+floor_stop_on_slope = false
+script = ExtResource("1_fhad2")
+camera = NodePath("Camera2D")
+interaction_area = NodePath("Area2D")
+interact_sprite = NodePath("InteractBox")
+body_sprite = NodePath("TempBody")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 64)
+polygon = PackedVector2Array(32, 0, 0, 21.32, -32, 0, 0, -21.32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(64, 64)
+rotation = 1.5707964
+collision_layer = 0
+collision_mask = 2
+
+[node name="InteractionArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_obv64")
+
+[node name="TempBody" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="TempBody"]
+modulate = Color(0.54354787, 0.35868073, 0.16602814, 1)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_xfpj1")
+texture = SubResource("NoiseTexture2D_xfpj1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="TempBody"]
+position = Vector2(8, -14)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_2g1qh")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="TempBody"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(15, -13)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_q1ate")
+
+[node name="MeshInstance2D4" type="MeshInstance2D" parent="TempBody"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(9, -31)
+rotation = 0.25830877
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_cn5ci")
+
+[node name="InteractBox" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("2_8hbf8")
