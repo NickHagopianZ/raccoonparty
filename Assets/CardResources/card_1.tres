@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dwdb2u88guu4i"]
+
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Assets/CardResources/card_resource.gd" id="1_ctx0g"]
+
+[resource]
+script = ExtResource("1_ctx0g")
+title = "Card 1"
+description = "Card [u][i][b]Description[/b][/i][/u]."
+Tags = Array[int]([0])
+metadata/_custom_type_script = "uid://bk85i66d0btf1"
