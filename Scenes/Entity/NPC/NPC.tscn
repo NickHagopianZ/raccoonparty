@@ -16,6 +16,7 @@ height = 512
 collision_layer = 2
 script = ExtResource("1_h3yth")
 navigation_agent = NodePath("NavigationAgent3D")
+speed = 5.0
 body_3d = NodePath("Node3D2/Sprite3D")
 sprite_parent = NodePath("Node3D2")
 
@@ -29,3 +30,4 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 texture = SubResource("GradientTexture2D_ivpoq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.1

@@ -12,6 +12,8 @@ var interaction_area_initial_position : Vector3
 var searching_for_interactables : bool = true
 @export var interact_sprite : Sprite3D
 
+@export var animation_sprite : AnimatedSprite3D
+
 func _ready() -> void:
 	# set the camera to top level so it doesn't get affected by parent transforms
 	camera_target = camera_follow_node
@@ -34,6 +36,10 @@ func move_player(delta: float) -> void:
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
+	if input_vector != Vector3.ZERO:
+		animation_sprite.play("Walk")
+	else:
+		animation_sprite.play("Idle")
 	perform_move(input_vector, delta)
 	billboard_sprite()
 
