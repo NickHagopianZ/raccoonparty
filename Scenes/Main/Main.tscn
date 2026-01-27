@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=6 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
+[ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/Main/ui_manager.gd" id="1_o8wgc"]
 [ext_resource type="Script" uid="uid://san81denybsm" path="res://Scenes/Main/battler_manager.gd" id="2_i3fi7"]
-[ext_resource type="PackedScene" uid="uid://bhco6y8b6kmol" path="res://Scenes/Environment/House1.tscn" id="2_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
+[ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
 
 [node name="Main" type="Node"]
 
@@ -12,15 +13,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_o8wgc")
 
 [node name="Main2D" type="Node2D" parent="."]
-
-[node name="LevelManager" type="Node2D" parent="Main2D"]
-script = ExtResource("1_cmk6n")
-initial_level_scene = ExtResource("2_o8wgc")
+visible = false
 
 [node name="BattlerManager" type="Node2D" parent="Main2D"]
 script = ExtResource("2_i3fi7")
 
-[node name="CharacterBody2D" parent="Main2D" instance=ExtResource("3_o8wgc")]
-speed = 30000.0
+[node name="Main3D" type="Node3D" parent="."]
+
+[node name="LevelManager" type="Node3D" parent="Main3D"]
+script = ExtResource("1_cmk6n")
+initial_level_scene = ExtResource("4_o8wgc")
+
+[node name="CharacterBody2D" parent="Main3D" instance=ExtResource("3_o8wgc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6811785, 1, 0)

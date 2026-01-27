@@ -1,84 +1,89 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhco6y8b6kmol"]
+[gd_scene load_steps=22 format=3 uid="uid://bhco6y8b6kmol"]
 
-[ext_resource type="Texture2D" uid="uid://cge4s8fs02hp1" path="res://Assets/Levels/House1/Raccoon_Level-1.png" id="1_yrl3o"]
-[ext_resource type="Texture2D" uid="uid://c5uc6o6lw24m3" path="res://Assets/Levels/House1/Raccoon_Level-2.png" id="2_regh3"]
-[ext_resource type="Texture2D" uid="uid://dxro5gon2xcyl" path="res://Assets/Levels/House1/Raccoon_Level-3.png" id="3_5bq5o"]
-[ext_resource type="Texture2D" uid="uid://bg8rko8ovbk4u" path="res://Assets/Levels/House1/Raccoon_Level-4.png" id="4_k86u7"]
-[ext_resource type="Texture2D" uid="uid://c64onhq6og8sw" path="res://Assets/Levels/House1/Raccoon_Level-5.png" id="5_b1h3v"]
-[ext_resource type="Texture2D" uid="uid://ch51tbkama4p" path="res://Assets/Levels/House1/Raccoon_Level-6.png" id="6_273b8"]
-[ext_resource type="Texture2D" uid="uid://u77wkxcjs6tk" path="res://Assets/Levels/House1/Raccoon_Level-7.png" id="7_omc6k"]
-[ext_resource type="Texture2D" uid="uid://do3qiibf3laot" path="res://Assets/Levels/House1/Raccoon_Level-8.png" id="8_v4654"]
-[ext_resource type="Texture2D" uid="uid://dib834vauahi5" path="res://Assets/Levels/House1/Raccoon_Level-9.png" id="9_2rvm2"]
-[ext_resource type="Texture2D" uid="uid://bx27f6gjt5bsr" path="res://Assets/Levels/House1/Raccoon_Level-10.png" id="10_gdfv0"]
-[ext_resource type="Texture2D" uid="uid://cjr85gp27r6s4" path="res://Assets/Levels/House1/Raccoon_Level-11.png" id="11_k6eio"]
-[ext_resource type="Texture2D" uid="uid://w72yxgyjlb38" path="res://Assets/Levels/House1/Raccoon_Level-12.png" id="12_5iejx"]
-[ext_resource type="Texture2D" uid="uid://5onwyfbt8rah" path="res://Assets/Levels/House1/Raccoon_Level-13.png" id="13_jglps"]
-[ext_resource type="Texture2D" uid="uid://bngpc7xlv7mll" path="res://Assets/Levels/House1/Raccoon_Level-14.png" id="14_gahdq"]
-[ext_resource type="Texture2D" uid="uid://byo1yd5nvk4wr" path="res://Assets/Levels/House1/Raccoon_Level-15.png" id="15_xkw6y"]
-[ext_resource type="Texture2D" uid="uid://dcw14dxl27edb" path="res://Assets/Levels/House1/Raccoon_Level-16.png" id="16_87i2g"]
-[ext_resource type="Texture2D" uid="uid://dd1pd1jpe4m8b" path="res://Assets/Levels/House1/Raccoon_Level-17.png" id="17_jq6yc"]
-[ext_resource type="Script" uid="uid://lhn62ycywp51" path="res://Scenes/Environment/room_manager.gd" id="18_k86u7"]
-[ext_resource type="PackedScene" uid="uid://cvolo5qyv4kb7" path="res://Scenes/Entity/NPC/NPC.tscn" id="18_regh3"]
-[ext_resource type="Script" uid="uid://dd2ebsfcpexhi" path="res://Scenes/Environment/room_handler.gd" id="19_b1h3v"]
+[ext_resource type="Texture2D" uid="uid://cge4s8fs02hp1" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-1.png" id="1_7wfas"]
+[ext_resource type="Texture2D" uid="uid://c5uc6o6lw24m3" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-2.png" id="2_7ql6s"]
+[ext_resource type="Texture2D" uid="uid://dxro5gon2xcyl" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-3.png" id="3_j7etp"]
+[ext_resource type="Texture2D" uid="uid://bg8rko8ovbk4u" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-4.png" id="4_c4gnd"]
+[ext_resource type="Texture2D" uid="uid://c64onhq6og8sw" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-5.png" id="5_2lrtl"]
+[ext_resource type="Texture2D" uid="uid://ch51tbkama4p" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-6.png" id="6_5jehc"]
+[ext_resource type="Texture2D" uid="uid://u77wkxcjs6tk" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-7.png" id="7_5swd0"]
+[ext_resource type="Texture2D" uid="uid://do3qiibf3laot" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-8.png" id="8_rwwgt"]
+[ext_resource type="Texture2D" uid="uid://dib834vauahi5" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-9.png" id="9_0mdov"]
+[ext_resource type="Texture2D" uid="uid://bx27f6gjt5bsr" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-10.png" id="10_lhbmb"]
+[ext_resource type="Texture2D" uid="uid://cjr85gp27r6s4" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-11.png" id="11_0uwob"]
+[ext_resource type="Texture2D" uid="uid://w72yxgyjlb38" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-12.png" id="12_a6soj"]
+[ext_resource type="Texture2D" uid="uid://5onwyfbt8rah" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-13.png" id="13_b4fag"]
+[ext_resource type="Texture2D" uid="uid://bngpc7xlv7mll" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-14.png" id="14_nk26j"]
+[ext_resource type="Texture2D" uid="uid://byo1yd5nvk4wr" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-15.png" id="15_sch5c"]
+[ext_resource type="Texture2D" uid="uid://dcw14dxl27edb" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-16.png" id="16_ey48r"]
+[ext_resource type="Texture2D" uid="uid://dd1pd1jpe4m8b" path="res://Assets/Levels/House1/Old2d/Raccoon_Level-17.png" id="17_w84g7"]
+[ext_resource type="Script" uid="uid://lhn62ycywp51" path="res://Scenes/Environment/Old2d/room_manager.gd" id="18_acpxn"]
+[ext_resource type="Script" uid="uid://dd2ebsfcpexhi" path="res://Scenes/Environment/Old2d/room_handler.gd" id="19_quyxf"]
+[ext_resource type="PackedScene" uid="uid://cvolo5qyv4kb7" path="res://Scenes/Entity/NPC/NPC.tscn" id="20_rhew2"]
+
+[sub_resource type="TileSet" id="TileSet_k86u7"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_k86u7")
 
 [node name="HouseSprites" type="Node2D" parent="."]
 
 [node name="BackPorch" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("1_yrl3o")
+texture = ExtResource("1_7wfas")
 
 [node name="MainFloor" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("2_regh3")
+texture = ExtResource("2_7ql6s")
 
 [node name="BedroomFloor" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("3_5bq5o")
+texture = ExtResource("3_j7etp")
 
 [node name="ClosetFloor" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("4_k86u7")
+texture = ExtResource("4_c4gnd")
 
 [node name="MainOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("5_b1h3v")
+texture = ExtResource("5_2lrtl")
 
 [node name="NorthWestWall" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("6_273b8")
+texture = ExtResource("6_5jehc")
 
 [node name="NorthWestWallOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("7_omc6k")
+texture = ExtResource("7_5swd0")
 
 [node name="BedroomWall" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("8_v4654")
+texture = ExtResource("8_rwwgt")
 
 [node name="BedroomWallOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("9_2rvm2")
+texture = ExtResource("9_0mdov")
 
 [node name="Closet1Wall" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("10_gdfv0")
+texture = ExtResource("10_lhbmb")
 
 [node name="Closet1WallOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("11_k6eio")
+texture = ExtResource("11_0uwob")
 
 [node name="Closet2BackWall" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("12_5iejx")
+texture = ExtResource("12_a6soj")
 
 [node name="Closet2BackWallOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("13_jglps")
+texture = ExtResource("13_b4fag")
 
 [node name="Closet2FrontWall" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("14_gahdq")
+texture = ExtResource("14_nk26j")
 
 [node name="Closet2FrontWallOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("15_xkw6y")
+texture = ExtResource("15_sch5c")
 
 [node name="PorchRailing" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("16_87i2g")
+texture = ExtResource("16_ey48r")
 
 [node name="PorchRailingOutline" type="Sprite2D" parent="HouseSprites"]
-texture = ExtResource("17_jq6yc")
+texture = ExtResource("17_w84g7")
 
 [node name="RoomManager" type="Node2D" parent="." node_paths=PackedStringArray("room_handlers")]
 position = Vector2(0, 1)
-script = ExtResource("18_k86u7")
+script = ExtResource("18_acpxn")
 room_handlers = [NodePath("MainFloor"), NodePath("Bedroomfloor"), NodePath("Porch"), NodePath("Closet1"), NodePath("Closet2")]
 
 [node name="Walls" type="StaticBody2D" parent="RoomManager"]
@@ -111,15 +116,15 @@ polygon = PackedVector2Array(2171, 29, 294, 1123, -484, 657, -684, 778, -477, 68
 position = Vector2(0, -1)
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_b1h3v")
+script = ExtResource("19_quyxf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomManager/MainFloor"]
-polygon = PackedVector2Array(-1077, 554, -265, 86, -1074, -380, -289, -820, 1283, 98, 787, 376, 1202, 622, 808, 853, 378, 600, -108, 895, -487, 670, -680, 777)
+polygon = PackedVector2Array(-1077, 554, -269, 82, -1074, -380, -289, -820, 1283, 98, 787, 376, 1202, 622, 808, 853, 378, 600, -108, 895, -487, 670, -680, 777)
 
 [node name="Bedroomfloor" type="Area2D" parent="RoomManager"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_b1h3v")
+script = ExtResource("19_quyxf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomManager/Bedroomfloor"]
 polygon = PackedVector2Array(-1680, -25, -897, 444, -269, 88, -1074, -378)
@@ -127,7 +132,7 @@ polygon = PackedVector2Array(-1680, -25, -897, 444, -269, 88, -1074, -378)
 [node name="Porch" type="Area2D" parent="RoomManager"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_b1h3v")
+script = ExtResource("19_quyxf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomManager/Porch"]
 polygon = PackedVector2Array(-300, -830, 214, -1106, 2208, 35, 1695, 343)
@@ -135,7 +140,7 @@ polygon = PackedVector2Array(-300, -830, 214, -1106, 2208, 35, 1695, 343)
 [node name="Closet1" type="Area2D" parent="RoomManager"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_b1h3v")
+script = ExtResource("19_quyxf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomManager/Closet1"]
 polygon = PackedVector2Array(786, 378, 1280, 93, 1691, 333, 1200, 624)
@@ -143,16 +148,16 @@ polygon = PackedVector2Array(786, 378, 1280, 93, 1691, 333, 1200, 624)
 [node name="Closet2" type="Area2D" parent="RoomManager"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_b1h3v")
+script = ExtResource("19_quyxf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomManager/Closet2"]
 polygon = PackedVector2Array(385, 602, -109, 892, 301, 1148, 813, 850)
 
-[node name="Node2D" parent="." instance=ExtResource("18_regh3")]
-position = Vector2(-382, -355)
+[node name="Node2D" parent="." instance=ExtResource("20_rhew2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -382, -355, 0)
 
-[node name="Node2D2" parent="." instance=ExtResource("18_regh3")]
-position = Vector2(406, -185)
+[node name="Node2D2" parent="." instance=ExtResource("20_rhew2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 406, -185, 0)
 
-[node name="Node2D3" parent="." instance=ExtResource("18_regh3")]
-position = Vector2(-1135, -3)
+[node name="Node2D3" parent="." instance=ExtResource("20_rhew2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1135, -3, 0)

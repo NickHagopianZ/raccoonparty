@@ -1,83 +1,125 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8mvr2eo5xp3o"]
+[gd_scene load_steps=14 format=3 uid="uid://b8mvr2eo5xp3o"]
 
 [ext_resource type="Script" uid="uid://oci4mlbbiwdf" path="res://Scenes/Entity/Player/player_character.gd" id="1_fhad2"]
 [ext_resource type="Texture2D" uid="uid://bqpyd7qpr7dle" path="res://Assets/UI/InteractBox.png" id="2_8hbf8"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obv64"]
-radius = 50.0
-height = 300.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_8hbf8"]
+size = Vector3(1, 2, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qye65"]
+radius = 3.0
+height = 7.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8hbf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hbf8"]
+shading_mode = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8hbf8"]
+viewport_path = NodePath("Node3D/Sprite3D/SubViewport")
 
 [sub_resource type="QuadMesh" id="QuadMesh_xfpj1"]
-size = Vector2(32, 64)
+size = Vector2(256, 512)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2g1qh"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8hbf8"]
 seed = 3
 frequency = 0.0031
 fractal_weighted_strength = 0.83
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xfpj1"]
-noise = SubResource("FastNoiseLite_2g1qh")
+noise = SubResource("FastNoiseLite_8hbf8")
 
-[sub_resource type="QuadMesh" id="QuadMesh_2g1qh"]
-size = Vector2(15, 15)
+[sub_resource type="QuadMesh" id="QuadMesh_v6425"]
+size = Vector2(100, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_q1ate"]
-size = Vector2(5, 5)
+[sub_resource type="QuadMesh" id="QuadMesh_55sri"]
+size = Vector2(30, 20)
 
-[sub_resource type="QuadMesh" id="QuadMesh_cn5ci"]
-size = Vector2(20, 5)
+[sub_resource type="QuadMesh" id="QuadMesh_ul72w"]
+size = Vector2(150, 30)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("camera", "interaction_area", "interact_sprite", "body_sprite")]
+[node name="CharacterBody2D" type="CharacterBody3D" node_paths=PackedStringArray("camera", "camera_follow_node", "camera_ghost", "interaction_area", "interact_sprite", "body_3d", "sprite_parent")]
 collision_layer = 4
-floor_stop_on_slope = false
+safe_margin = 0.2
 script = ExtResource("1_fhad2")
-camera = NodePath("Camera2D")
-interaction_area = NodePath("Area2D")
-interact_sprite = NodePath("InteractBox")
-body_sprite = NodePath("TempBody")
+camera = NodePath("Ghost/Pivot/Transform/Camera2D")
+camera_follow_node = NodePath("Ghost/Pivot/Transform")
+camera_ghost = NodePath("Ghost")
+interaction_area = NodePath("Area3D")
+interact_sprite = NodePath("InteractVisualizer")
+body_3d = NodePath("Node3D/Sprite3D")
+sprite_parent = NodePath("Node3D")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 64)
-polygon = PackedVector2Array(32, 0, 0, 21.32, -32, 0, 0, -21.32)
+[node name="CollisionPolygon2D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8hbf8")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(64, 64)
-rotation = 1.5707964
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="InteractionArea" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_obv64")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("CapsuleShape3D_qye65")
 
-[node name="TempBody" type="Node2D" parent="."]
+[node name="InteractVisualizer" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 1
+transparent = false
+no_depth_test = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("2_8hbf8")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="TempBody"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_8hbf8")
+skeleton = NodePath("../Node3D/Sprite3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_8hbf8")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Node3D"]
+texture = SubResource("ViewportTexture_8hbf8")
+
+[node name="SubViewport" type="SubViewport" parent="Node3D/Sprite3D"]
+transparent_bg = true
+size = Vector2i(256, 512)
+
+[node name="Node2D" type="Node2D" parent="Node3D/Sprite3D/SubViewport"]
+position = Vector2(128, 256)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node3D/Sprite3D/SubViewport/Node2D"]
 modulate = Color(0.54354787, 0.35868073, 0.16602814, 1)
-scale = Vector2(2, 2)
 mesh = SubResource("QuadMesh_xfpj1")
 texture = SubResource("NoiseTexture2D_xfpj1")
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="TempBody"]
-position = Vector2(8, -14)
-scale = Vector2(2, 2)
-mesh = SubResource("QuadMesh_2g1qh")
+[node name="Eye" type="MeshInstance2D" parent="Node3D/Sprite3D/SubViewport/Node2D"]
+modulate = Color(0.92099476, 0.9209946, 0.9209946, 1)
+position = Vector2(56, -82)
+mesh = SubResource("QuadMesh_v6425")
 
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="TempBody"]
+[node name="Iris" type="MeshInstance2D" parent="Node3D/Sprite3D/SubViewport/Node2D"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(15, -13)
-scale = Vector2(2, 2)
-mesh = SubResource("QuadMesh_q1ate")
+position = Vector2(79, -83)
+mesh = SubResource("QuadMesh_55sri")
 
-[node name="MeshInstance2D4" type="MeshInstance2D" parent="TempBody"]
+[node name="Brow" type="MeshInstance2D" parent="Node3D/Sprite3D/SubViewport/Node2D"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(9, -31)
-rotation = 0.25830877
-scale = Vector2(2, 2)
-mesh = SubResource("QuadMesh_cn5ci")
+position = Vector2(61, -135)
+rotation = 0.25830874
+mesh = SubResource("QuadMesh_ul72w")
 
-[node name="InteractBox" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 1
-texture = ExtResource("2_8hbf8")
+[node name="Ghost" type="MeshInstance3D" parent="."]
+
+[node name="Pivot" type="Node3D" parent="Ghost"]
+
+[node name="Transform" type="Node3D" parent="Ghost/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, 64)
+
+[node name="Camera2D" type="Camera3D" parent="Ghost/Pivot/Transform"]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.90107703, 0.43365917, 0, -0.4336591, 0.90107715, 0, 0, 0)
+projection = 1
+size = 20.0

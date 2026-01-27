@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://cyq3awlkoojhg"]
+
+[ext_resource type="Texture2D" uid="uid://d0r47sashwx5e" path="res://Assets/Levels/House1/House1Floor.png" id="1_j8ir4"]
+[ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
+[ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
+[ext_resource type="PackedScene" uid="uid://cvolo5qyv4kb7" path="res://Scenes/Entity/NPC/NPC.tscn" id="4_knbqb"]
+
+[sub_resource type="Environment" id="Environment_w5alb"]
+background_mode = 1
+background_color = Color(0.10183891, 0.26150525, 0.52593195, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+ambient_light_energy = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6dc"]
+render_priority = 0
+shader = ExtResource("2_3i6dc")
+shader_parameter/color_1 = Color(0.7, 0.65, 0.6, 1)
+shader_parameter/color_2 = Color(0.9, 0.85, 0.8, 1)
+shader_parameter/blend_smoothness = 0.5
+shader_parameter/noise_scale = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5alb"]
+transparency = 2
+alpha_scissor_threshold = 0.145
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_j8ir4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3i6dc"]
+material = SubResource("StandardMaterial3D_w5alb")
+size = Vector2(100, 70)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_knbqb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7eg5w"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3i6dc"]
+plane = Plane(1, 0, 1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1v0dh"]
+plane = Plane(-1, 0, -1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_imc41"]
+plane = Plane(-1, 0, 1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jg22o"]
+plane = Plane(1, 0, -1, 0)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w5alb")
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="WallMesh" type="MeshInstance3D" parent="Meshes" node_paths=PackedStringArray("collision_polygon")]
+transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 0, 0, 1.0000004, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_3i6dc")
+skeleton = NodePath("../..")
+script = ExtResource("2_w5alb")
+collision_polygon = NodePath("../../Collisions/Walls/CollisionPolygon3D")
+
+[node name="Floor" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 3.5680003, 0, -3.5680003)
+mesh = SubResource("PlaneMesh_3i6dc")
+skeleton = NodePath("../..")
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Collisions"]
+navigation_mesh = SubResource("NavigationMesh_knbqb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1365805, 0, -7.1365805)
+
+[node name="Floor" type="CollisionShape3D" parent="Collisions/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7eg5w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Collisions/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, -99.71184, 28.83449, 8.382183)
+shape = SubResource("WorldBoundaryShape3D_3i6dc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Collisions/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, 99.59288, 28.83449, 11.815208)
+shape = SubResource("WorldBoundaryShape3D_1v0dh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Collisions/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(7.7781744, 0, 7.7781744, 0, 11, 0, -7.7781744, 0, 7.7781744, 8.569168, 28.83449, -74.40841)
+shape = SubResource("WorldBoundaryShape3D_imc41")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Collisions/NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(7.7781744, 0, 7.7781744, 0, 11, 0, -7.7781744, 0, 7.7781744, 2.1090202, 28.83449, 74.594635)
+shape = SubResource("WorldBoundaryShape3D_jg22o")
+
+[node name="Walls" type="StaticBody3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3750396, 0, 5.1683116)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Collisions/Walls"]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 0, 0)
+depth = 20.0
+polygon = PackedVector2Array(-3.2418523, -23.264359, -3.5208387, -14.193705, -3.901627, -14.260902, -3.9006424, -18.789385, -21.918371, -18.74843, -21.957817, -5.8117647, -3.7877252, -5.5929213, -3.8603907, -10.31623, -3.4849882, -10.352597, -3.4904804, -5.1980286, -21.980215, -5.2517815, -21.978369, 11.628711, -0.6270752, 11.830553, -0.5922446, 12.178853, -21.954147, 11.992043, -21.885029, 22.97481, 24.12916, 23.473562, 24.187063, 12.313265, 3.1671152, 12.286997, 3.1823788, 11.905396, 15.016991, 11.810232, 14.794291, 0.96229196, 18.525242, 0.93959594, 18.555717, 1.2748106, 15.236164, 1.1908486, 15.382679, 11.7797575, 24.217592, 11.855345, 24.097195, 1.3418853, 20.74714, 1.217699, 20.789642, 0.7611513, 24.074795, 0.9834955, 24.05811, -7.621231, 20.47239, -7.57438, 20.487654, -7.864398, 24.099056, -7.9914722, 24.052404, -18.475777, 15.32762, -18.482803, 15.154795, -8.092375, 17.59058, -8.049932, 17.601225, -7.680599, 14.839905, -7.680601, 14.734434, -18.398064, 5.492741, -18.439342, 5.481541, -23.24399, 5.817531, -23.26639, 5.85113, -18.84253, 24.462282, -18.83534, 24.571817, 23.82463, -22.272581, 23.313921, -22.33918, -19.304499, -3.8580933, -19.221617, -3.633841, -23.297956, -3.1925435, -23.340658)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Node2D" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.903376, 1.859498, -0.20759141)
+
+[node name="Node2D2" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.381946, 3.5219755, 8.381946)
+
+[node name="Node2D3" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45497194, 5.1891394, 0.45497194)

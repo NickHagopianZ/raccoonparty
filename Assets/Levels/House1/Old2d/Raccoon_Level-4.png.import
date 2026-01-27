@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcw14dxl27edb"
-path="res://.godot/imported/Raccoon_Level-16.png-8ad5a79d765ff6ae1e3650966285ac02.ctex"
+uid="uid://bg8rko8ovbk4u"
+path="res://.godot/imported/Raccoon_Level-4.png-c5d3b4d3b386fbf88e0803029d77348a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Levels/House1/Raccoon_Level-16.png"
-dest_files=["res://.godot/imported/Raccoon_Level-16.png-8ad5a79d765ff6ae1e3650966285ac02.ctex"]
+source_file="res://Assets/Levels/House1/Old2d/Raccoon_Level-4.png"
+dest_files=["res://.godot/imported/Raccoon_Level-4.png-c5d3b4d3b386fbf88e0803029d77348a.ctex"]
 
 [params]
 
