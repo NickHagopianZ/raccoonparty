@@ -1,5 +1,5 @@
 # loads in levels and manages level transitions
-extends Node2D
+extends Node3D
 
 
 @export var initial_level_scene : PackedScene

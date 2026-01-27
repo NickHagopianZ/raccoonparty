@@ -54,5 +54,8 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="Walls"
+3d_physics/layer_1="Terrain"
 2d_physics/layer_2="Interactables"
+3d_physics/layer_2="Interaction"
 2d_physics/layer_3="Player"
+3d_physics/layer_3="Player"

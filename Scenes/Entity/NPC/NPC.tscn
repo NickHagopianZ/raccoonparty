@@ -1,50 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvolo5qyv4kb7"]
+[gd_scene load_steps=5 format=3 uid="uid://cvolo5qyv4kb7"]
 
 [ext_resource type="Script" uid="uid://67u4dedxrwy1" path="res://Scenes/Entity/NPC/npc.gd" id="1_h3yth"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_ri8vb"]
-size = Vector2(32, 64)
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
+size = Vector3(1, 2, 0.1)
 
-[sub_resource type="Gradient" id="Gradient_kwlhr"]
-colors = PackedColorArray(0.99999887, 0.7213347, 0.6763794, 1, 0.25490198, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_h3yth"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ri8vb"]
-gradient = SubResource("Gradient_kwlhr")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ivpoq"]
+gradient = SubResource("Gradient_h3yth")
+width = 256
+height = 512
 
-[sub_resource type="QuadMesh" id="QuadMesh_kwlhr"]
-size = Vector2(15, 15)
-
-[sub_resource type="QuadMesh" id="QuadMesh_u75bn"]
-size = Vector2(5, 5)
-
-[sub_resource type="QuadMesh" id="QuadMesh_u4vjm"]
-size = Vector2(20, 5)
-
-[node name="Node2D" type="CharacterBody2D"]
+[node name="Node2D" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent", "body_3d", "sprite_parent")]
 collision_layer = 2
 script = ExtResource("1_h3yth")
+navigation_agent = NodePath("NavigationAgent3D")
+body_3d = NodePath("Node3D2/Sprite3D")
+sprite_parent = NodePath("Node3D2")
 
-[node name="TempBody" type="Node2D" parent="."]
-scale = Vector2(2, 2)
+[node name="CollisionPolygon2D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h3yth")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="TempBody"]
-mesh = SubResource("QuadMesh_ri8vb")
-texture = SubResource("GradientTexture1D_ri8vb")
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="TempBody"]
-position = Vector2(7, -10)
-mesh = SubResource("QuadMesh_kwlhr")
+[node name="Sprite3D" type="Sprite3D" parent="Node3D2"]
+texture = SubResource("GradientTexture2D_ivpoq")
 
-[node name="MeshInstance2D6" type="MeshInstance2D" parent="TempBody"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(9, -10)
-mesh = SubResource("QuadMesh_u75bn")
-
-[node name="MeshInstance2D7" type="MeshInstance2D" parent="TempBody"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(8, -17)
-mesh = SubResource("QuadMesh_u4vjm")
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 64)
-polygon = PackedVector2Array(32, 0, 0, 21.32, -32, 0, 0, -21.32)
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
