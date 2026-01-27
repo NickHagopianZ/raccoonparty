@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3 uid="uid://daoh4kp46hbrq"]
+
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Assets/CardResources/card_resource.gd" id="1_d8exb"]
+
+[resource]
+script = ExtResource("1_d8exb")
+title = "Backflip"
+description = "Could a raccoon do [i]this[/i]??
+
+[b][i]Backflip[/i][/b]
+
++1 Vibes
+B1 Sus"
+effects = Array[int]([0, 1])
+categories = Array[int]([0, 2])
+amounts = Array[int]([1, 1])
+metadata/_custom_type_script = "uid://bk85i66d0btf1"
