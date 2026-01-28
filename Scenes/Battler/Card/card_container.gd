@@ -65,6 +65,3 @@ func _on_mouse_exited() -> void:
 	card_visualizer.modulate = Color(1, 1, 1, 1)
 	card_visualizer.hovered = false
 	card_visualizer.z_index = 0
-
-
-
