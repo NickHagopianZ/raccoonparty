@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://sww47wlvlv4s"]
+
+[ext_resource type="Script" uid="uid://bilc38n4aowiq" path="res://Scenes/Battler/battler.gd" id="1_nie4c"]
+[ext_resource type="Script" uid="uid://qilgyu7x07e" path="res://Scenes/Battler/deck.gd" id="2_ym8g5"]
+
+[node name="Battler" type="Node"]
+script = ExtResource("1_nie4c")
+
+[node name="Deck" type="Node" parent="."]
+script = ExtResource("2_ym8g5")
