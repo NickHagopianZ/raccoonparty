@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=9 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/Main/ui_manager.gd" id="1_o8wgc"]
-[ext_resource type="Script" uid="uid://san81denybsm" path="res://Scenes/Main/battler_manager.gd" id="2_i3fi7"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
+[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/battle_visualizer.gd" id="5_o8wgc"]
+[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battler.gd" id="6_w20t6"]
+[ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="7_5s61s"]
+[ext_resource type="PackedScene" uid="uid://wcebbnp847ns" path="res://Scenes/Battler/Card/card.tscn" id="7_aw1lf"]
 
 [node name="Main" type="Node"]
 
@@ -15,12 +18,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_o8wgc")
 
-[node name="Main2D" type="Node2D" parent="."]
-visible = false
-
-[node name="BattlerManager" type="Node2D" parent="Main2D"]
-script = ExtResource("2_i3fi7")
-
 [node name="Main3D" type="Node3D" parent="."]
 
 [node name="LevelManager" type="Node3D" parent="Main3D"]
@@ -29,3 +26,188 @@ initial_level_scene = ExtResource("4_o8wgc")
 
 [node name="CharacterBody2D" parent="Main3D" instance=ExtResource("3_o8wgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6811785, 1, 0)
+
+[node name="CardBattlerMain" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="CardBattlerMain" node_paths=PackedStringArray("player_sprite", "enemy_sprite")]
+script = ExtResource("5_o8wgc")
+player_sprite = NodePath("Player")
+enemy_sprite = NodePath("Enemy")
+
+[node name="Player" type="AnimatedSprite2D" parent="CardBattlerMain/Node2D"]
+position = Vector2(300, 400)
+scale = Vector2(0.5, 0.5)
+
+[node name="Enemy" type="AnimatedSprite2D" parent="CardBattlerMain/Node2D"]
+position = Vector2(186, 500)
+scale = Vector2(0.5, 0.5)
+
+[node name="CardManager" type="Control" parent="CardBattlerMain"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("6_w20t6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DropArea" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CardBattlerMain/CardManager/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="SideboardBackground" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3529412, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card Description" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+color = Color(0.48325908, 0.46016604, 0.46022302, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Description"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Flavor"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Hand" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource("7_5s61s")
+
+[node name="Card" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+layout_mode = 2
+
+[node name="Card2" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+layout_mode = 2
+
+[node name="Card3" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+layout_mode = 2
+
+[node name="Card4" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+layout_mode = 2
+
+[node name="Draw" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.76185757, 0.00046051503, 0.76442206, 1)
+
+[node name="Stats" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+color = Color(0.7035408, 0.062251605, 0.40001988, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sus"
+horizontal_alignment = 1
+
+[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vibes"
+horizontal_alignment = 1
+
+[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fear"
+horizontal_alignment = 1
+
+[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false

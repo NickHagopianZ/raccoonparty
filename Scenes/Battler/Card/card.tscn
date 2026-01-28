@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://wcebbnp847ns"]
+
+[ext_resource type="Script" uid="uid://pc4c34qsr1cg" path="res://Scenes/Battler/Card/card_container.gd" id="1_kmdip"]
+[ext_resource type="Script" uid="uid://co4y7xgoyvi8g" path="res://Scenes/Battler/Card/card.gd" id="2_2a71a"]
+
+[node name="Card" type="Control" node_paths=PackedStringArray("description_label", "title_label", "card_visualizer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -752.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_behavior_recursive = 2
+script = ExtResource("1_kmdip")
+description_label = NodePath("CardVisualizer/VBoxContainer/Description")
+title_label = NodePath("CardVisualizer/VBoxContainer/Title")
+card_visualizer = NodePath("CardVisualizer")
+
+[node name="CardVisualizer" type="ColorRect" parent="."]
+layout_mode = 1
+offset_right = 120.0
+offset_bottom = 160.0
+mouse_filter = 1
+color = Color(0.4038569, 0.09624099, 0.33439413, 1)
+script = ExtResource("2_2a71a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardVisualizer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CardVisualizer/VBoxContainer" groups=["cards"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Card Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="CardVisualizer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "Card [u][i][b]Description[/b][/i][/u]."

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=16 format=3 uid="uid://cyq3awlkoojhg"]
 
-[ext_resource type="Texture2D" uid="uid://d0r47sashwx5e" path="res://Assets/Levels/House1/House1Floor.png" id="1_j8ir4"]
-[ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
-[ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
+[ext_resource type="Shader" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
+[ext_resource type="Script" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
+[ext_resource type="Texture2D" uid="uid://3m87ehyndj83" path="res://Assets/Levels/House1/House2Floor.png" id="3_nk47r"]
 [ext_resource type="PackedScene" uid="uid://cvolo5qyv4kb7" path="res://Scenes/Entity/NPC/NPC.tscn" id="4_knbqb"]
+[ext_resource type="Texture2D" uid="uid://c0oggqq0is5nk" path="res://Assets/Furniture/Couch.png" id="5_nk47r"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -24,7 +25,7 @@ shader_parameter/noise_scale = 3.0
 transparency = 2
 alpha_scissor_threshold = 0.145
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("1_j8ir4")
+albedo_texture = ExtResource("3_nk47r")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3i6dc"]
 material = SubResource("StandardMaterial3D_w5alb")
@@ -117,3 +118,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.381946, 3.5219755, 8.381946
 
 [node name="Node2D3" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45497194, 5.1891394, 0.45497194)
+
+[node name="Furniture" type="Node3D" parent="."]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Furniture"]
+transform = Transform3D(0.8660254, 0.35355335, -0.35355335, 0, 0.7071067, 0.7071067, 0.5, -0.61237234, 0.61237234, -0.50245655, 1.7582645, -2.79808)
+flip_h = true
+pixel_size = 0.02
+texture = ExtResource("5_nk47r")

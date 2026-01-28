@@ -1,24 +1,37 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvolo5qyv4kb7"]
 
 [ext_resource type="Script" uid="uid://67u4dedxrwy1" path="res://Scenes/Entity/NPC/npc.gd" id="1_h3yth"]
+[ext_resource type="Texture2D" uid="uid://dvwlpwmxd4eks" path="res://Assets/Entity/NPC/temp_human.png" id="2_ivpoq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
-size = Vector3(1, 2, 0.1)
+size = Vector3(1, 2.4, 0.1)
 
-[sub_resource type="Gradient" id="Gradient_h3yth"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jhwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ivpoq")
+}],
+"loop": true,
+"name": &"Battle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ivpoq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ivpoq"]
-gradient = SubResource("Gradient_h3yth")
-width = 256
-height = 512
-
-[node name="Node2D" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent", "body_3d", "sprite_parent")]
+[node name="Node2D" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "sprite_parent", "navigation_agent")]
 collision_layer = 2
 script = ExtResource("1_h3yth")
-navigation_agent = NodePath("NavigationAgent3D")
 speed = 5.0
-body_3d = NodePath("Node3D2/Sprite3D")
+sprite = NodePath("Node3D2/AnimatedSprite3D")
 sprite_parent = NodePath("Node3D2")
+navigation_agent = NodePath("NavigationAgent3D")
 
 [node name="CollisionPolygon2D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_h3yth")
@@ -26,8 +39,10 @@ shape = SubResource("BoxShape3D_h3yth")
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="Node3D2"]
-texture = SubResource("GradientTexture2D_ivpoq")
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Node3D2"]
+pixel_size = 0.004
+sprite_frames = SubResource("SpriteFrames_1jhwq")
+animation = &"Battle"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1

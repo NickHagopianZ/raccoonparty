@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3 uid="uid://dwdb2u88guu4i"]
+
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Assets/CardResources/card_resource.gd" id="1_60c6y"]
+
+[resource]
+script = ExtResource("1_60c6y")
+title = "Sip Drink"
+description = "Take sips of a drink with your weird hands.
+
++2 Vibes
+-1 Sus"
+effects = Array[int]([0, 2])
+categories = Array[int]([0, 2])
+amounts = Array[int]([2, 1])
+metadata/_custom_type_script = "uid://bk85i66d0btf1"

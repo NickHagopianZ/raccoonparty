@@ -3,9 +3,11 @@ class_name BaseEntity
 
 @export var speed : float = 10.0
 
-@export var body_3d : Node3D
+@export var sprite : AnimatedSprite3D
 @export var sprite_parent : Node3D
 @export var look_target : Node3D
+
+@export var navigation_agent : NavigationAgent3D
 
 
 func billboard_sprite() -> void:
@@ -39,4 +41,4 @@ func perform_move(input_vector: Vector3, delta: float) -> void:
 	else:
 		target_rotation = roundi(target_rotation)
 
-	body_3d.rotation.y = lerp(body_3d.rotation.y, target_rotation, delta * 5.0)
+	sprite.rotation.y = lerp(sprite.rotation.y, target_rotation, delta * 5.0)
