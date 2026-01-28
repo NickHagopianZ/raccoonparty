@@ -15,6 +15,10 @@ run/main_scene="uid://b1deiakb00w8l"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://Scenes/Autoloads/game_manager.gd"
+
 [display]
 
 window/size/always_on_top=true

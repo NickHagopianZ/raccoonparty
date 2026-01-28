@@ -1,6 +1,6 @@
 extends BaseEntity
+class_name NPCEntity
 
-@export var navigation_agent : NavigationAgent3D
 
 func move_to_target(target_position : Vector3) -> void:
 	navigation_agent.target_position = target_position
@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 		var direction : Vector3 = (next_path_position - global_position).normalized()
 		perform_move(direction, delta)
 	billboard_sprite()
+	look_target = null # reset look target each frame
 
 
 func focus(by_entity: Node) -> void:
@@ -42,3 +43,4 @@ func interact(by_entity: Node) -> void:
 			shortest_position = pos
 			
 	move_to_target(shortest_position)
+	GameManager.start_battle(self)

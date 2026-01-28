@@ -1,5 +1,5 @@
 extends BaseEntity
-class_name PlayerCharacter
+class_name PlayerEntity
 
 @export var camera : Camera3D
 var camera_target : Node3D
@@ -11,10 +11,13 @@ var interactable_bodies : Array = []
 var interaction_area_initial_position : Vector3
 var searching_for_interactables : bool = true
 @export var interact_sprite : Sprite3D
-
-@export var animation_sprite : AnimatedSprite3D
+var movement_type : String = "Player"
 
 func _ready() -> void:
+	GameManager.starting_battle.connect(_on_starting_battle)
+	GameManager.ending_battle.connect(_on_ending_battle)
+
+	GameManager.player_node = self
 	# set the camera to top level so it doesn't get affected by parent transforms
 	camera_target = camera_follow_node
 	interaction_area.body_entered.connect(_on_interaction_area_body_entered)
@@ -25,7 +28,12 @@ func _ready() -> void:
 	interact_sprite.top_level = true
 
 func _physics_process(delta: float) -> void:
-	move_player(delta)
+	if movement_type == "Player":
+		move_player(delta)
+	elif movement_type == "Navigation":
+		# perform_move(Vector3.FORWARD, delta)
+		pass
+	billboard_sprite()
 	move_camera(delta)
 	check_interactions(delta)
 
@@ -37,11 +45,10 @@ func move_player(delta: float) -> void:
 	input_vector.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
 	if input_vector != Vector3.ZERO:
-		animation_sprite.play("Walk")
+		sprite.play("Walk")
 	else:
-		animation_sprite.play("Idle")
+		sprite.play("Idle")
 	perform_move(input_vector, delta)
-	billboard_sprite()
 
 	if input_vector.x != 0.0:
 		last_input_vector = input_vector.normalized()
@@ -65,6 +72,7 @@ func move_camera(_delta: float) -> void:
 func check_interactions(delta : float) -> void:
 	if not searching_for_interactables or interactable_bodies.size() == 0:
 		interact_sprite.visible = false
+		look_target = null
 		return
 	if interactable_bodies.size() > 0:
 		var closest_body : Node = interactable_bodies[0]
@@ -87,6 +95,7 @@ func check_interactions(delta : float) -> void:
 		if body.has_method("focus"):
 			body.focus(self)
 		if Input.is_action_just_pressed("interact") and body.has_method("interact"):
+			look_target = body
 			body.interact(self)
 
 
@@ -97,3 +106,12 @@ func _on_interaction_area_body_entered(body: Node) -> void:
 func _on_interaction_area_body_exited(body: Node) -> void:
 	if body in interactable_bodies:
 		interactable_bodies.erase(body)
+
+
+func _on_starting_battle(_enemy : NPCEntity) -> void:
+	searching_for_interactables = false
+	interact_sprite.visible = false
+	look_target = null
+
+func _on_ending_battle() -> void:
+	searching_for_interactables = true

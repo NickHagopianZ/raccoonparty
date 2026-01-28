@@ -31,7 +31,7 @@ func reset(handler: RoomHandler) -> void:
 func _on_room_handler_body_entered(body: Node, handler: RoomHandler) -> void:
 	if handler == current_room_handler:
 		return
-	if body is not PlayerCharacter:
+	if body is not PlayerEntity:
 		return
 
 	update_visibility(handler)
