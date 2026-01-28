@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=9 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/Main/ui_manager.gd" id="1_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
-[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/BattleVisualizer.gd" id="5_o8wgc"]
-[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/TempBattler.gd" id="6_w20t6"]
-[ext_resource type="Script" uid="uid://b2dtcww8aj5gd" path="res://Scenes/Main/card.gd" id="7_aw1lf"]
+[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/battle_visualizer.gd" id="5_o8wgc"]
+[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battler.gd" id="6_w20t6"]
+[ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="7_5s61s"]
+[ext_resource type="PackedScene" uid="uid://wcebbnp847ns" path="res://Scenes/Battler/Card/card.tscn" id="7_aw1lf"]
 
 [node name="Main" type="Node"]
 
@@ -129,86 +130,19 @@ size_flags_stretch_ratio = 5.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+script = ExtResource("7_5s61s")
 
-[node name="CardSlot2" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" node_paths=PackedStringArray("card_sprite")]
+[node name="Card" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("7_aw1lf")
-card_sprite = NodePath("ColorRect3")
 
-[node name="ColorRect3" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand/CardSlot2"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 255.0
-offset_top = 482.0
-offset_right = -777.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.4038569, 0.09624099, 0.33439413, 1)
-
-[node name="CardSlot3" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" node_paths=PackedStringArray("card_sprite")]
+[node name="Card2" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("7_aw1lf")
-card_sprite = NodePath("ColorRect3")
 
-[node name="ColorRect3" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand/CardSlot3"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 255.0
-offset_top = 482.0
-offset_right = -777.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0627451, 0.09803922, 0.33333334, 1)
-
-[node name="CardSlot4" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" node_paths=PackedStringArray("card_sprite")]
+[node name="Card3" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("7_aw1lf")
-card_sprite = NodePath("ColorRect3")
 
-[node name="ColorRect3" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand/CardSlot4"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 255.0
-offset_top = 482.0
-offset_right = -777.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.8848662, 0.45058018, 0.7653953, 1)
-
-[node name="CardSlot5" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" node_paths=PackedStringArray("card_sprite")]
+[node name="Card4" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("7_aw1lf")
-card_sprite = NodePath("ColorRect3")
-
-[node name="ColorRect3" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand/CardSlot5"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 255.0
-offset_top = 482.0
-offset_right = -777.0
-offset_bottom = -6.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.36942443, 0.19178963, 0.078987546, 1)
 
 [node name="Draw" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
 layout_mode = 2

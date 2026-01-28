@@ -65,7 +65,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody3D" node_paths=PackedStringArray("camera", "camera_follow_node", "camera_ghost", "interaction_area", "interact_sprite", "animation_sprite", "sprite", "sprite_parent", "navigation_agent")]
+[node name="CharacterBody2D" type="CharacterBody3D" node_paths=PackedStringArray("camera", "camera_follow_node", "camera_ghost", "interaction_area", "interact_sprite", "sprite", "sprite_parent", "navigation_agent")]
 collision_layer = 4
 safe_margin = 0.2
 script = ExtResource("1_fhad2")
@@ -74,7 +74,6 @@ camera_follow_node = NodePath("Ghost/Pivot/Transform")
 camera_ghost = NodePath("Ghost")
 interaction_area = NodePath("Area3D")
 interact_sprite = NodePath("InteractVisualizer")
-animation_sprite = NodePath("Node3D/AnimatedSprite3D")
 sprite = NodePath("Node3D/AnimatedSprite3D")
 sprite_parent = NodePath("Node3D")
 navigation_agent = NodePath("NavigationAgent3D")
@@ -111,7 +110,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8hbf8")
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Node3D"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.6, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+offset = Vector2(100, 0)
 pixel_size = 0.002
 sprite_frames = SubResource("SpriteFrames_55uf8")
 animation = &"Battle"
