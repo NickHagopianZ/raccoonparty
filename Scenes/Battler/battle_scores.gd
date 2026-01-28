@@ -9,7 +9,6 @@ enum ScoreCategories {
 }
 
 enum Effects {
-	Increase,
+	Change,
 	Defend,
-	Decrease,
 }
