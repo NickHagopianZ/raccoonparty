@@ -9,4 +9,4 @@ func _gui_input(event):
 		card_container.play_card()
 
 func _ready():
-	size = Vector2(250, 350) * 0.8
+	size = Vector2(250, 350) * 1.0

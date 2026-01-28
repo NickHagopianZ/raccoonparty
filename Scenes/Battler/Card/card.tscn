@@ -8,48 +8,56 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -752.0
-offset_bottom = -88.0
+offset_right = -902.0
+offset_bottom = -298.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_behavior_recursive = 2
 script = ExtResource("1_kmdip")
-description_label = NodePath("CardVisualizer/VBoxContainer/Description")
-title_label = NodePath("CardVisualizer/VBoxContainer/Title")
+description_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Description")
+title_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Title")
 card_visualizer = NodePath("CardVisualizer")
 
 [node name="CardVisualizer" type="ColorRect" parent="."]
 layout_mode = 1
-offset_right = 120.0
-offset_bottom = 160.0
+offset_right = 250.0
+offset_bottom = 350.0
 mouse_filter = 1
 color = Color(0.4038569, 0.09624099, 0.33439413, 1)
 script = ExtResource("2_2a71a")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CardVisualizer"]
+[node name="MarginContainer" type="MarginContainer" parent="CardVisualizer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
 
-[node name="Title" type="Label" parent="CardVisualizer/VBoxContainer" groups=["cards"]]
+[node name="VBoxContainer" type="VBoxContainer" parent="CardVisualizer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+
+[node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
 text = "Card Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Description" type="RichTextLabel" parent="CardVisualizer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="CardVisualizer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 21
+theme_override_font_sizes/bold_italics_font_size = 21
+theme_override_font_sizes/italics_font_size = 21
+theme_override_font_sizes/mono_font_size = 21
 bbcode_enabled = true
 text = "Card [u][i][b]Description[/b][/i][/u]."
+fit_content = true

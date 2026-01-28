@@ -18,7 +18,6 @@ func set_card(new_card: CardResource):
 
 
 func play_card():
-	print("Playing card", card_resource, "located at", hand_index)
 	played.emit(self)
 
 
