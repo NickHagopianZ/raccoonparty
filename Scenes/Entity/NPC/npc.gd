@@ -9,12 +9,12 @@ func move_to_target(target_position : Vector3) -> void:
 func _physics_process(delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
 		perform_move(Vector3.ZERO, delta)
+		look_target = null
 	else:
 		var next_path_position : Vector3 = navigation_agent.get_next_path_position()
 		var direction : Vector3 = (next_path_position - global_position).normalized()
 		perform_move(direction, delta)
 	billboard_sprite()
-	look_target = null # reset look target each frame
 
 
 func focus(by_entity: Node) -> void:

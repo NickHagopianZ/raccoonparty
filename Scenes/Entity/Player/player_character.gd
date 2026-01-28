@@ -109,6 +109,7 @@ func _on_interaction_area_body_exited(body: Node) -> void:
 
 
 func _on_starting_battle(_enemy : NPCEntity) -> void:
+	movement_type = "Navigation"
 	searching_for_interactables = false
 	interact_sprite.visible = false
 	look_target = null
