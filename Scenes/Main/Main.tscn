@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/Main/ui_manager.gd" id="1_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
-[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/battle_visualizer.gd" id="5_o8wgc"]
-[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battler.gd" id="6_w20t6"]
+[ext_resource type="Script" path="res://Scenes/Battler/battle_visualizer.gd" id="5_o8wgc"]
+[ext_resource type="Script" path="res://Scenes/Main/battler.gd" id="6_w20t6"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="7_5s61s"]
 [ext_resource type="PackedScene" uid="uid://wcebbnp847ns" path="res://Scenes/Battler/Card/card.tscn" id="7_aw1lf"]
 
@@ -33,6 +33,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6811785, 1, 0)
 script = ExtResource("5_o8wgc")
 player_sprite = NodePath("Player")
 enemy_sprite = NodePath("Enemy")
+
+[node name="ColorRect" type="ColorRect" parent="CardBattlerMain/Node2D"]
+offset_right = 2000.0
+offset_bottom = 2000.0
+color = Color(0, 0, 0, 0.6313726)
 
 [node name="Player" type="AnimatedSprite2D" parent="CardBattlerMain/Node2D"]
 position = Vector2(300, 400)
@@ -66,7 +71,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="CardBattlerMain/CardManager/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
 [node name="SideboardBackground" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect"]
@@ -87,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Card Description" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -122,6 +128,7 @@ text = "Flavor"
 horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
@@ -145,6 +152,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Draw" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.76185757, 0.00046051503, 0.76442206, 1)
