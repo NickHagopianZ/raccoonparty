@@ -22,6 +22,8 @@ GameManager="*res://Scenes/Autoloads/game_manager.gd"
 
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://c816mkr8jjf64"
+mouse_cursor/custom_image_hotspot=Vector2(5, 6)
 
 [input]
 
