@@ -72,7 +72,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="BattleManager/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="SideboardBackground" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect"]
@@ -93,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Card Description" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -150,10 +150,6 @@ layout_mode = 2
 [node name="Card4" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
 
-[node name="Draw" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.76185757, 0.00046051503, 0.76442206, 1)
 
 [node name="Stats" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
 layout_mode = 2

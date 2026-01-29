@@ -58,14 +58,14 @@ func move_player(delta: float) -> void:
 		last_input_vector = input_vector.normalized()
 
 	interaction_area.position.x = lerp(
-		interaction_area.position.x, 
-		interaction_area_initial_position.x * last_input_vector.x, 
+		interaction_area.position.x,
+		interaction_area_initial_position.x * last_input_vector.x,
 		delta * 10.0)
 
 
 func move_camera(delta: float) -> void:
 	camera_ghost.global_position = lerp(
-		camera_ghost.global_position, 
+		camera_ghost.global_position,
 		global_position + last_input_vector * 3.0,
 		delta
 		)
@@ -91,10 +91,10 @@ func check_interactions(delta : float) -> void:
 			interact_sprite.global_position = body.global_position
 		else:
 			interact_sprite.global_position = lerp(
-				interact_sprite.global_position, 
-				body.global_position, 
+				interact_sprite.global_position,
+				body.global_position,
 				10.0 * delta)
-		
+
 		if body.has_method("focus"):
 			body.focus(self)
 		if Input.is_action_just_pressed("interact") and body.has_method("interact"):
