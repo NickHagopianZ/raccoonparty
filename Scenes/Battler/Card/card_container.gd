@@ -18,7 +18,6 @@ func set_card(new_card: CardResource):
 
 
 func play_card():
-	print("Playing card", card_resource, "located at", hand_index)
 	played.emit(self)
 
 
@@ -65,6 +64,3 @@ func _on_mouse_exited() -> void:
 	card_visualizer.modulate = Color(1, 1, 1, 1)
 	card_visualizer.hovered = false
 	card_visualizer.z_index = 0
-
-
-
