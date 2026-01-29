@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://o0k7eykfiqqg"]
+
+[ext_resource type="Script" uid="uid://k65kwv7bs3m0" path="res://Scenes/popup.gd" id="1_ma1v7"]
+[ext_resource type="Script" uid="uid://lplu2v80ahop" path="res://Scenes/UI/game_manager_caller.gd" id="2_p46qs"]
+[ext_resource type="Script" uid="uid://cbneg8y87jwhd" path="res://Scenes/UI/game_manager_caller_slider.gd" id="3_p46qs"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("close_button")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ma1v7")
+close_button = NodePath("Panel/MarginContainer/VBoxContainer/Close")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -72.5
+offset_right = 150.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings "
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="FullScreen" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Toggle Full Screen"
+script = ExtResource("2_p46qs")
+method_name = "full_screen_toggle"
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound "
+horizontal_alignment = 1
+
+[node name="Music" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+value = 50.0
+script = ExtResource("3_p46qs")
+method_name = "set_volume"
+args = ["Music"]
+
+[node name="SFX" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+
+[node name="HSlider2" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+value = 50.0
+script = ExtResource("3_p46qs")
+method_name = "set_volume"
+args = ["SFX"]
+
+[node name="General" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/General"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+
+[node name="HSlider3" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/General"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+value = 50.0
+script = ExtResource("3_p46qs")
+method_name = "set_volume"
+args = ["Master"]
+
+[node name="Control3" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"

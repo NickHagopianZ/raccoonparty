@@ -21,35 +21,43 @@ func play_card():
 	played.emit(self)
 
 
-var new : bool = true
 func _ready() -> void:
-	card_visualizer.top_level = true
 	card_visualizer.card_container = self
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	card_visualizer.mouse_entered.connect(_on_mouse_entered)
 	card_visualizer.mouse_exited.connect(_on_mouse_exited)
-
+	var target_position : Vector2 = global_position + get_rect().size / 2 - card_visualizer.get_rect().size / 2
+	card_visualizer.global_position = target_position
 
 
 const lerp_speed = 5.0
+var _initialized := false
+
 func _physics_process(delta: float) -> void:
 	var target_position : Vector2 = global_position + get_rect().size / 2 - card_visualizer.get_rect().size / 2
 	var target_rotation : float = 0.0
+
+	# Initialize position on first frame
+	if not _initialized:
+		card_visualizer.global_position = target_position
+		_initialized = true
+		return
+
 	# card_visualizer.global_position = global_position
 	var cards_in_hand = get_parent().get_child_count()
 	var index = get_index()
 	var center = (cards_in_hand - 1) / 2.0
 	var distance_from_center = index - center
-	target_position.y -= abs(distance_from_center) * 15.0
+	# target_position.y -= abs(distance_from_center) * 15.0
 	target_rotation = distance_from_center * PI / 70.0
 	if card_visualizer.hovered:
 		target_position.y -= 30.0
 
-	if new:
+	if global_position.distance_to(target_position) > 100.0:
 		card_visualizer.global_position = target_position
-		card_visualizer.rotation = target_rotation
-		new = false
+		return
+
 	card_visualizer.global_position = lerp(card_visualizer.global_position, target_position, delta * lerp_speed)
 	card_visualizer.rotation = lerp(card_visualizer.rotation, target_rotation, delta * lerp_speed)
 

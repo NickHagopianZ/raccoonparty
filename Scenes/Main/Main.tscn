@@ -1,22 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=20 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
-[ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/Main/ui_manager.gd" id="1_o8wgc"]
-[ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="3_o8wgc"]
+[ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/UI/main_menu_ui.gd" id="1_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
-[ext_resource type="Script" path="res://Scenes/Battler/battle_visualizer.gd" id="5_o8wgc"]
-[ext_resource type="Script" path="res://Scenes/Main/battler.gd" id="6_w20t6"]
+[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/interaction_display.gd" id="5_o8wgc"]
+[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="6_w20t6"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="7_5s61s"]
 [ext_resource type="PackedScene" uid="uid://wcebbnp847ns" path="res://Scenes/Battler/Card/card.tscn" id="7_aw1lf"]
+[ext_resource type="Script" uid="uid://fu88uwfcxtcs" path="res://Scenes/Main/dialogue_manger.gd" id="9_4vhfm"]
+[ext_resource type="Texture2D" uid="uid://do8bl3m6fq7a8" path="res://Assets/UI/NinePatch.png" id="9_7npjy"]
+[ext_resource type="Script" uid="uid://cjikpkjr52g0i" path="res://Scenes/UI/pause_ui.gd" id="10_cv8e0"]
+[ext_resource type="Script" uid="uid://lplu2v80ahop" path="res://Scenes/UI/game_manager_caller.gd" id="11_cv8e0"]
+[ext_resource type="Texture2D" uid="uid://b7orhf6qo6o38" path="res://Assets/Furniture/NinePatchInset.png" id="11_dvlhv"]
+[ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="11_wgovn"]
+[ext_resource type="PackedScene" uid="uid://o0k7eykfiqqg" path="res://Scenes/UI/settings.tscn" id="13_5ci8a"]
+[ext_resource type="PackedScene" uid="uid://du66x7ynh5jdl" path="res://Scenes/UI/credits.tscn" id="15_18xdc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vhfm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvlhv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgovn"]
+
+[sub_resource type="Theme" id="Theme_cv8e0"]
+Button/styles/focus = SubResource("StyleBoxEmpty_4vhfm")
+Button/styles/normal = SubResource("StyleBoxEmpty_dvlhv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_wgovn")
 
 [node name="Main" type="Node"]
-
-[node name="UIManager" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_o8wgc")
 
 [node name="Main3D" type="Node3D" parent="."]
 
@@ -24,30 +35,20 @@ script = ExtResource("1_o8wgc")
 script = ExtResource("1_cmk6n")
 initial_level_scene = ExtResource("4_o8wgc")
 
-[node name="CharacterBody2D" parent="Main3D" instance=ExtResource("3_o8wgc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6811785, 1, 0)
-
-[node name="CardBattlerMain" type="Node" parent="."]
-
-[node name="Node2D" type="Node2D" parent="CardBattlerMain" node_paths=PackedStringArray("player_sprite", "enemy_sprite")]
+[node name="InteractionVisuals" type="Node2D" parent="." node_paths=PackedStringArray("player_sprite", "opposing_sprite")]
 script = ExtResource("5_o8wgc")
 player_sprite = NodePath("Player")
-enemy_sprite = NodePath("Enemy")
+opposing_sprite = NodePath("Enemy")
 
-[node name="ColorRect" type="ColorRect" parent="CardBattlerMain/Node2D"]
-offset_right = 2000.0
-offset_bottom = 2000.0
-color = Color(0, 0, 0, 0.6313726)
-
-[node name="Player" type="AnimatedSprite2D" parent="CardBattlerMain/Node2D"]
+[node name="Player" type="AnimatedSprite2D" parent="InteractionVisuals"]
 position = Vector2(300, 400)
 scale = Vector2(0.5, 0.5)
 
-[node name="Enemy" type="AnimatedSprite2D" parent="CardBattlerMain/Node2D"]
+[node name="Enemy" type="AnimatedSprite2D" parent="InteractionVisuals"]
 position = Vector2(186, 500)
 scale = Vector2(0.5, 0.5)
 
-[node name="CardManager" type="Control" parent="CardBattlerMain"]
+[node name="BattleManager" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +59,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("6_w20t6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,15 +67,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DropArea" type="Control" parent="CardBattlerMain/CardManager/VBoxContainer"]
+[node name="DropArea" type="Control" parent="BattleManager/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="CardBattlerMain/CardManager/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+[node name="TextureRect" type="TextureRect" parent="BattleManager/VBoxContainer"]
 layout_mode = 2
 
-[node name="SideboardBackground" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect"]
+[node name="SideboardBackground" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.3529412, 1, 1, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,14 +91,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card Description" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+[node name="Card Description" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 color = Color(0.48325908, 0.46016604, 0.46022302, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Card Description"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,63 +107,57 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
 layout_mode = 2
 text = "Title"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+[node name="Label2" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
 layout_mode = 2
 text = "Description"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+[node name="Label3" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
 layout_mode = 2
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+[node name="Label4" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
 layout_mode = 2
 text = "Flavor"
 horizontal_alignment = 1
 
-[node name="Cards" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
-custom_minimum_size = Vector2(900, 0)
+[node name="Cards" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="Hand" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
+[node name="Hand" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource("7_5s61s")
 
-[node name="Card" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+[node name="Card" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
 
-[node name="Card2" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+[node name="Card2" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
 
-[node name="Card3" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+[node name="Card3" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
 
-[node name="Card4" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
+[node name="Card4" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
 layout_mode = 2
 
-[node name="Draw" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Cards"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.76185757, 0.00046051503, 0.76442206, 1)
 
-[node name="Stats" type="ColorRect" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer"]
+[node name="Stats" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 color = Color(0.7035408, 0.062251605, 0.40001988, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,50 +166,330 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sus"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vibes"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fear"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="CardBattlerMain/CardManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
+
+[node name="DialogueManager" type="Control" parent="." node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_4vhfm")
+edit_deck = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/EditDeck")
+flavor_text = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer/RichTextLabel")
+dialogue_choices_container = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer")
+partner_stats = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data")
+end_interaction_button = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer/EndInteraction")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacing" type="Control" parent="DialogueManager/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueManager/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = SubResource("Theme_cv8e0")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="NinePatchRect" type="NinePatchRect" parent="DialogueManager/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("9_7npjy")
+region_rect = Rect2(36, 53, 146, 123)
+patch_margin_left = 51
+patch_margin_top = 44
+patch_margin_right = 48
+patch_margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="EditDeck" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Manage Deck"
+
+[node name="Dialogue" type="VBoxContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
+visible = false
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("11_dvlhv")
+region_rect = Rect2(75, 83, 80, 67)
+patch_margin_left = 59
+patch_margin_top = 56
+patch_margin_right = 59
+patch_margin_bottom = 54
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
+layout_mode = 2
+text = "Hey"
+
+[node name="Button2" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
+layout_mode = 2
+text = "Wassup"
+
+[node name="Button3" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
+layout_mode = 2
+text = "Yo yo yo"
+
+[node name="EndInteraction" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
+layout_mode = 2
+text = "Bye"
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_dvlhv")
+region_rect = Rect2(75, 83, 80, 67)
+patch_margin_left = 51
+patch_margin_top = 42
+patch_margin_right = 49
+patch_margin_bottom = 44
+
+[node name="Data" type="VBoxContainer" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 344.0
+offset_bottom = 178.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Name"
+
+[node name="Stats" type="Label" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Stats"
+
+[node name="Weaknesses" type="Label" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Weaknesses"
+
+[node name="Strengths" type="Label" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Strengths"
+
+[node name="PauseScreen" type="Control" parent="." node_paths=PackedStringArray("menu_container")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_cv8e0")
+menu_container = NodePath("VBoxContainer/Control")
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.42745098, 0.42745098, 0.42745098, 0.6039216)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 0.03529412)
+theme_override_font_sizes/font_size = 100
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PauseScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen/VBoxContainer/Control"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 4.0
+offset_right = 624.0
+offset_bottom = 105.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="PauseScreen/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+script = ExtResource("11_cv8e0")
+method_name = "unpause"
+
+[node name="Settings" type="Button" parent="PauseScreen/VBoxContainer/Control/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("11_wgovn")
+target_parent = NodePath("../..")
+new_scene = ExtResource("13_5ci8a")
+
+[node name="Quit" type="Button" parent="PauseScreen/VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("11_cv8e0")
+method_name = "quit_to_title"
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o8wgc")
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Start" type="Button" parent="MainMenu/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("11_cv8e0")
+method_name = "start_game"
+
+[node name="Settings" type="Button" parent="MainMenu/ColorRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("11_wgovn")
+target_parent = NodePath("../..")
+new_scene = ExtResource("13_5ci8a")
+
+[node name="Credits" type="Button" parent="MainMenu/ColorRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Credits"
+script = ExtResource("11_wgovn")
+target_parent = NodePath("../..")
+new_scene = ExtResource("15_18xdc")
+
+[node name="Quit" type="Button" parent="MainMenu/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("11_cv8e0")
+method_name = "quit_to_desktop"
