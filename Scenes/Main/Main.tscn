@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=19 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/UI/main_menu_ui.gd" id="1_o8wgc"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/interaction_display.gd" id="5_o8wgc"]
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="6_w20t6"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="7_5s61s"]
-[ext_resource type="PackedScene" uid="uid://wcebbnp847ns" path="res://Scenes/Battler/Card/card.tscn" id="7_aw1lf"]
 [ext_resource type="Script" uid="uid://fu88uwfcxtcs" path="res://Scenes/Main/dialogue_manger.gd" id="9_4vhfm"]
 [ext_resource type="Texture2D" uid="uid://do8bl3m6fq7a8" path="res://Assets/UI/NinePatch.png" id="9_7npjy"]
 [ext_resource type="Script" uid="uid://cjikpkjr52g0i" path="res://Scenes/UI/pause_ui.gd" id="10_cv8e0"]
@@ -137,19 +136,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource("7_5s61s")
-
-[node name="Card" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
-layout_mode = 2
-
-[node name="Card2" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
-layout_mode = 2
-
-[node name="Card3" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
-layout_mode = 2
-
-[node name="Card4" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Cards/Hand" instance=ExtResource("7_aw1lf")]
-layout_mode = 2
-
 
 [node name="Stats" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
 layout_mode = 2
@@ -311,18 +297,6 @@ patch_margin_bottom = 54
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-
-[node name="Button" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
-layout_mode = 2
-text = "Hey"
-
-[node name="Button2" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
-layout_mode = 2
-text = "Wassup"
-
-[node name="Button3" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
-layout_mode = 2
-text = "Yo yo yo"
 
 [node name="EndInteraction" type="Button" parent="DialogueManager/VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
 layout_mode = 2
