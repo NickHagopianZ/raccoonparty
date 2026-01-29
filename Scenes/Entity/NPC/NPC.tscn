@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://67u4dedxrwy1" path="res://Scenes/Entity/NPC/npc.gd" id="1_h3yth"]
 [ext_resource type="Texture2D" uid="uid://dvwlpwmxd4eks" path="res://Assets/Entity/NPC/temp_human.png" id="2_ivpoq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
-size = Vector3(1, 2.4, 0.1)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jhwq"]
 animations = [{
 "frames": [{
@@ -13,7 +10,7 @@ animations = [{
 "texture": ExtResource("2_ivpoq")
 }],
 "loop": true,
-"name": &"Battle",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -21,17 +18,21 @@ animations = [{
 "texture": ExtResource("2_ivpoq")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Interact",
 "speed": 5.0
 }]
 
-[node name="Node2D" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "sprite_parent", "navigation_agent")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
+size = Vector3(1, 2.4, 0.1)
+
+[node name="NPC" type="CharacterBody3D" node_paths=PackedStringArray("sprite_parent", "navigation_agent", "sprite")]
 collision_layer = 2
 script = ExtResource("1_h3yth")
 speed = 5.0
-sprite = NodePath("Node3D2/AnimatedSprite3D")
 sprite_parent = NodePath("Node3D2")
 navigation_agent = NodePath("NavigationAgent3D")
+sprite_frames = SubResource("SpriteFrames_1jhwq")
+sprite = NodePath("Node3D2/AnimatedSprite3D")
 
 [node name="CollisionPolygon2D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_h3yth")
@@ -42,7 +43,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Node3D2"]
 pixel_size = 0.004
 sprite_frames = SubResource("SpriteFrames_1jhwq")
-animation = &"Battle"
+animation = &"Idle"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1

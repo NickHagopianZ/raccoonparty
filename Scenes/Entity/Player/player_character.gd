@@ -1,4 +1,4 @@
-extends BaseEntity
+extends CharacterEntity
 class_name PlayerEntity
 
 @export var camera : Camera3D
@@ -14,8 +14,9 @@ var searching_for_interactables : bool = true
 var movement_type : String = "Player"
 
 func _ready() -> void:
-	GameManager.starting_battle.connect(_on_starting_battle)
-	GameManager.ending_battle.connect(_on_ending_battle)
+	super()
+	GameManager.starting_interaction.connect(_on_starting_interaction)
+	GameManager.ending_interaction.connect(_on_ending_interaction)
 
 	GameManager.player_node = self
 	# set the camera to top level so it doesn't get affected by parent transforms
@@ -31,8 +32,11 @@ func _physics_process(delta: float) -> void:
 	if movement_type == "Player":
 		move_player(delta)
 	elif movement_type == "Navigation":
-		# perform_move(Vector3.FORWARD, delta)
-		pass
+		perform_navigation_move(delta)
+		if velocity.length() < 0.1:
+			sprite.play("Idle")
+		else:
+			sprite.play("Walk")
 	billboard_sprite()
 	move_camera(delta)
 	check_interactions(delta)
@@ -57,14 +61,14 @@ func move_player(delta: float) -> void:
 		interaction_area.position.x, 
 		interaction_area_initial_position.x * last_input_vector.x, 
 		delta * 10.0)
+
+
+func move_camera(delta: float) -> void:
 	camera_ghost.global_position = lerp(
 		camera_ghost.global_position, 
 		global_position + last_input_vector * 3.0,
 		delta
 		)
-
-
-func move_camera(_delta: float) -> void:
 	if camera_target:
 		camera.global_position = camera_target.global_position
 
@@ -72,7 +76,6 @@ func move_camera(_delta: float) -> void:
 func check_interactions(delta : float) -> void:
 	if not searching_for_interactables or interactable_bodies.size() == 0:
 		interact_sprite.visible = false
-		look_target = null
 		return
 	if interactable_bodies.size() > 0:
 		var closest_body : Node = interactable_bodies[0]
@@ -95,7 +98,6 @@ func check_interactions(delta : float) -> void:
 		if body.has_method("focus"):
 			body.focus(self)
 		if Input.is_action_just_pressed("interact") and body.has_method("interact"):
-			look_target = body
 			body.interact(self)
 
 
@@ -108,11 +110,13 @@ func _on_interaction_area_body_exited(body: Node) -> void:
 		interactable_bodies.erase(body)
 
 
-func _on_starting_battle(_enemy : NPCEntity) -> void:
+func _on_starting_interaction(interaction_partner : Entity) -> void:
 	movement_type = "Navigation"
 	searching_for_interactables = false
 	interact_sprite.visible = false
-	look_target = null
+	look_target = interaction_partner
 
-func _on_ending_battle() -> void:
+func _on_ending_interaction() -> void:
 	searching_for_interactables = true
+	look_target = null
+	movement_type = "Player"
