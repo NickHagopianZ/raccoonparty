@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://odlllj3codqu"]
+
+[ext_resource type="Script" uid="uid://wg14topjmupu" path="res://Scenes/Main/moving_background.gd" id="1_65c18"]
+
+[sub_resource type="Gradient" id="Gradient_18xdc"]
+offsets = PackedFloat32Array(0.29333332, 0.3, 0.94666666, 1)
+colors = PackedColorArray(0.17254902, 0.41960785, 0.7137255, 1, 0.21568628, 0.06666667, 0.23921569, 1, 0.20536283, 0.071828395, 0.22889224, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_epx8f"]
+gradient = SubResource("Gradient_18xdc")
+width = 1024
+height = 1024
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_5ci8a"]
+offsets = PackedFloat32Array(0.15333334, 0.18666667)
+colors = PackedColorArray(0.21568628, 0.24705882, 0.23921569, 0, 1, 0.1254902, 0.23921569, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18xdc"]
+gradient = SubResource("Gradient_5ci8a")
+width = 1024
+height = 1024
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_epx8f"]
+offsets = PackedFloat32Array(0.32, 0.37333333)
+colors = PackedColorArray(0.21568628, 0.24705882, 0.23921569, 0, 1, 0.56078434, 0.23921569, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hcu3t"]
+gradient = SubResource("Gradient_epx8f")
+width = 1024
+height = 1024
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_qdkat"]
+offsets = PackedFloat32Array(0.5733333, 0.61333334)
+colors = PackedColorArray(0.21568628, 0.24705882, 0.23921569, 0, 0.3019608, 0.56078434, 0.23921569, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_udh0u"]
+gradient = SubResource("Gradient_qdkat")
+width = 1024
+height = 1024
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MenuBackground" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_epx8f")
+script = ExtResource("1_65c18")
+mouse_effect_speed = Vector2(0.05, 0.05)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_18xdc")
+script = ExtResource("1_65c18")
+mouse_effect_speed = Vector2(0.1, 0.1)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hcu3t")
+script = ExtResource("1_65c18")
+mouse_effect_speed = Vector2(0.2, 0.2)
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = 512.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_udh0u")
+script = ExtResource("1_65c18")
+mouse_effect_speed = Vector2(0.4, 0.4)
