@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cdhfmloav1kae"]
+
+[node name="CardSlot" type="Control"]
+custom_minimum_size = Vector2(125, 175)
+layout_mode = 3
+anchors_preset = 0

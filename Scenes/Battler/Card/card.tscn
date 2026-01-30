@@ -21,7 +21,6 @@ title_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Title")
 card_visualizer = NodePath("CardVisualizer")
 
 [node name="CardVisualizer" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 250.0
 offset_bottom = 350.0
@@ -47,7 +46,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 36
 text = "Card Title"
 horizontal_alignment = 1
 vertical_alignment = 1
