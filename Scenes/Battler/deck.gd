@@ -21,8 +21,13 @@ func _init():
 	deck = []
 	# todo create a deck instance with these starting cards and save it
 	add_card_to_deck(AllPossibleCards.sip_drink)
-	add_card_to_deck(AllPossibleCards.growl)
 	add_card_to_deck(AllPossibleCards.back_flip)
+	add_card_to_deck(AllPossibleCards.growl)
+	add_card_to_deck(AllPossibleCards.jam)
+	add_card_to_deck(AllPossibleCards.garbage_man)
+	add_card_to_deck(AllPossibleCards.distraction)
+	add_card_to_deck(AllPossibleCards.hot_take)
+	add_card_to_deck(AllPossibleCards.have_we_met)
 
 func _ready():
 	reset_deck()
