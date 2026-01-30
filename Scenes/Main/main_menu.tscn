@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://brl2op24s51p6"]
+
+[ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/UI/main_menu_ui.gd" id="1_7gkfm"]
+[ext_resource type="Script" uid="uid://lplu2v80ahop" path="res://Scenes/UI/game_manager_caller.gd" id="2_gsnsu"]
+[ext_resource type="PackedScene" uid="uid://odlllj3codqu" path="res://Scenes/Backdrops/menu_background.tscn" id="2_xw16n"]
+[ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="3_xw16n"]
+[ext_resource type="PackedScene" uid="uid://o0k7eykfiqqg" path="res://Scenes/UI/settings.tscn" id="4_6moem"]
+[ext_resource type="PackedScene" uid="uid://du66x7ynh5jdl" path="res://Scenes/UI/credits.tscn" id="5_1ahfh"]
+
+[node name="MainMenu" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7gkfm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+
+[node name="MenuBackground" parent="ColorRect" instance=ExtResource("2_xw16n")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Start" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+script = ExtResource("2_gsnsu")
+method_name = "start_game"
+
+[node name="Settings" type="Button" parent="ColorRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("3_xw16n")
+target_parent = NodePath("../..")
+new_scene = ExtResource("4_6moem")
+
+[node name="Credits" type="Button" parent="ColorRect/MarginContainer/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Credits"
+script = ExtResource("3_xw16n")
+target_parent = NodePath("../..")
+new_scene = ExtResource("5_1ahfh")
+
+[node name="Quit" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("2_gsnsu")
+method_name = "quit_to_desktop"

@@ -1,0 +1,173 @@
+[gd_scene load_steps=4 format=3 uid="uid://ugfkrkq6m8my"]
+
+[ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
+[ext_resource type="Script" uid="uid://cq2mhg486kodf" path="res://Scenes/Main/drop_area.gd" id="2_poj46"]
+[ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
+
+[node name="BattleManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h0sxb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DropArea" type="Control" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_poj46")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="SideboardBackground" type="ColorRect" parent="VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3529412, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card Description" type="ColorRect" parent="VBoxContainer/TextureRect/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+color = Color(0.48325908, 0.46016604, 0.46022302, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Description"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
+layout_mode = 2
+text = "Flavor"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Hand" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource("3_d17o4")
+
+[node name="Stats" type="ColorRect" parent="VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+color = Color(0.7035408, 0.062251605, 0.40001988, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sus"
+horizontal_alignment = 1
+
+[node name="SusSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vibes"
+horizontal_alignment = 1
+
+[node name="VibesSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fear"
+horizontal_alignment = 1
+
+[node name="FearSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+editable = false
+scrollable = false

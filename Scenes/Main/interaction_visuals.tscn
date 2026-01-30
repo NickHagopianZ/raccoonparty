@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://qqlhvh58txfs"]
+
+[ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/interaction_display.gd" id="1_rdq4x"]
+
+[node name="InteractionVisuals" type="Node2D" node_paths=PackedStringArray("player_sprite", "opposing_sprite")]
+script = ExtResource("1_rdq4x")
+player_sprite = NodePath("Player")
+opposing_sprite = NodePath("Enemy")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+position = Vector2(300, 400)
+scale = Vector2(0.5, 0.5)
+
+[node name="Enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(186, 500)
+scale = Vector2(0.5, 0.5)

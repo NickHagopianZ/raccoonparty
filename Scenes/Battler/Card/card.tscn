@@ -21,6 +21,7 @@ title_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Title")
 card_visualizer = NodePath("CardVisualizer")
 
 [node name="CardVisualizer" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 250.0
 offset_bottom = 350.0

@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgq4tkrsbhfd5"]
+
+[ext_resource type="Script" uid="uid://fu88uwfcxtcs" path="res://Scenes/Main/dialogue_manger.gd" id="1_g18g6"]
+[ext_resource type="Texture2D" uid="uid://do8bl3m6fq7a8" path="res://Assets/UI/NinePatch.png" id="2_8b8ha"]
+[ext_resource type="Texture2D" uid="uid://b7orhf6qo6o38" path="res://Assets/Furniture/NinePatchInset.png" id="3_mmfe8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vhfm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvlhv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgovn"]
+
+[sub_resource type="Theme" id="Theme_cv8e0"]
+Button/styles/focus = SubResource("StyleBoxEmpty_4vhfm")
+Button/styles/normal = SubResource("StyleBoxEmpty_dvlhv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_wgovn")
+
+[node name="DialogueManager" type="Control" node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g18g6")
+edit_deck = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/EditDeck")
+flavor_text = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer/RichTextLabel")
+dialogue_choices_container = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer")
+partner_stats = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data")
+end_interaction_button = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer/EndInteraction")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacing" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = SubResource("Theme_cv8e0")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_8b8ha")
+region_rect = Rect2(36, 53, 146, 123)
+patch_margin_left = 51
+patch_margin_top = 44
+patch_margin_right = 48
+patch_margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="EditDeck" type="Button" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Manage Deck"
+
+[node name="Dialogue" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
+visible = false
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("3_mmfe8")
+region_rect = Rect2(75, 83, 80, 67)
+patch_margin_left = 59
+patch_margin_top = 56
+patch_margin_right = 59
+patch_margin_bottom = 54
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EndInteraction" type="Button" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer"]
+layout_mode = 2
+text = "Bye"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_mmfe8")
+region_rect = Rect2(75, 83, 80, 67)
+patch_margin_left = 51
+patch_margin_top = 42
+patch_margin_right = 49
+patch_margin_bottom = 44
+
+[node name="Data" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 344.0
+offset_bottom = 178.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Name" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Name"
+
+[node name="Stats" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Stats"
+
+[node name="Weaknesses" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Weaknesses"
+
+[node name="Strengths" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+layout_mode = 2
+text = "Strengths"
