@@ -59,6 +59,6 @@ func interact(by_entity: CharacterEntity) -> void:
 		if path_length < shortest_path:
 			shortest_path = path_length
 			shortest_position = pos
-			
+
 	by_entity.move_to_target(shortest_position)
 	GameManager.start_interaction(self)

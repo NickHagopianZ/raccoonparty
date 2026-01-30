@@ -14,7 +14,7 @@ func clear_scene() -> void:
 
 func load_scene(new_scene : PackedScene = initial_level_scene) -> void:
 	clear_scene()
-	
+
 	# instantiate and add the new level scene
 	var level_instance = new_scene.instantiate()
 	add_child(level_instance)
