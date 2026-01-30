@@ -22,9 +22,7 @@ func _init():
 	# todo create a deck instance with these starting cards and save it
 	add_card_to_deck(AllPossibleCards.sip_drink)
 	add_card_to_deck(AllPossibleCards.growl)
-	add_card_to_deck(AllPossibleCards.backflip)
-	add_card_to_deck(AllPossibleCards.backflip)
-	add_card_to_deck(AllPossibleCards.backflip)
+	add_card_to_deck(AllPossibleCards.back_flip)
 
 func _ready():
 	reset_deck()
