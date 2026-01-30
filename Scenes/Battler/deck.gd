@@ -1,7 +1,7 @@
 extends Node
 class_name Deck
 
-const hand_size = 2
+const hand_size = 3
 
 var deck: Array[CardResource]
 var hand: Array[CardContainer]
@@ -9,6 +9,7 @@ var discard: Array[CardResource]
 var draw_pile: Array[CardResource]
 
 signal update_cards
+signal card_played(card: CardContainer)
 const CARD_SCENE = preload("res://Scenes/Battler/Card/card.tscn")
 
 
@@ -21,6 +22,8 @@ func _init():
 	# todo create a deck instance with these starting cards and save it
 	add_card_to_deck(AllPossibleCards.sip_drink)
 	add_card_to_deck(AllPossibleCards.growl)
+	add_card_to_deck(AllPossibleCards.backflip)
+	add_card_to_deck(AllPossibleCards.backflip)
 	add_card_to_deck(AllPossibleCards.backflip)
 
 func _ready():
@@ -47,7 +50,7 @@ func draw_card() -> bool:
 	var card: CardContainer = CARD_SCENE.instantiate()
 	card.set_card(card_resource)
 	card.played.connect(play_card)
-	card.played.connect(GameManager.player_character_played_card)
+	#card.played.connect(GameManager.player_character_played_card)
 
 	hand.append(card)
 	update_cards.emit()
@@ -69,6 +72,7 @@ func fill_hand():
 
 
 func play_card(card):
+	card_played.emit(card)
 	discard.append(card.card_resource)
 	hand.erase(card)
 	card.queue_free()
