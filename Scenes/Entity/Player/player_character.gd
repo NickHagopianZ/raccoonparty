@@ -48,6 +48,7 @@ func move_player(delta: float) -> void:
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
+	input_vector.z *= 1.3
 	if input_vector != Vector3.ZERO:
 		sprite.play("Walk")
 	else:
