@@ -71,6 +71,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="BattleManager/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
 [node name="SideboardBackground" type="ColorRect" parent="BattleManager/VBoxContainer/TextureRect"]
@@ -127,6 +128,7 @@ text = "Flavor"
 horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
@@ -143,57 +145,68 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 color = Color(0.7035408, 0.062251605, 0.40001988, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats"]
+[node name="MarginContainer" type="MarginContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sus"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+[node name="SusSlider" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vibes"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer2"]
+[node name="VibesSlider" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fear"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/VBoxContainer/HBoxContainer3"]
+[node name="FearSlider" type="HSlider" parent="BattleManager/VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 value = 50.0
@@ -201,6 +214,7 @@ editable = false
 scrollable = false
 
 [node name="DialogueManager" type="Control" parent="." node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -342,6 +356,7 @@ text = "Strengths"
 
 [node name="PauseScreen" type="Control" parent="." node_paths=PackedStringArray("menu_container")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -410,6 +425,7 @@ script = ExtResource("11_cv8e0")
 method_name = "quit_to_title"
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
