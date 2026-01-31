@@ -193,8 +193,13 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
+BoxContainer/constants/separation = 10
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_o1pc8")
+FlowContainer/constants/h_separation = 10
+FlowContainer/constants/v_separation = 10
+GridContainer/constants/h_separation = 10
+GridContainer/constants/v_separation = 10
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)

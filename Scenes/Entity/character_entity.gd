@@ -6,11 +6,6 @@ class_name CharacterEntity
 @export var navigation_agent : NavigationAgent3D
 var look_target : Node3D
 
-
-func _ready() -> void:
-	sprite.sprite_frames = sprite_frames
-	sprite.play("Idle")
-
 func billboard_sprite() -> void:
 	var _camera = get_viewport().get_camera_3d()
 	# var current_rotation : Vector3 = sprite_parent.rotation

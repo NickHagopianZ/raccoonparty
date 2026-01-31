@@ -32,23 +32,27 @@ func _ready() -> void:
 const lerp_speed = 5.0
 var _initialized := false
 
+var collection_view := false
 func _physics_process(delta: float) -> void:
-	var target_position : Vector2 = global_position + get_rect().size / 2 - Card.CARD_SIZE / 2
+	var target_position : Vector2 = global_position 
+	if not collection_view:
+		target_position += get_rect().size / 2 - Card.CARD_SIZE / 2
 	var target_rotation : float = 0.0
 
 	# Initialize position on first frame
 	if not _initialized:
-		card_visualizer.global_position = target_position
+		# card_visualizer.global_position = target_position
 		_initialized = true
 		return
-	elif not card_visualizer.held:
-		var cards_in_hand = get_parent().get_child_count()
-		var index = get_index()
-		var center = (cards_in_hand - 1) / 2.0
-		var distance_from_center = index - center
-		target_rotation = distance_from_center * PI / 70.0
-		if card_visualizer.hovered:
-			target_position.y -= 30.0
+
+	var cards_in_hand = get_parent().get_child_count()
+	var index = get_index()
+	var center = (cards_in_hand - 1) / 2.0
+	var distance_from_center = index - center
+	target_rotation = distance_from_center * PI / 70.0
+	if card_visualizer.hovered and not card_visualizer.held and not collection_view:
+		target_position.y -= 30.0
+	
 
 	card_visualizer.global_position = lerp(
 		card_visualizer.global_position, target_position, delta * lerp_speed)

@@ -10,7 +10,6 @@ signal playing_card
 const CARD_SIZE = Vector2(250, 350)
 func _ready() -> void:
 	size = CARD_SIZE
-	global_position = get_parent().global_position + get_parent().get_rect().size / 2 - CARD_SIZE / 2
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -38,16 +37,17 @@ func _get_drag_data(_at_position: Vector2):
 	# Create a container to offset the preview so mouse is centered
 	var container = Control.new()
 	drag_preview = duplicate()
-	drag_preview.rotation = 0.0  # Reset rotation for preview
-	drag_preview.modulate = Color(1, 1, 1, 0.8)
-	drag_preview.position = -CARD_SIZE / 2  # Offset so the mouse is at the center
-	drag_preview.pivot_offset = CARD_SIZE / 2  # Scale from center
+	
+	# Reset all layout properties that might interfere
+	drag_preview.set_anchors_preset(Control.PRESET_BOTTOM_LEFT, true)
+	drag_preview.rotation = 0.0
+	drag_preview.modulate = Color.WHITE
+	
+	# drag_preview.set_position(-CARD_SIZE * preview_scale / 2)
+	drag_preview.position.x = -CARD_SIZE.x * scale.x / 2
+	drag_preview.position.y = -CARD_SIZE.y * scale.y / 2
 	container.add_child(drag_preview)
 	set_drag_preview(container)
-	
-	# Hide the original while dragging
-	modulate.a = 0.3
-	
 	return self
 
 
@@ -68,14 +68,14 @@ func update_visuals() -> void:
 			if playable:
 				# Bright glow effect when over drop zone
 				drag_preview.self_modulate = Color(2, 2, 2, 1)
-				drag_preview.scale = Vector2(1.1, 1.1)
+				# drag_preview.scale = Vector2(1.1, 1.1)
 			else:
-				drag_preview.self_modulate = Color(1, 1, 1, 1)
-				drag_preview.scale = Vector2.ONE
+				drag_preview.self_modulate = Color.WHITE
+				# drag_preview.scale = Vector2.ONE
 	elif hovered:
 		modulate = Color(2, 2, 2, 1)
 		z_index = 1
 	else:
-		modulate = Color(1, 1, 1, 1)
+		modulate = Color.WHITE
 		z_index = 0
 

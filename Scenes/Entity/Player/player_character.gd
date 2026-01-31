@@ -34,9 +34,9 @@ func _physics_process(delta: float) -> void:
 	elif movement_type == "Navigation":
 		perform_navigation_move(delta)
 		if velocity.length() < 0.1:
-			sprite.play("Idle")
+			play_animation("Idle")
 		else:
-			sprite.play("Walk")
+			play_animation("Walk")
 	billboard_sprite()
 	move_camera(delta)
 	check_interactions(delta)
@@ -50,9 +50,9 @@ func move_player(delta: float) -> void:
 	input_vector = input_vector.normalized()
 	input_vector.z *= 1.3
 	if input_vector != Vector3.ZERO:
-		sprite.play("Walk")
+		play_animation("Walk")
 	else:
-		sprite.play("Idle")
+		play_animation("Idle")
 	perform_move(input_vector, delta)
 
 	if input_vector.x != 0.0:

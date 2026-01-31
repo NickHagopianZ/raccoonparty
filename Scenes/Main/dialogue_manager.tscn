@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgq4tkrsbhfd5"]
+[gd_scene load_steps=10 format=3 uid="uid://dgq4tkrsbhfd5"]
 
 [ext_resource type="Script" uid="uid://fu88uwfcxtcs" path="res://Scenes/Main/dialogue_manger.gd" id="1_g18g6"]
 [ext_resource type="Texture2D" uid="uid://do8bl3m6fq7a8" path="res://Assets/UI/NinePatch.png" id="2_8b8ha"]
-[ext_resource type="Texture2D" uid="uid://b7orhf6qo6o38" path="res://Assets/Furniture/NinePatchInset.png" id="3_mmfe8"]
+[ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="3_87261"]
+[ext_resource type="Texture2D" uid="uid://b7orhf6qo6o38" path="res://Assets/UI/NinePatchInset.png" id="3_mmfe8"]
+[ext_resource type="PackedScene" uid="uid://ncfu1jsuja2n" path="res://Scenes/UI/DeckManager/deck_manager.tscn" id="4_2qbqw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vhfm"]
 
@@ -16,7 +18,6 @@ Button/styles/normal = SubResource("StyleBoxEmpty_dvlhv")
 Button/styles/pressed = SubResource("StyleBoxEmpty_wgovn")
 
 [node name="DialogueManager" type="Control" node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,10 +81,13 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="EditDeck" type="Button" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="EditDeck" type="Button" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer" node_paths=PackedStringArray("target_parent")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Manage Deck"
+script = ExtResource("3_87261")
+target_parent = NodePath(".")
+new_scene = ExtResource("4_2qbqw")
 
 [node name="Dialogue" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
 layout_mode = 2

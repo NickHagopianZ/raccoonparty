@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7orhf6qo6o38"
-path="res://.godot/imported/NinePatchInset.png-8b4fa86126891ce716bac038be63cd77.ctex"
+path="res://.godot/imported/NinePatchInset.png-449760f2ad1baa903837da89648dda58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Furniture/NinePatchInset.png"
-dest_files=["res://.godot/imported/NinePatchInset.png-8b4fa86126891ce716bac038be63cd77.ctex"]
+source_file="res://Assets/UI/NinePatchInset.png"
+dest_files=["res://.godot/imported/NinePatchInset.png-449760f2ad1baa903837da89648dda58.ctex"]
 
 [params]
 

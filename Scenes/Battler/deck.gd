@@ -1,8 +1,10 @@
 extends Node
 class_name Deck
 
-const hand_size = 3
+const HAND_SIZE = 3
+const MAX_DECK_SIZE = 10
 
+var sideboard: Array[CardResource]
 var deck: Array[CardResource]
 var hand: Array[CardContainer]
 var discard: Array[CardResource]
@@ -68,7 +70,7 @@ func shuffle_in_discard_pile():
 
 
 func fill_hand():
-	while len(hand) < hand_size:
+	while len(hand) < HAND_SIZE:
 		if not draw_card():
 			# Not able to fill hand, i.e. desired hand size > total deck size
 			break

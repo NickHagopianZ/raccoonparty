@@ -91,8 +91,8 @@ func _ready() -> void:
 	set_cursor(Input.CURSOR_FORBIDDEN)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click"):
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_pressed("left_click"):
 		Input.set_custom_mouse_cursor(
 			cursors["pointing_hand"],
 			Input.CURSOR_ARROW,
