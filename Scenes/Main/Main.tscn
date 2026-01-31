@@ -20,7 +20,7 @@ initial_level_scene = ExtResource("4_o8wgc")
 visible = false
 
 [node name="DialogueManager" parent="." instance=ExtResource("7_cv8e0")]
-visible = true
+visible = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("6_7npjy")]
 

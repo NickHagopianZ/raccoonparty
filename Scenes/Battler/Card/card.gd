@@ -33,16 +33,16 @@ func play() -> void:
 func _get_drag_data(_at_position: Vector2):
 	held = true
 	GameManager.dragging = true
-	
+
 	# Create a container to offset the preview so mouse is centered
 	var container = Control.new()
 	drag_preview = duplicate()
-	
+
 	# Reset all layout properties that might interfere
 	drag_preview.set_anchors_preset(Control.PRESET_BOTTOM_LEFT, true)
 	drag_preview.rotation = 0.0
 	drag_preview.modulate = Color.WHITE
-	
+
 	# drag_preview.set_position(-CARD_SIZE * preview_scale / 2)
 	drag_preview.position.x = -CARD_SIZE.x * scale.x / 2
 	drag_preview.position.y = -CARD_SIZE.y * scale.y / 2
@@ -78,4 +78,3 @@ func update_visuals() -> void:
 	else:
 		modulate = Color.WHITE
 		z_index = 0
-

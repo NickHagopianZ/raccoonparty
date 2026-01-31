@@ -66,7 +66,7 @@ func _can_drop_data(_at_position: Vector2, data) -> bool:
 
 
 func reparent_to_collection(
-	card_slot: CardCollectionSlot, 
+	card_slot: CardCollectionSlot,
 	collection: CardCollection
 	) -> void:
 	card_slot.reparent(collection.flow_container)

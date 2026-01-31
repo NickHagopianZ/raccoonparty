@@ -34,7 +34,7 @@ var _initialized := false
 
 var collection_view := false
 func _physics_process(delta: float) -> void:
-	var target_position : Vector2 = global_position 
+	var target_position : Vector2 = global_position
 	if not collection_view:
 		target_position += get_rect().size / 2 - Card.CARD_SIZE / 2
 	var target_rotation : float = 0.0
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	target_rotation = distance_from_center * PI / 70.0
 	if card_visualizer.hovered and not card_visualizer.held and not collection_view:
 		target_position.y -= 30.0
-	
+
 
 	card_visualizer.global_position = lerp(
 		card_visualizer.global_position, target_position, delta * lerp_speed)

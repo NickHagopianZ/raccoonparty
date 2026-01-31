@@ -25,3 +25,7 @@ func _on_starting_interaction(interactable : Entity) -> void:
 
 func _on_ending_interaction() -> void:
 	visible = false
+
+
+func set_enemy_text():
+	pass
