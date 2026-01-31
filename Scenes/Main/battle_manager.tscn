@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ugfkrkq6m8my"]
+[gd_scene load_steps=7 format=3 uid="uid://ugfkrkq6m8my"]
 
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
 [ext_resource type="Texture2D" uid="uid://kqpyixbvxan5" path="res://Assets/UI/speech bubble.png" id="2_d17o4"]
 [ext_resource type="Script" uid="uid://cq2mhg486kodf" path="res://Scenes/Main/drop_area.gd" id="2_poj46"]
+[ext_resource type="Script" uid="uid://c1afy24va7xy2" path="res://Scenes/Main/action_visuals.gd" id="2_vduqv"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
+[ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
 [ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
 
-[node name="BattleManager" type="Control"]
+[node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "turn_counter", "sliders")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,46 +18,105 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_h0sxb")
+npc_speech_label = NodePath("Control/NPCSpeechBubble/MarginContainer/NpcDialogueBox")
+npc_speech_bubble = NodePath("Control")
+player_speech_label = NodePath("Control2/PlayerSpeechBubble/MarginContainer/PlayerDialogueBox")
+player_speech_bubble = NodePath("Control2")
+turn_counter = NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/TurnCounter")
+sliders = {
+0: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3/FearSlider"),
+1: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2/VibesSlider"),
+2: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer/SusSlider")
+}
 
-[node name="NpcDialogueContainer" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 598.0
-offset_top = 54.0
-offset_right = 774.0
-offset_bottom = 238.0
-color = Color(1, 1, 1, 0)
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("target_region")]
+anchors_preset = 0
+offset_left = 747.0
+offset_top = 187.0
+offset_right = 794.0
+offset_bottom = 233.0
+script = ExtResource("2_vduqv")
+spawn_box = Vector2(-200, -200)
+target_region = NodePath("../VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats")
+source = "Enemy"
 
-[node name="SpeechBubble" type="TextureRect" parent="NpcDialogueContainer"]
+[node name="NPCSpeechBubble" type="TextureRect" parent="Control"]
 layout_mode = 1
-offset_left = -65.0
-offset_top = -85.0
-offset_right = 1983.0
-offset_bottom = 1963.0
-scale = Vector2(0.15, 0.15)
+offset_left = -224.0
+offset_top = -220.0
+offset_right = 1824.0
+offset_bottom = 1828.0
+scale = Vector2(0.13, 0.13)
 texture = ExtResource("2_d17o4")
 
-[node name="MarginContainer" type="MarginContainer" parent="NpcDialogueContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/NPCSpeechBubble"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 14.0
+offset_left = 500.0
+offset_top = 523.07697
+offset_right = -1397.994
+offset_bottom = -1361.9165
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
+scale = Vector2(7.692, 7.692)
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NpcDialogueBox" type="RichTextLabel" parent="NpcDialogueContainer/MarginContainer"]
+[node name="NpcDialogueBox" type="RichTextLabel" parent="Control/NPCSpeechBubble/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "NPC Dialogue Box"
+scroll_active = false
+
+[node name="Control2" type="Control" parent="." node_paths=PackedStringArray("target_region")]
+anchors_preset = 0
+offset_left = 378.0
+offset_top = 159.0
+offset_right = 414.0
+offset_bottom = 176.0
+script = ExtResource("2_vduqv")
+target_region = NodePath("../VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats")
+
+[node name="PlayerSpeechBubble" type="TextureRect" parent="Control2"]
+layout_mode = 1
+offset_left = -9.0
+offset_top = -23.0
+offset_right = 2039.0
+offset_bottom = 2025.0
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_d17o4")
+flip_h = true
+flip_v = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/PlayerSpeechBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 453.8462
+offset_top = 261.5384
+offset_right = -1432.1472
+offset_bottom = -1614.4547
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7.692, 7.692)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PlayerDialogueBox" type="RichTextLabel" parent="Control2/PlayerSpeechBubble/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "NPC Dialogue Box"
+scroll_active = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,7 +206,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 color = Color(0.7019608, 0.0627451, 0.4, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
+[node name="Stats" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,61 +218,53 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer"]
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats"]
 layout_mode = 2
-size_flags_horizontal = 4
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sus"
 horizontal_alignment = 1
 
-[node name="SusSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(225, 0)
+[node name="SusSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_horizontal = 3
-value = 50.0
-editable = false
-scrollable = false
+size_flags_stretch_ratio = 2.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vibes"
 horizontal_alignment = 1
 
-[node name="VibesSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(225, 0)
+[node name="VibesSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_horizontal = 3
-value = 50.0
-editable = false
-scrollable = false
+size_flags_stretch_ratio = 2.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fear"
 horizontal_alignment = 1
 
-[node name="FearSlider" type="HSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(225, 0)
+[node name="FearSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_horizontal = 3
-value = 50.0
-editable = false
-scrollable = false
+size_flags_stretch_ratio = 2.0
+
+[node name="TurnCounter" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
+layout_mode = 2
+text = "10 turns to survive"
+horizontal_alignment = 1
 
 [node name="ScoreTutorialBox" type="ColorRect" parent="."]
 visible = false
@@ -240,6 +293,3 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Fill any bar to WIN the conversation. You LOSE if any bar runs empty!"
 autowrap_mode = 2
-
-[node name="BetweenRoundTimer" type="Timer" parent="."]
-one_shot = true

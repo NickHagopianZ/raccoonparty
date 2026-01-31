@@ -11,6 +11,11 @@ enum ScoreCategories {
 enum Effects {
 	Change,
 	Defend,
+	Weaken,
+	Strengthen,
+	Discard,
+	Nullify,
+	Exhaust, # card is removed from the game, used for penalty cards
 }
 
 class Action:

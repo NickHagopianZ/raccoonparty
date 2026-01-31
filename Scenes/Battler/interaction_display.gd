@@ -17,15 +17,15 @@ func _on_starting_interaction(interactable : Entity) -> void:
 	opposing_sprite.sprite_frames = interactable.sprite_frames
 
 	player_sprite.sprite_frames = GameManager.player_node.sprite_frames
-	opposing_sprite.play("Interact")
+	if opposing_sprite.sprite_frames.has_animation("Interact"):
+		opposing_sprite.play("Interact")
+	else:
+		opposing_sprite.play("Idle")
 	player_sprite.play("Interact")
+
 	var viewport_size : Vector2 = get_viewport_rect().size
 	opposing_sprite.global_position.x = viewport_size.x - player_sprite.global_position.x
 	opposing_sprite.flip_h = true
 
 func _on_ending_interaction() -> void:
 	visible = false
-
-
-func set_enemy_text():
-	pass

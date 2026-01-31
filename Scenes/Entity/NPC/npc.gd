@@ -13,8 +13,6 @@ class NpcAction:
 			actions.append(BattleScores.Action.new(action_str))
 		message = p_message
 
-func _init_():
-	pass
 
 func _ready():
 	# Targets Vibes
@@ -50,6 +48,7 @@ func choose_battler_action():
 
 var look_duration : float = 0.0
 func _physics_process(delta: float) -> void:
+	bounce(delta)
 	perform_navigation_move(delta)
 	billboard_sprite()
 
@@ -57,6 +56,37 @@ func _physics_process(delta: float) -> void:
 		look_duration -= delta
 		if look_duration <= 0.0:
 			look_target = null
+
+
+var scale_bounce_direction : int = 1
+var rotation_bounce_direction : int = 1
+const MAX_SCALE_BOUNCE_VALUE : float = 0.15
+const MAX_ROTATION_BOUNCE_VALUE : float = 0.1
+var total_scale_bounce : float = randf() * MAX_SCALE_BOUNCE_VALUE
+var total_rotation_bounce : float = randf_range(
+	-MAX_ROTATION_BOUNCE_VALUE,
+	MAX_ROTATION_BOUNCE_VALUE
+)
+var scale_bounce_speed : float = randf_range(0.05, 0.1)
+var rotation_bounce_speed : float = randf_range(0.05, 0.2)
+func bounce(delta: float) -> void:
+	var scale_bounce_amount : float = delta * scale_bounce_speed
+	var rotation_bounce_amount : float = delta * rotation_bounce_speed
+	
+	if abs(total_scale_bounce) >= MAX_SCALE_BOUNCE_VALUE or total_scale_bounce < 0.0:
+		scale_bounce_direction *= -1
+	if abs(total_rotation_bounce) >= MAX_ROTATION_BOUNCE_VALUE or total_rotation_bounce < -MAX_ROTATION_BOUNCE_VALUE:
+		rotation_bounce_direction *= -1
+	
+	scale_bounce_amount *= scale_bounce_direction
+	rotation_bounce_amount *= rotation_bounce_direction
+
+	total_scale_bounce += scale_bounce_amount
+	total_rotation_bounce += rotation_bounce_amount
+
+	sprite.scale.y = 1.0 + total_scale_bounce
+	sprite.rotation.z = total_rotation_bounce
+
 
 
 func focus(by_entity: CharacterEntity) -> void:

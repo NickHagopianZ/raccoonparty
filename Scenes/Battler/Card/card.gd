@@ -27,11 +27,13 @@ func _process(_delta: float) -> void:
 
 
 func play() -> void:
-	if !GameManager.round_timer_running:
+	if GameManager.can_play_cards:
 		playing_card.emit()
 
 
 func _get_drag_data(_at_position: Vector2):
+	if not GameManager.can_play_cards:
+		return null
 	held = true
 	GameManager.dragging = true
 
@@ -63,7 +65,7 @@ func _notification(what: int) -> void:
 
 
 func update_visuals() -> void:
-	if held:
+	if held and GameManager.can_play_cards:
 		modulate = Color(1, 1, 1, .3)
 		if drag_preview and is_instance_valid(drag_preview):
 			if playable:
@@ -73,7 +75,7 @@ func update_visuals() -> void:
 			else:
 				drag_preview.self_modulate = Color.WHITE
 				# drag_preview.scale = Vector2.ONE
-	elif hovered:
+	elif hovered and GameManager.can_play_cards:
 		modulate = Color(2, 2, 2, 1)
 		z_index = 1
 	else:

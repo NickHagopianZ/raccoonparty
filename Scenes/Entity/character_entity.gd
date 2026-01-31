@@ -7,9 +7,11 @@ class_name CharacterEntity
 var look_target : Node3D
 
 func billboard_sprite() -> void:
-	var _camera = get_viewport().get_camera_3d()
+	var camera = get_viewport().get_camera_3d()
+	if not camera:
+		return
 	# var current_rotation : Vector3 = sprite_parent.rotation
-	sprite_parent.look_at(_camera.global_position)
+	sprite_parent.look_at(camera.global_position)
 	# sprite_parent.rotation.x = current_rotation.x
 	# sprite_parent.rotation.y = current_rotation.y
 	# sprite_parent.rotation.z = current_rotation.z
@@ -28,6 +30,8 @@ func perform_move(input_vector: Vector3, delta: float) -> void:
 	look_direction = look_direction.normalized()
 
 	var camera = get_viewport().get_camera_3d()
+	if not camera:
+		return
 	var look_dot : float = look_direction.dot(camera.transform.basis.x)
 
 	if look_dot > 0.1:
