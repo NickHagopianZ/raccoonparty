@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ugfkrkq6m8my"]
+[gd_scene load_steps=6 format=3 uid="uid://ugfkrkq6m8my"]
 
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
 [ext_resource type="Texture2D" uid="uid://kqpyixbvxan5" path="res://Assets/UI/speech bubble.png" id="2_d17o4"]
 [ext_resource type="Script" uid="uid://cq2mhg486kodf" path="res://Scenes/Main/drop_area.gd" id="2_poj46"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
+[ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
 
 [node name="BattleManager" type="Control"]
 layout_mode = 3
@@ -18,10 +19,10 @@ script = ExtResource("1_h0sxb")
 
 [node name="NpcDialogueContainer" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 100.0
-offset_right = 650.0
-offset_bottom = 250.0
+offset_left = 598.0
+offset_top = 54.0
+offset_right = 774.0
+offset_bottom = 238.0
 color = Color(1, 1, 1, 0)
 
 [node name="SpeechBubble" type="TextureRect" parent="NpcDialogueContainer"]
@@ -30,7 +31,7 @@ offset_left = -65.0
 offset_top = -85.0
 offset_right = 1983.0
 offset_bottom = 1963.0
-scale = Vector2(0.13, 0.13)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_d17o4")
 
 [node name="MarginContainer" type="MarginContainer" parent="NpcDialogueContainer"]
@@ -38,9 +39,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
@@ -67,6 +72,7 @@ script = ExtResource("2_poj46")
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
+texture = ExtResource("4_d17o4")
 
 [node name="SideboardBackground" type="ColorRect" parent="VBoxContainer/TextureRect"]
 layout_mode = 1
@@ -75,7 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3529412, 1, 1, 1)
+color = Color(0.3529412, 1, 1, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect"]
 layout_mode = 1
@@ -137,7 +143,7 @@ script = ExtResource("3_d17o4")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
-color = Color(0.7035408, 0.062251605, 0.40001988, 1)
+color = Color(0.7019608, 0.0627451, 0.4, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
 layout_mode = 1
@@ -206,6 +212,34 @@ size_flags_horizontal = 3
 value = 50.0
 editable = false
 scrollable = false
+
+[node name="ScoreTutorialBox" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 782.8794
+offset_top = 351.74466
+offset_right = 1131.0582
+offset_bottom = 476.42453
+rotation = -0.13788101
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreTutorialBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="ScoreTutorialBox/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fill any bar to WIN the conversation. You LOSE if any bar runs empty!"
+autowrap_mode = 2
 
 [node name="BetweenRoundTimer" type="Timer" parent="."]
 one_shot = true
