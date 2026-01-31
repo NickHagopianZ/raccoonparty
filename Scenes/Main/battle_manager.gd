@@ -24,6 +24,7 @@ const STARTING_SCORE = 5
 
 func start_round():
 	curr_enemy_action = curr_enemy.choose_battler_action()
+	$NpcDialogueContainer/MarginContainer/NpcDialogueBox.text = curr_enemy_action.message
 	print(curr_enemy_action.message)
 	# TODO: Display curr_enemy_action.message somewhere
 
