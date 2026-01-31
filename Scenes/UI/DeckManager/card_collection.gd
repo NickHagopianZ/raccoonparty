@@ -7,13 +7,13 @@ class_name CardCollection
 @export var flow_container : FlowContainer
 @export var close_button : Button
 func _ready() -> void:
+	close_button.pressed.connect(save_deck)
 	flow_container.child_order_changed.connect(_on_child_order_changed)
 	update_card_count()
 	load_deck()
 
 func _on_child_order_changed() -> void:
 	update_card_count()
-	save_deck()
 
 func update_card_count() -> void:
 	if not card_count_node:
@@ -21,7 +21,7 @@ func update_card_count() -> void:
 	var card_count = flow_container.get_child_count()
 	if collection_type == 0:
 		card_count_node.text = str(card_count) + " / " + str(Deck.MAX_DECK_SIZE)
-		if card_count != Deck.MAX_DECK_SIZE:
+		if card_count < Deck.MAX_DECK_SIZE:
 			card_count_node.add_theme_color_override("font_color", Color(1, 0, 0))
 			close_button.disabled = true
 		else:
@@ -32,15 +32,29 @@ func update_card_count() -> void:
 
 
 func save_deck() -> void:
-	pass
+	if collection_type == 0:
+		deck.deck = []
+	else:
+		deck.sideboard = []
+	for child in flow_container.get_children():
+		if child is CardCollectionSlot:
+			var card_slot : CardCollectionSlot = child
+			var card_resource : CardResource = card_slot.card_container.card_resource
+			if collection_type == 0:
+				deck.add_card_to_deck(card_resource)
+			else:
+				deck.sideboard.append(card_resource)
+
 
 func load_deck() -> void:
+	GameManager.can_play_cards = true
 	var collection = deck.deck
 	if collection_type == 1:
 		collection = deck.sideboard
 	for card_resource in collection:
 		print('Placing card: ' + card_resource.title)
 		place_card_resource(card_resource)
+
 
 func place_card_resource(card_resource: CardResource) -> void:
 	var card: CardContainer = Deck.CARD_SCENE.instantiate()
@@ -66,7 +80,7 @@ func _can_drop_data(_at_position: Vector2, data) -> bool:
 
 
 func reparent_to_collection(
-	card_slot: CardCollectionSlot,
+	card_slot: CardCollectionSlot, 
 	collection: CardCollection
 	) -> void:
 	card_slot.reparent(collection.flow_container)

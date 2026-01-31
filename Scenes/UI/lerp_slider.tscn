@@ -1,0 +1,184 @@
+[gd_scene load_steps=13 format=3 uid="uid://csts6flwtyak7"]
+
+[ext_resource type="Script" uid="uid://de306612npi42" path="res://Scenes/UI/lerp_slider.gd" id="1_up508"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_a6jkj"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_tvcmy"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_wlxxv"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_lhaad"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_a6jkj"]
+color = Color(0, 0, 0, 0)
+thickness = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6jkj"]
+bg_color = Color(0.5251013, 0.5251013, 0.5251013, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvcmy"]
+bg_color = Color(0.88235295, 0.09019608, 0.05882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhaad"]
+bg_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.31431612, 0.31431612, 0.3143161, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wudon"]
+bg_color = Color(0.9387155, 0.6612902, 0.9693391, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.49986553, 0.011483227, 0.55927634, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lhaad"]
+color = Color(0, 0, 0, 0)
+thickness = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlxxv"]
+bg_color = Color(0.08627451, 0.7019608, 0.5254902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.36862746, 0, 1)
+border_blend = true
+
+[node name="Control" type="Control" node_paths=PackedStringArray("health_slider", "empty_slider", "damage_lerp_slider", "defense_slider", "nullify_slider")]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_up508")
+health_slider = NodePath("Health")
+empty_slider = NodePath("Empty")
+damage_lerp_slider = NodePath("Damage")
+defense_slider = NodePath("Defense")
+nullify_slider = NodePath("Nullify")
+
+[node name="Empty" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("ImageTexture_a6jkj")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_tvcmy")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_wlxxv")
+theme_override_icons/tick = SubResource("ImageTexture_lhaad")
+theme_override_styles/slider = SubResource("StyleBoxLine_a6jkj")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_a6jkj")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="Damage" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("ImageTexture_a6jkj")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_tvcmy")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_wlxxv")
+theme_override_icons/tick = SubResource("ImageTexture_lhaad")
+theme_override_styles/slider = SubResource("StyleBoxLine_a6jkj")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_tvcmy")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="Defense" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("ImageTexture_a6jkj")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_tvcmy")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_wlxxv")
+theme_override_icons/tick = SubResource("ImageTexture_lhaad")
+theme_override_styles/slider = SubResource("StyleBoxLine_a6jkj")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_lhaad")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="Nullify" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("ImageTexture_a6jkj")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_tvcmy")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_wlxxv")
+theme_override_icons/tick = SubResource("ImageTexture_lhaad")
+theme_override_styles/slider = SubResource("StyleBoxLine_a6jkj")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_wudon")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false
+
+[node name="Health" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_icons/grabber = SubResource("ImageTexture_a6jkj")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_tvcmy")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_wlxxv")
+theme_override_icons/tick = SubResource("ImageTexture_lhaad")
+theme_override_styles/slider = SubResource("StyleBoxLine_lhaad")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_wlxxv")
+step = 0.01
+value = 50.0
+editable = false
+scrollable = false

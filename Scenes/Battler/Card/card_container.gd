@@ -50,7 +50,9 @@ func _physics_process(delta: float) -> void:
 	var center = (cards_in_hand - 1) / 2.0
 	var distance_from_center = index - center
 	target_rotation = distance_from_center * PI / 70.0
-	if card_visualizer.hovered and not card_visualizer.held and not collection_view:
+	if (card_visualizer.hovered and 
+		not card_visualizer.held and 
+		not collection_view):
 		target_position.y -= 30.0
 
 
