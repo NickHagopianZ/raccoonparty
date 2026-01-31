@@ -16,6 +16,7 @@ var player_deck : Deck = Deck.new()
 var game_started : bool = false
 var round_timer_running: bool = true
 var can_play_cards: bool = true
+var first_battle: bool = true
 
 func start_battle(enemy : NPCEntity) -> void:
 	player_deck.reset_deck(enemy.name)

@@ -259,6 +259,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	print("[COMBAT] BATTLE STARTED vs ", enemy.name)
 	print("[COMBAT] ========================================")
 	visible = true
+	$ScoreTutorialBox.visible = GameManager.first_battle
 	_reset_statuses()
 	_reset_scores()
 	curr_enemy = enemy
@@ -274,4 +275,5 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 
 
 func _on_ending_battle() -> void:
+	GameManager.first_battle = false
 	visible = false

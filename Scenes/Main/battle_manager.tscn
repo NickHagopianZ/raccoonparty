@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c1afy24va7xy2" path="res://Scenes/Main/action_visuals.gd" id="2_vduqv"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
 [ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
+[ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
 
 [node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "turn_counter", "sliders")]
 layout_mode = 3
@@ -132,6 +133,7 @@ script = ExtResource("2_poj46")
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
+texture = ExtResource("4_d17o4")
 
 [node name="SideboardBackground" type="ColorRect" parent="VBoxContainer/TextureRect"]
 layout_mode = 1
@@ -140,7 +142,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3529412, 1, 1, 1)
+color = Color(0.3529412, 1, 1, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect"]
 layout_mode = 1
@@ -202,7 +204,7 @@ script = ExtResource("3_d17o4")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
-color = Color(0.7035408, 0.062251605, 0.40001988, 1)
+color = Color(0.7019608, 0.0627451, 0.4, 0)
 
 [node name="Stats" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
 layout_mode = 1
@@ -263,3 +265,31 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 text = "10 turns to survive"
 horizontal_alignment = 1
+
+[node name="ScoreTutorialBox" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 782.8794
+offset_top = 351.74466
+offset_right = 1131.0582
+offset_bottom = 476.42453
+rotation = -0.13788101
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreTutorialBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="ScoreTutorialBox/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fill any bar to WIN the conversation. You LOSE if any bar runs empty!"
+autowrap_mode = 2

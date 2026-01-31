@@ -7,7 +7,7 @@ class NpcAction:
 	var actions: Array[BattleScores.Action]
 	var message: String
 
-	func _init(action_strs: Array[String], p_message: String):
+	func _init(p_message: String, action_strs: Array[String]):
 		actions = []
 		for action_str in action_strs:
 			actions.append(BattleScores.Action.new(action_str))
@@ -15,9 +15,32 @@ class NpcAction:
 
 
 func _ready():
-	actions.append(NpcAction.new(["-1 Sus"], "You look funny"))
-	actions.append(NpcAction.new(["D1 Fear", "D1 Vibes"], "Huh? Sorry. I was looking at my phone."))
+	# Targets Vibes
+	actions.append(NpcAction.new("I don't really know anyone here...", ["-1 Vibes"]))
+	actions.append(NpcAction.new("Honestly I'm more into, like, taller guys", ["-1 Vibes"]))
+	actions.append(NpcAction.new("I moved here to be closer to family, but I don't like my family.", ["-1 Vibes"]))
 
+	# Targets Sus
+	actions.append(NpcAction.new("Do you always dress like that?", ["-1 Sus"]))
+	actions.append(NpcAction.new("Your cologne is... intereseting. Very earthy. Compost-like.", ["D1 Vibes", "-1 Sus"]))
+	actions.append(NpcAction.new("Did I see you crawling out of a dumpster just before the party?", ["-1 Sus"]))
+
+	# Targets Fear
+	actions.append(NpcAction.new("Your mask is SOOOO cute!", ["-1 Fear", "D1 Sus"]))
+	actions.append(NpcAction.new("Yeah, I can basically bench around 450 now", ["-1 Fear", "D1 Vibes"]))
+
+	# Defense
+	actions.append(NpcAction.new("Huh? Sorry. I was looking at my phone.", ["D1 Vibes", "D1 Fear"]))
+	actions.append(NpcAction.new("I've been getting more into bird watching recently", ["D1 Fear", "D1 Sus"]))
+	actions.append(NpcAction.new("So, uh, what do you do for work?", ["D1 Vibes"]))
+	actions.append(NpcAction.new("What kind of music do you listen to?", ["D1 Sus", "D1 Fear"]))
+
+	# Misc
+	actions.append(NpcAction.new("Sorry! I thought you were someone's pet dog!", ["+1 Vibes", "-1 Fear", "-1 Sus"]))
+
+	# Filter down to 5 actions randomly
+	while len(actions) > 5:
+		actions.pop_at(randi() % len(actions))
 
 func choose_battler_action():
 	return actions.pick_random()
