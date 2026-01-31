@@ -5,8 +5,11 @@ class_name ActionDisplay
 @export var target_region : Control
 # creates floating text visuals for each action in the spawn box
 const temp_visual = preload("res://Assets/UI/InteractBox.png")
+const sus_visual = preload("res://Assets/Actions/sus_icon.png")
+# const vibes_visual = preload("res://Assets/Actions/vibes_icon.png")
+const fear_visual = preload("res://Assets/Actions/fear_icon.png")
 # const nullify_icon = preload("res://Assets/Actions/nullify_icon.png")
-# const defend_icon = preload("res://Assets/Actions/defend_icon.png")
+const defend_icon = preload("res://Assets/Actions/defend_icon.png")
 # const change_icon = preload("res://Assets/Actions/change_icon.png")
 # const weaken_icon = preload("res://Assets/Actions/weaken_icon.png")
 # const strengthen_icon = preload("res://Assets/Actions/strengthen_icon.png")
@@ -34,11 +37,18 @@ func display_actions(
 					texture_rect.texture = temp_visual
 					texture_rect.modulate = Color(1, 0, 0)
 				BattleScores.Effects.Defend:
-					texture_rect.texture = temp_visual
+					texture_rect.texture = defend_icon
 					texture_rect.modulate = Color(0, 1, 0)
 				BattleScores.Effects.Change:
-					texture_rect.texture = temp_visual
-					texture_rect.modulate = Color(0, 0, 1)
+					if action.category == BattleScores.ScoreCategories.Vibes:
+						texture_rect.texture = temp_visual
+						texture_rect.modulate = Color(1, 0.5, 0)
+					elif action.category == BattleScores.ScoreCategories.Fear:
+						texture_rect.texture = fear_visual
+						texture_rect.modulate = Color(0.5, 0, 1)
+					elif action.category == BattleScores.ScoreCategories.Sus:
+						texture_rect.texture = sus_visual
+						texture_rect.modulate = Color(1, 1, 1)
 				BattleScores.Effects.Weaken:
 					texture_rect.texture = temp_visual
 					texture_rect.modulate = Color(1, 1, 0)
@@ -62,16 +72,17 @@ func display_actions(
 					label.text = "-"
 				else:
 					label.text = "+"
-				if action.category == BattleScores.ScoreCategories.Vibes:
-					label.text += " Vibes"
-				elif action.category == BattleScores.ScoreCategories.Fear:
-					label.text += " Fear"
-				elif action.category == BattleScores.ScoreCategories.Sus:
-					label.text += " Sus"
-				label.position.x = 10
+				if BattleScores.Effects.Change != action.effect:
+					if action.category == BattleScores.ScoreCategories.Vibes:
+						label.text += " Vibes"
+					elif action.category == BattleScores.ScoreCategories.Fear:
+						label.text += " Fear"
+					elif action.category == BattleScores.ScoreCategories.Sus:
+						label.text += " Sus"
+				label.position.x += 40
+				label.position.y -= 40
 				texture_rect.add_child(label)
 
-			texture_rect.texture = temp_visual
 			# texture_rect.scale *= 3.0
 			texture_rect.global_position = global_position
 			texture_rect.global_position += Vector2(
@@ -105,7 +116,7 @@ func trigger_actions(
 				var target_global_position = target_region.global_position
 				target_global_position += Vector2(
 					randf_range(0, target_region.size.x),
-					randf_range(0, target_region.size.y))
+					randf_range(0, target_region.size.y)) * .5
 				tween.tween_property(
 					display, "global_position", target_global_position, 0.5
 				).set_delay(randf_range(0.0, 0.5))

@@ -1,12 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ugfkrkq6m8my"]
+[gd_scene load_steps=8 format=3 uid="uid://ugfkrkq6m8my"]
 
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
 [ext_resource type="Texture2D" uid="uid://kqpyixbvxan5" path="res://Assets/UI/speech bubble.png" id="2_d17o4"]
 [ext_resource type="Script" uid="uid://cq2mhg486kodf" path="res://Scenes/Main/drop_area.gd" id="2_poj46"]
 [ext_resource type="Script" uid="uid://c1afy24va7xy2" path="res://Scenes/Main/action_visuals.gd" id="2_vduqv"]
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
-[ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
 [ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
+[ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
 
 [node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "turn_counter", "sliders")]
 layout_mode = 3
@@ -116,7 +116,6 @@ text = "NPC Dialogue Box"
 scroll_active = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,42 +150,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Card Description" type="ColorRect" parent="VBoxContainer/TextureRect/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-color = Color(0.48325908, 0.46016604, 0.46022302, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
-layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
-layout_mode = 2
-text = "Description"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
-layout_mode = 2
-text = "Stats"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Card Description/VBoxContainer"]
-layout_mode = 2
-text = "Flavor"
-horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer"]
 custom_minimum_size = Vector2(800, 0)
