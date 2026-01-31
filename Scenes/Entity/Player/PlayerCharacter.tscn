@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8mvr2eo5xp3o"]
+[gd_scene load_steps=18 format=3 uid="uid://b8mvr2eo5xp3o"]
 
 [ext_resource type="Script" uid="uid://oci4mlbbiwdf" path="res://Scenes/Entity/Player/player_character.gd" id="1_fhad2"]
 [ext_resource type="Texture2D" uid="uid://bqpyd7qpr7dle" path="res://Assets/UI/InteractBox.png" id="2_8hbf8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://btd4cierrimfd" path="res://Assets/Entity/Player/Walking2.png" id="6_myh3g"]
 [ext_resource type="Texture2D" uid="uid://hejmw4stm1mc" path="res://Assets/Entity/Player/Walking3.png" id="7_kuvng"]
 [ext_resource type="Texture2D" uid="uid://dk6esb5jgkwjl" path="res://Assets/Entity/Player/Walking4.png" id="8_cjnxw"]
+[ext_resource type="FontFile" uid="uid://dco5fdkqn0wg7" path="res://Assets/UI/Littlejoodles-Regular.ttf" id="12_kuvng"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_55uf8"]
 animations = [{
@@ -120,13 +121,23 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -
 shape = SubResource("CapsuleShape3D_qye65")
 
 [node name="InteractVisualizer" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 billboard = 1
 transparent = false
 no_depth_test = true
 texture_filter = 0
 render_priority = 1
 texture = ExtResource("2_8hbf8")
+
+[node name="Label3D" type="Label3D" parent="InteractVisualizer"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+billboard = 1
+no_depth_test = true
+render_priority = 2
+outline_render_priority = 1
+text = "SPACE TO INTERACT"
+font = ExtResource("12_kuvng")
+font_size = 100
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -143,12 +154,6 @@ offset = Vector2(100, 0)
 pixel_size = 0.002
 sprite_frames = SubResource("SpriteFrames_55uf8")
 animation = &"Idle_3"
-
-[node name="Label3D" type="Label3D" parent="Node3D/AnimatedSprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-billboard = 1
-outline_render_priority = 0
-text = "Press Space to Interact"
 
 [node name="Ghost" type="MeshInstance3D" parent="."]
 

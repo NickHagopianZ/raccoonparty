@@ -1,6 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://qqlhvh58txfs"]
+[gd_scene load_steps=12 format=3 uid="uid://qqlhvh58txfs"]
 
 [ext_resource type="Script" uid="uid://docgcxh4gj2ug" path="res://Scenes/Battler/interaction_display.gd" id="1_rdq4x"]
+[ext_resource type="Texture2D" uid="uid://cn7qit7rdw5uo" path="res://Assets/Entity/Player/Standing2.png" id="2_ictxr"]
+[ext_resource type="Texture2D" uid="uid://jx54f6b0r3jl" path="res://Assets/Entity/Player/StandingSoloCup.png" id="3_4lqea"]
+[ext_resource type="Texture2D" uid="uid://dtllbp0et11jc" path="res://Assets/Entity/Player/Standing3.png" id="4_4tb3p"]
+[ext_resource type="Texture2D" uid="uid://cfnhec6r3h3h1" path="res://Assets/Entity/Player/Standing.png" id="5_2cigt"]
+[ext_resource type="Texture2D" uid="uid://dfuu1qvpneef1" path="res://Assets/Entity/Player/Peace.png" id="6_586co"]
+[ext_resource type="Texture2D" uid="uid://lpxjl2t1loy8" path="res://Assets/Entity/Player/Walking1.png" id="7_msfdv"]
+[ext_resource type="Texture2D" uid="uid://btd4cierrimfd" path="res://Assets/Entity/Player/Walking2.png" id="8_m7p8u"]
+[ext_resource type="Texture2D" uid="uid://hejmw4stm1mc" path="res://Assets/Entity/Player/Walking3.png" id="9_21qlm"]
+[ext_resource type="Texture2D" uid="uid://dk6esb5jgkwjl" path="res://Assets/Entity/Player/Walking4.png" id="10_lviop"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3xui6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ictxr")
+}],
+"loop": false,
+"name": &"Idle_1",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4lqea")
+}],
+"loop": false,
+"name": &"Idle_2",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4tb3p")
+}],
+"loop": false,
+"name": &"Idle_3",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2cigt")
+}],
+"loop": false,
+"name": &"Idle_4",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ictxr")
+}],
+"loop": true,
+"name": &"Interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_586co")
+}],
+"loop": true,
+"name": &"Peace",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_msfdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m7p8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_21qlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lviop")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 12.0
+}]
 
 [node name="InteractionVisuals" type="Node2D" node_paths=PackedStringArray("player_sprite", "opposing_sprite")]
 script = ExtResource("1_rdq4x")
@@ -10,6 +87,8 @@ opposing_sprite = NodePath("Enemy")
 [node name="Player" type="AnimatedSprite2D" parent="."]
 position = Vector2(300, 400)
 scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_3xui6")
+animation = &"Idle_1"
 
 [node name="Enemy" type="AnimatedSprite2D" parent="."]
 position = Vector2(186, 500)
