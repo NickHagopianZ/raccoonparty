@@ -19,7 +19,8 @@ func _gui_input(event: InputEvent) -> void:
 			pass
 		elif not event.pressed and not held:
 			# Clicked without dragging - play the card
-			playing_card.emit()
+			if !GameManager.round_timer_running:
+				playing_card.emit()
 
 
 func _process(_delta: float) -> void:

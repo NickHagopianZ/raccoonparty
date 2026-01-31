@@ -21,10 +21,11 @@ var score_sus: int
 const WINNING_SCORE = 10
 const STARTING_SCORE = 5
 
+func _process(_delta: float):
+	GameManager.round_timer_running = !$BetweenRoundTimer.is_stopped()
+
 func start_round():
-	var timer = $BetweenRoundTimer
-	if timer.is_stopped():
-		pass
+	$BetweenRoundTimer.start()
 	curr_enemy_action = curr_enemy.choose_battler_action()
 	$NpcDialogueContainer/MarginContainer/NpcDialogueBox.text = curr_enemy_action.message
 
