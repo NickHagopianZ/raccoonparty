@@ -23,7 +23,8 @@ const STARTING_SCORE = 5
 
 func start_round():
 	var timer = $BetweenRoundTimer
-	if timer.is_stopped()
+	if timer.is_stopped():
+		pass
 	curr_enemy_action = curr_enemy.choose_battler_action()
 	$NpcDialogueContainer/MarginContainer/NpcDialogueBox.text = curr_enemy_action.message
 
