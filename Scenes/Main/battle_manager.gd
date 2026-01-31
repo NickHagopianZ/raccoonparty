@@ -21,12 +21,11 @@ var score_sus: int
 const WINNING_SCORE = 10
 const STARTING_SCORE = 5
 
-
 func start_round():
+	var timer = $BetweenRoundTimer
+	if timer.is_stopped()
 	curr_enemy_action = curr_enemy.choose_battler_action()
 	$NpcDialogueContainer/MarginContainer/NpcDialogueBox.text = curr_enemy_action.message
-	print(curr_enemy_action.message)
-	# TODO: Display curr_enemy_action.message somewhere
 
 
 func player_character_played_card(card: CardContainer):

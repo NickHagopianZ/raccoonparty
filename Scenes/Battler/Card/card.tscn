@@ -43,10 +43,10 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Card Title"
+text = "Super long card title"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
