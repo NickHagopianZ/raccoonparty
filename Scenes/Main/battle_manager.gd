@@ -95,6 +95,7 @@ func _update_score_sliders():
 
 func _on_starting_battle(enemy : NPCEntity) -> void:
 	visible = true
+	$ScoreTutorialBox.visible = GameManager.first_battle
 
 	curr_enemy = enemy
 
@@ -107,4 +108,5 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 
 
 func _on_ending_battle() -> void:
+	GameManager.first_battle = false
 	visible = false
