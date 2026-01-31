@@ -19,8 +19,7 @@ func _gui_input(event: InputEvent) -> void:
 			pass
 		elif not event.pressed and not held:
 			# Clicked without dragging - play the card
-			if !GameManager.round_timer_running:
-				playing_card.emit()
+			play()
 
 
 func _process(_delta: float) -> void:
@@ -28,7 +27,8 @@ func _process(_delta: float) -> void:
 
 
 func play() -> void:
-	playing_card.emit()
+	if !GameManager.round_timer_running:
+		playing_card.emit()
 
 
 func _get_drag_data(_at_position: Vector2):
