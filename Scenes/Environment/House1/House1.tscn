@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=31 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="9_bncmn"]
 [ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="9_plxmk"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
+[ext_resource type="Resource" uid="uid://cvv8b02f5txsc" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -83,6 +84,8 @@ size = Vector3(10, 1, 8.199)
 
 [sub_resource type="Resource" id="Resource_1keso"]
 script = ExtResource("8_7rlhx")
+dialogue = "option 1"
+reward_cards = Array[ExtResource("9_bncmn")]([ExtResource("11_1keso"), ExtResource("11_1keso")])
 metadata/_custom_type_script = "uid://65pvhgad43g3"
 
 [node name="Node3D" type="Node3D"]
@@ -212,6 +215,8 @@ archetype = 1
 [node name="Fridge" parent="Furniture" instance=ExtResource("7_kb6k1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.339094, 1.7883925, 13.910271)
 dialogue_options = Array[ExtResource("8_7rlhx")]([SubResource("Resource_1keso")])
+entity_name = "Kitchen Fridge"
+flavor_text = "As your approach the fridge the smell of year old yogurt wafts towards you. You only have time to grab the first thing you see"
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -26.914143, 1.6656284, 29.857647)

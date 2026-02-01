@@ -6,6 +6,7 @@ extends Control
 @export var dialogue_choices_container : VBoxContainer
 @export var partner_stats : VBoxContainer
 @export var end_interaction_button : Button
+@export var reward_display : Control
 
 const goodbye_text_options = [
 	"See ya",
@@ -46,11 +47,12 @@ const default_dialogue_options : Array[String] = [
 	"Yo yo yo."
 ]
 func generate_npc_dialogue_options(options : Array[String]) -> void:
-	for dialogue_option in options:
-		var button : Button = Button.new()
-		button.text = dialogue_option
-		button.pressed.connect(_on_npc_dialogue_option_selected)
-		dialogue_choices_container.add_child(button)
+	# for dialogue_option in options:
+	var dialogue_option = options.pick_random()
+	var button : Button = Button.new()
+	button.text = dialogue_option
+	button.pressed.connect(_on_npc_dialogue_option_selected)
+	dialogue_choices_container.add_child(button)
 
 	dialogue_choices_container.move_child(
 		end_interaction_button,
@@ -92,6 +94,7 @@ func setup_interactable_dialogue(interactable_entity : Entity) -> void:
 	)
 
 func _on_interactable_dialogue_option_selected(interactable_resource : InteractableResource) -> void:
+	interaction_partner.disable_interaction()
 	# Give rewards
 	for card_resource : CardResource in interactable_resource.reward_cards:
 		GameManager.player_deck.add_card_to_deck(card_resource)
@@ -102,8 +105,8 @@ func _on_interactable_dialogue_option_selected(interactable_resource : Interacta
 	# Apply penalties
 	for card_resource : CardResource in interactable_resource.penalty_cards:
 		GameManager.player_deck.add_card_to_penalty_deck(card_resource)
-	# End interaction after selection
-	GameManager.end_interaction()
+	var all_cards = interactable_resource.reward_cards + interactable_resource.penalty_cards + interactable_resource.rumor_cards
+	reward_display.display_cards(all_cards)
 
 func _on_ending_interaction() -> void:
 	visible = false

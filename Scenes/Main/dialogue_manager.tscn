@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgq4tkrsbhfd5"]
+[gd_scene load_steps=11 format=3 uid="uid://dgq4tkrsbhfd5"]
 
 [ext_resource type="Script" uid="uid://fu88uwfcxtcs" path="res://Scenes/Main/dialogue_manger.gd" id="1_g18g6"]
 [ext_resource type="Texture2D" uid="uid://do8bl3m6fq7a8" path="res://Assets/UI/NinePatch.png" id="2_8b8ha"]
 [ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="3_87261"]
 [ext_resource type="Texture2D" uid="uid://b7orhf6qo6o38" path="res://Assets/UI/NinePatchInset.png" id="3_mmfe8"]
 [ext_resource type="PackedScene" uid="uid://ncfu1jsuja2n" path="res://Scenes/UI/DeckManager/deck_manager.tscn" id="4_2qbqw"]
+[ext_resource type="Script" uid="uid://bw73ar7qffc8t" path="res://Scenes/Main/reward_display.gd" id="6_87261"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4vhfm"]
 
@@ -159,3 +160,50 @@ text = "Weaknesses"
 [node name="Strengths" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
 layout_mode = 2
 text = "Strengths"
+
+[node name="RewardDisplay" type="VBoxContainer" parent="." node_paths=PackedStringArray("close_button", "card_container")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_87261")
+close_button = NodePath("Control3/HBoxContainer/CloseReward")
+card_container = NodePath("Control3/HBoxContainer/RewardHand")
+
+[node name="Control" type="Control" parent="RewardDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control3" type="MarginContainer" parent="RewardDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="PanelContainer" type="PanelContainer" parent="RewardDisplay/Control3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="RewardDisplay/Control3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RewardDisplay/Control3/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "REWARDS"
+horizontal_alignment = 1
+
+[node name="RewardHand" type="HBoxContainer" parent="RewardDisplay/Control3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CloseReward" type="Button" parent="RewardDisplay/Control3/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Accept"
+
+[node name="Control2" type="Control" parent="RewardDisplay"]
+layout_mode = 2
+size_flags_vertical = 3

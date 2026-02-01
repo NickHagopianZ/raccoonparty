@@ -30,8 +30,6 @@ size = Vector3(1, 2.4, 0.1)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_73reo")
-interaction_point = Vector3(3, 0, 0)
-dialogue_options = Array[String](["", ""])
 sprite_frames = SubResource("SpriteFrames_kb6k1")
 sprite = NodePath("Sprite")
 
@@ -40,5 +38,4 @@ shape = SubResource("BoxShape3D_kb6k1")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 pixel_size = 0.02
-sprite_frames = SubResource("SpriteFrames_kb6k1")
-animation = &"Idle"
+animation = &""
