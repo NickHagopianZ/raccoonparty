@@ -1,7 +1,7 @@
 extends CardResource
 class_name RumorCardResource
 
-var rumor_targets: Array[String] = []
+@export var rumor_targets: Array[String] = []
 # A Resource still needs a parameterless constructor to save/load properly,
 # so we give the arguments default values.
 func _init(

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvrsylc0m1fx"]
+
+[ext_resource type="Script" uid="uid://bqllf7f7pe8yw" path="res://Scenes/dev/all_possible_cards_saver.gd" id="1_m3hax"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_m3hax")

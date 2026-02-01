@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_coksq"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_kv8n2"]
+
+[sub_resource type="Resource" id="Resource_uytc6"]
+script = ExtResource("1_coksq")
+
+[sub_resource type="Resource" id="Resource_0u34u"]
+script = ExtResource("1_coksq")
+
+[sub_resource type="Resource" id="Resource_r2hn1"]
+script = ExtResource("1_coksq")
+
+[resource]
+script = ExtResource("2_kv8n2")
+title = "Dumpster Diving"
+description = "This one time, when dumpster diving, I found this really juicy donut
+
+-1 Vibes
+-1 Fear
+-1 Sus"
+actions = Array[ExtResource("1_coksq")]([SubResource("Resource_uytc6"), SubResource("Resource_0u34u"), SubResource("Resource_r2hn1")])

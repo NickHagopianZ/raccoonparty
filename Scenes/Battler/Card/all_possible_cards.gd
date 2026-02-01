@@ -1,7 +1,25 @@
-extends Node
+extends Resource
 
 class_name AllPossibleCards
 
+var card_list : Array[CardResource] = [
+	sip_drink,
+	back_flip,
+	jam,
+	nice_shoes,
+	nod_along,
+	shots,
+	podcasts,
+	sewer,
+	growl,
+	hot_take,
+	gonna_eat_that,
+	garbage_man,
+	have_we_met,
+	distraction,
+	good_old_days,
+	dumpster,
+]
 
 static var sip_drink = CardResource.new(
 	"Sip Drink",
