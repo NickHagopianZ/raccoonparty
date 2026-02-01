@@ -46,7 +46,7 @@ def translate_csv_to_godot(data):
         full_description = f"{desc_base}\\n\\n{stat_string}"
 
         actions = ", ".join(
-            [f'BattleScores.Action.new("{s}")' for s in formatted_stats]
+            [f'BattleScores.new("{s}")' for s in formatted_stats]
         )
 
         # Print the Godot block

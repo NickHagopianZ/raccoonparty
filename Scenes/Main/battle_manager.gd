@@ -141,17 +141,17 @@ func resolve_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 	tween.tween_callback(round_end).set_delay(3.0)
 
 var statuses := {
-	BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores.Action],
-	BattleScores.ScoreCategories.Fear: [] as Array[BattleScores.Action],
-	BattleScores.ScoreCategories.Sus: [] as Array[BattleScores.Action],
+	BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores],
+	BattleScores.ScoreCategories.Fear: [] as Array[BattleScores],
+	BattleScores.ScoreCategories.Sus: [] as Array[BattleScores],
 }
-func perform_action(action: BattleScores.Action) -> void:
+func perform_action(action: BattleScores) -> void:
 	if action.effect == BattleScores.Effects.Change:
 		perform_change_effect(action)
 	else:
 		perform_status_effect(action)
 
-func perform_status_effect(action: BattleScores.Action) -> void:
+func perform_status_effect(action: BattleScores) -> void:
 	print("[COMBAT] Applying status effect: %s to %s (amount: %d)" % [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount])
 	if action.effect == BattleScores.Effects.Discard:
 		cards_to_discard = min(
@@ -170,13 +170,13 @@ func perform_status_effect(action: BattleScores.Action) -> void:
 	slider.update_slider(score, status_list)
 
 
-func perform_change_effect(action: BattleScores.Action) -> void:
+func perform_change_effect(action: BattleScores) -> void:
 	var slider = sliders[action.category]
 	var original_amount = action.amount
 	var amount = action.amount
 	print("[COMBAT] Change effect on %s: base amount = %d" % [BattleScores.ScoreCategories.keys()[action.category], amount])
 
-	for status : BattleScores.Action in statuses[action.category]:
+	for status : BattleScores in statuses[action.category]:
 		if status.effect == BattleScores.Effects.Weaken and amount < 0: # take more damage
 			var old_amount = amount
 			amount = int(amount * 1.5)
@@ -234,9 +234,9 @@ func round_end() -> void:
 }
 func _reset_statuses():
 	statuses = {
-		BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores.Action],
-		BattleScores.ScoreCategories.Fear: [] as Array[BattleScores.Action],
-		BattleScores.ScoreCategories.Sus: [] as Array[BattleScores.Action],
+		BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores],
+		BattleScores.ScoreCategories.Fear: [] as Array[BattleScores],
+		BattleScores.ScoreCategories.Sus: [] as Array[BattleScores],
 	}
 
 

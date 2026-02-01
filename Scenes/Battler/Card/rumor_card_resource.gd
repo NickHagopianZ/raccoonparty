@@ -7,7 +7,7 @@ var rumor_targets: Array[String] = []
 func _init(
 	p_title: String = "",
 	p_description: String = "",
-	p_actions: Array[BattleScores.Action] = [],
+	p_actions: Array[BattleScores] = [],
 	p_rumor_targets: Array[String] = [],
 ):
 	title = p_title

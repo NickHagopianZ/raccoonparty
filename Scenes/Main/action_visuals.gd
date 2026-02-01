@@ -23,7 +23,7 @@ func reset() -> void:
 
 func display_actions(
 	tween: Tween,
-	actions: Array[BattleScores.Action],
+	actions: Array[BattleScores],
 	) -> void:
 	tween.parallel()
 	for action in actions:
@@ -98,7 +98,7 @@ func display_actions(
 @export_enum("Player", "Enemy") var source : String = "Player"
 func trigger_actions(
 	tween: Tween,
-	actions: Array[BattleScores.Action],
+	actions: Array[BattleScores],
 	action_subset : Array[BattleScores.Effects]
 	) -> void:
 	tween.parallel()

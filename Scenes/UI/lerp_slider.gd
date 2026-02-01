@@ -19,7 +19,7 @@ func _ready() -> void:
 var damage_lerp_tween : Tween = null
 var healing_lerp_tween : Tween = null
 var defense_lerp_tween : Tween = null
-func update_slider(final_amount: float, statuses: Array[BattleScores.Action]) -> void:
+func update_slider(final_amount: float, statuses: Array[BattleScores]) -> void:
 	for tween in [damage_lerp_tween, healing_lerp_tween, defense_lerp_tween]:
 		if tween and tween.is_running():
 			tween.kill()

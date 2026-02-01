@@ -4,13 +4,13 @@ class_name NPCEntity
 var actions: Array[NpcAction] = []
 
 class NpcAction:
-	var actions: Array[BattleScores.Action]
+	var actions: Array[BattleScores]
 	var message: String
 
 	func _init(p_message: String, action_strs: Array[String]):
 		actions = []
 		for action_str in action_strs:
-			actions.append(BattleScores.Action.new(action_str))
+			actions.append(BattleScores.new(action_str))
 		message = p_message
 
 

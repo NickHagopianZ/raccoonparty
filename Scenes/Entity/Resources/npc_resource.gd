@@ -1,1 +1,1 @@
-extends EntityResource
+extends Resource
