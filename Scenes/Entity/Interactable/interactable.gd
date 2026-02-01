@@ -4,6 +4,9 @@ class_name Interactable
 @export var interaction_point : Vector3 = Vector3(3.0, 0.0, 0.0)
 @export var dialogue_options : Array[InteractableResource] = []
 
+func _ready():
+	GameManager.total_food_available += 1
+
 func disable_interaction() -> void:
 	set_collision_layer_value(2, false) # disable interaction layer
 
