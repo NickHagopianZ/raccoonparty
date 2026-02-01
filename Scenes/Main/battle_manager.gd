@@ -26,6 +26,7 @@ var scores := {
 
 const WINNING_SCORE = 10
 const STARTING_SCORE = 5
+var tween_time_multiplier = 0.5
 
 @export var npc_speech_label : RichTextLabel
 @export var npc_speech_bubble : ActionDisplay
@@ -54,10 +55,10 @@ func pop_speech_bubble(speech_bubble: Control, rich_text_label: RichTextLabel):
 	speech_bubble.scale = Vector2(0.0, 0.0)
 
 	var tween = create_tween()
-	tween.tween_property(speech_bubble, "scale", Vector2(1.0, 1.0), 1.0).set_trans(
+	tween.tween_property(speech_bubble, "scale", Vector2(1.0, 1.0), 1.0 * tween_time_multiplier).set_trans(
 		Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	tween.set_parallel()
-	tween.tween_property(rich_text_label, "visible_ratio", 1, 1.5)
+	tween.tween_property(rich_text_label, "visible_ratio", 1, 1.5 * tween_time_multiplier)
 	return tween
 
 
@@ -87,7 +88,7 @@ func resolve_player_turn(card: CardContainer):
 	# Store the card_resource since the card may be freed before the callback
 	var card_resource : CardResource = card.card_resource
 	var tween = pop_speech_bubble(player_speech_bubble, player_speech_label)
-	tween.tween_callback(display_card_effects.bind(card_resource)).set_delay(3.0)
+	tween.tween_callback(display_card_effects.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
 
 
 func display_card_effects(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
@@ -98,7 +99,7 @@ func display_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 	tween.set_parallel(true)
 	player_speech_bubble.display_actions(tween, card_resource.actions)
 
-	tween.tween_callback(resolve_card_statuses.bind(card_resource)).set_delay(3.0)
+	tween.tween_callback(resolve_card_statuses.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
 
 
 func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
@@ -123,7 +124,7 @@ func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to 
 		BattleScores.Effects.Weaken,
 		BattleScores.Effects.Strengthen]
 	)
-	tween.tween_callback(resolve_card_effects.bind(card_resource)).set_delay(3.0)
+	tween.tween_callback(resolve_card_effects.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
 
 func resolve_card_effects(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
 	print("[COMBAT] Resolving Change effects (damage/healing)...")

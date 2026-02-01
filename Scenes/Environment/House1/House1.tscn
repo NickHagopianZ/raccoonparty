@@ -13,7 +13,6 @@
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
-background_color = Color(0.10183891, 0.26150525, 0.52593195, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
 ambient_light_energy = 1.5

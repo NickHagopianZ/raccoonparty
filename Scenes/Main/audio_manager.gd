@@ -8,12 +8,15 @@ const BATTLE_MUSIC_DB = -15.744
 const SILENCE_DB = -80.0
 const MUSIC_FADE_TIMER = 0.5
 
+var low_pass_filter = AudioEffectLowPassFilter.new()
+
 func _ready():
 	GameManager.play_sfx.connect(play_sfx)
 	GameManager.pausing.connect(_handle_pause)
 	GameManager.unpausing.connect(_handle_unpause)
 	GameManager.starting_battle.connect(_handle_start_battle)
 	GameManager.ending_battle.connect(_handle_end_battle)
+	low_pass_filter.resonance = 1.5
 	#$BackgroundMusic.play()
 
 func play_sfx(which: GameManager.SFX):
@@ -34,14 +37,11 @@ func _handle_end_battle():
 
 func _handle_pause():
 	# the game manager pauses the entire subtree, we need to restart the music here
-	#$BackgroundMusic.play($BackgroundMusic.get_playback_position())
-	$BackgroundMusic.stream_paused = false
 	$BattleMusic.stream_paused = false
 	var bus_index = AudioServer.get_bus_index("Music")
-	var lpf = AudioEffectLowPassFilter.new()
-	lpf.cutoff_hz = 600.0
-	lpf.resonance = 1.5
-	AudioServer.add_bus_effect(bus_index, lpf)
+	var tween = create_tween()
+	tween.tween_property(low_pass_filter, "cutoff_hz", 600.0, 0.25).from(10000.0)
+	AudioServer.add_bus_effect(bus_index, low_pass_filter)
 
 func _handle_unpause():
 	var bus_index = AudioServer.get_bus_index("Music")
