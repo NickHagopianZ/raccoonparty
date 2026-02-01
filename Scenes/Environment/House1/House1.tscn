@@ -119,19 +119,19 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1365805, 0, -7.1365805)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Collisions/WorldWalls"]
-transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, -99.71184, 28.83449, 8.382183)
+transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, -53.21662, 28.83449, 54.87742)
 shape = SubResource("WorldBoundaryShape3D_3i6dc")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Collisions/WorldWalls"]
-transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, 99.59288, 28.83449, 11.815208)
+transform = Transform3D(7.071069, 0, 7.071069, 0, 10, 0, -7.071069, 0, 7.071069, 44.284027, 28.83449, -43.493645)
 shape = SubResource("WorldBoundaryShape3D_1v0dh")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Collisions/WorldWalls"]
-transform = Transform3D(7.7781744, 0, 7.7781744, 0, 11, 0, -7.7781744, 0, 7.7781744, 8.569168, 28.83449, -74.40841)
+transform = Transform3D(7.778175, 0, 7.778175, 0, 11, 0, -7.778175, 0, 7.778175, -35.943172, 28.83449, -29.896076)
 shape = SubResource("WorldBoundaryShape3D_imc41")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Collisions/WorldWalls"]
-transform = Transform3D(7.7781744, 0, 7.7781744, 0, 11, 0, -7.7781744, 0, 7.7781744, 2.1090202, 28.83449, 74.594635)
+transform = Transform3D(7.778175, 0, 7.778175, 0, 11, 0, -7.778175, 0, 7.778175, 35.92776, 28.83449, 38.432297)
 shape = SubResource("WorldBoundaryShape3D_jg22o")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Collisions"]
