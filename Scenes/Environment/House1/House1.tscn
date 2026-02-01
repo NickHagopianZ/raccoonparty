@@ -513,7 +513,7 @@ sprite_frames = SubResource("SpriteFrames_nf05j")
 flavor_text = "It's federal offense to open mail, but maybe the mailbox was open when you found it? You spy a letter in the maibox"
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 6.9877777, 1.6656284, 0.27752686)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 4.315399, 1.6656284, 1.5195675)
 top_level = true
 
 [node name="Music" type="Node3D" parent="."]
@@ -536,6 +536,7 @@ stream = ExtResource("14_1keso")
 volume_db = -11.106
 max_db = 0.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -547,6 +548,7 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -558,6 +560,7 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -569,6 +572,7 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -580,6 +584,7 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -591,6 +596,7 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
@@ -602,5 +608,6 @@ volume_db = -8.0
 max_db = 0.0
 autoplay = true
 max_distance = 10.0
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("15_guh7j")
