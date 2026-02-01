@@ -86,7 +86,6 @@ size = Vector3(10, 1, 8.199)
 [sub_resource type="Resource" id="Resource_1keso"]
 script = ExtResource("8_7rlhx")
 dialogue = "option 1"
-reward_cards = Array[ExtResource("9_bncmn")]([ExtResource("11_1keso"), ExtResource("11_1keso")])
 metadata/_custom_type_script = "uid://65pvhgad43g3"
 
 [node name="Node3D" type="Node3D"]
