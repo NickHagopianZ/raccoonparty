@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=32 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
 [ext_resource type="Script" uid="uid://65pvhgad43g3" path="res://Scenes/Entity/Resources/interactable_resource.gd" id="8_7rlhx"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="9_bncmn"]
-[ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="9_plxmk"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
-[ext_resource type="Resource" uid="uid://cvv8b02f5txsc" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
+[ext_resource type="AudioStream" uid="uid://cblr77o1bb3" path="res://Assets/Audio/Masquerade4.ogg" id="12_bncmn"]
+[ext_resource type="AudioStream" uid="uid://6npkqgcl8jxu" path="res://Assets/Audio/Talking.ogg" id="14_1keso"]
+[ext_resource type="Script" uid="uid://dlalejdblq73g" path="res://Scenes/Environment/House1/chatter.gd" id="15_guh7j"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -85,7 +86,6 @@ size = Vector3(10, 1, 8.199)
 [sub_resource type="Resource" id="Resource_1keso"]
 script = ExtResource("8_7rlhx")
 dialogue = "option 1"
-reward_cards = Array[ExtResource("9_bncmn")]([ExtResource("11_1keso"), ExtResource("11_1keso")])
 metadata/_custom_type_script = "uid://65pvhgad43g3"
 
 [node name="Node3D" type="Node3D"]
@@ -227,10 +227,43 @@ current = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.2934544, 1.1948075, 7.5160627)
-stream = ExtResource("9_plxmk")
+stream = ExtResource("12_bncmn")
 max_db = 0.0
 autoplay = true
 panning_strength = 0.25
 bus = &"Music"
 parameters/looping = true
 script = ExtResource("10_e5nhg")
+
+[node name="Chatter1" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 2.1449416, 8.472935, -5.9367905)
+stream = ExtResource("14_1keso")
+volume_db = -8.0
+max_db = 0.0
+autoplay = true
+max_distance = 40.0
+parameters/looping = true
+script = ExtResource("15_guh7j")
+
+[node name="Chatter2" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -3.0885906, 6.599704, 21.787474)
+stream = ExtResource("14_1keso")
+volume_db = -8.0
+max_db = 0.0
+autoplay = true
+max_distance = 40.0
+parameters/looping = true
+script = ExtResource("15_guh7j")
+
+[node name="Chatter3" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 19.424557, 6.7776213, 11.236105)
+stream = ExtResource("14_1keso")
+volume_db = -8.0
+max_db = 0.0
+autoplay = true
+max_distance = 40.0
+parameters/looping = true
+script = ExtResource("15_guh7j")
