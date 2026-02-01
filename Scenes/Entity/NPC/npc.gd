@@ -48,7 +48,7 @@ func _ready():
 			NpcAction.new("Is there anyone who can vouch for you?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
 			NpcAction.new("I'm normally a bouncer at YooHoo Tavern...", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
 		]
-	
+
 	GameManager.ending_battle.connect(_on_ending_battle)
 	update_sprites()
 
@@ -150,7 +150,7 @@ func update_sprites() -> void:
 		play_animation("Idle")
 		sprite.modulate = Color(
 			randf_range(0.3, 0.6),
-			randf_range(0.3, 0.6), 
+			randf_range(0.3, 0.6),
 			randf_range(0.6, 1.0)
 			)
 		set_collision_layer_value(2, false) # disable interaction layer
