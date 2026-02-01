@@ -11,6 +11,7 @@ signal pausing
 signal unpausing
 signal play_sfx(which: SFX)
 signal continue_music_from(duration: float)
+signal all_food_found
 var interaction_partner : Entity = null
 
 var player_node : PlayerEntity
@@ -20,11 +21,18 @@ var game_started : bool = false
 var round_timer_running: bool = true
 var can_play_cards: bool = true
 var first_battle: bool = true
+var total_food_available: int = 0
+var food_counter: int = 0
 
 enum SFX {
 	Interact,
 	Descent,
 }
+
+
+func found_all_food():
+	return food_counter >= total_food_available
+
 
 func start_battle(enemy : NPCEntity) -> void:
 	player_deck.reset_deck(enemy.name)

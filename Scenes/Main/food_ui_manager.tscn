@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://lqiwp8ptw1dv"]
+
+[ext_resource type="Script" uid="uid://dd5s7n5o83qm" path="res://Scenes/Main/food_ui_manager.gd" id="1_1ddyv"]
+
+[node name="FoodUIManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_1ddyv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 600
+
+[node name="OuterFoodSlider" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.12591094, 0.12591079, 0.12591082, 1)
+
+[node name="InnerFoodContainer" type="MarginContainer" parent="MarginContainer/OuterFoodSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="InnerFoodSlider" type="ColorRect" parent="MarginContainer/OuterFoodSlider/InnerFoodContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.76161134, 0.33536765, 0.12973636, 1)

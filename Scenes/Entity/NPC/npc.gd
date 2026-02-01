@@ -163,3 +163,4 @@ func update_sprites() -> void:
 	else:
 		sprite.sprite_frames = sprite_frames
 		play_animation("Idle")
+		GameManager.total_food_available += 1
