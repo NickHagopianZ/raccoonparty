@@ -155,7 +155,8 @@ func perform_action(action: BattleScores) -> void:
 	else:
 		perform_status_effect(action)
 
-func perform_status_effect(action: BattleScores.Action) -> void:
+
+func perform_status_effect(action: BattleScores) -> void:
 	print(
 		"[COMBAT] Applying status effect: %s to %s (amount: %d)"
 		% [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount]
