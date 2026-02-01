@@ -7,7 +7,7 @@ var playable : bool = false
 var drag_preview : Control = null
 signal playing_card
 # accessible statically
-const CARD_SIZE = Vector2(250, 350)
+const CARD_SIZE = Vector2(187.5, 262.5)
 func _ready() -> void:
 	size = CARD_SIZE
 

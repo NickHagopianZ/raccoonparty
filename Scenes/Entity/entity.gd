@@ -4,7 +4,14 @@ class_name Entity
 @export var sprite_frames : SpriteFrames
 @export var sprite : AnimatedSprite3D
 @export var entity_name : String = ""
+@export var archetype : Archetype
 @export_multiline var flavor_text : String
+
+enum Archetype {
+	Rando,
+	TutorialBouncer,
+	Bully,
+}
 
 func _ready() -> void:
 	sprite.sprite_frames = sprite_frames
@@ -24,5 +31,5 @@ func play_animation(requested_animation: String) -> void:
 		for animation_name in animation_names:
 			if animation_name.begins_with(requested_animation):
 				possible_animations.append(animation_name)
-		
+
 		sprite.play(possible_animations.pick_random())
