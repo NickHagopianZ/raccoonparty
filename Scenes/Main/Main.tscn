@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=16 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://qqlhvh58txfs" path="res://Scenes/Main/interaction_visuals.tscn" id="3_aw1lf"]
-[ext_resource type="PackedScene" uid="uid://lqiwp8ptw1dv" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
+[ext_resource type="PackedScene" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
 [ext_resource type="PackedScene" uid="uid://ugfkrkq6m8my" path="res://Scenes/Main/battle_manager.tscn" id="4_5s61s"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://c0jxc3g5sncd1" path="res://Scenes/Main/pause_screen.tscn" id="6_7npjy"]
 [ext_resource type="PackedScene" uid="uid://brl2op24s51p6" path="res://Scenes/Main/main_menu.tscn" id="7_4vhfm"]
 [ext_resource type="PackedScene" uid="uid://dgq4tkrsbhfd5" path="res://Scenes/Main/dialogue_manager.tscn" id="7_cv8e0"]
+[ext_resource type="PackedScene" uid="uid://7djkxy7smuom" path="res://Scenes/UI/screens/win_screen.tscn" id="8_5ci8a"]
 [ext_resource type="Script" uid="uid://cgdye2vssf2g0" path="res://Scenes/Main/audio_manager.gd" id="8_5s61s"]
 [ext_resource type="AudioStream" uid="uid://cgojgt2ls0bfi" path="res://Assets/Audio/Interact-1.wav" id="9_7npjy"]
+[ext_resource type="PackedScene" uid="uid://d4mbgmth5c2rb" path="res://Scenes/UI/screens/lose_screen.tscn" id="9_18xdc"]
 [ext_resource type="AudioStream" uid="uid://diyvpawxg0f0h" path="res://Assets/Audio/Interact-2.wav" id="10_dvlhv"]
 [ext_resource type="AudioStream" uid="uid://cyr7h0xttifkj" path="res://Assets/Audio/Descent.wav" id="11_wgovn"]
 [ext_resource type="AudioStream" uid="uid://c8p6esldgvdrd" path="res://Assets/Audio/Arpeggio.ogg" id="12_wgovn"]
@@ -21,8 +23,10 @@ script = ExtResource("1_cmk6n")
 initial_level_scene = ExtResource("4_o8wgc")
 
 [node name="FoodUIManager" parent="." instance=ExtResource("3_cv8e0")]
+visible = false
 
 [node name="InteractionVisuals" parent="." instance=ExtResource("3_aw1lf")]
+visible = false
 
 [node name="BattleManager" parent="." node_paths=PackedStringArray("sliders") instance=ExtResource("4_5s61s")]
 visible = false
@@ -36,6 +40,10 @@ sliders = {
 visible = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("6_7npjy")]
+
+[node name="WinScreen" parent="." instance=ExtResource("8_5ci8a")]
+
+[node name="LoseScreen" parent="." instance=ExtResource("9_18xdc")]
 
 [node name="MainMenu" parent="." instance=ExtResource("7_4vhfm")]
 visible = false

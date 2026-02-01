@@ -4,6 +4,7 @@ func _ready():
 	GameManager.starting_interaction.connect(_hide)
 	GameManager.ending_interaction.connect(_update_food_ui)
 	GameManager.starting_game.connect(_update_food_ui)
+	_update_food_ui()
 
 
 func _hide(_x):

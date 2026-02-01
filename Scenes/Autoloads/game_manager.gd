@@ -56,6 +56,13 @@ func start_game() -> void:
 func quit_to_title() -> void:
 	quitting_to_title.emit()
 	game_started = false
+	interaction_partner = null
+	player_deck = Deck.new()
+	round_timer_running = true
+	can_play_cards = true
+	first_battle = true
+	total_food_available = 0
+	food_counter = 0
 
 func quit_to_desktop() -> void:
 	get_tree().quit()
@@ -90,7 +97,7 @@ func set_volume(volume: float, bus_name: String) -> void:
 
 
 # cursor operations
-var cursor_hotspot = Vector2(5, 6)
+const cursor_hotspot = Vector2(5, 6)
 var dragging : bool = false
 var cursors = {
 	Input.CURSOR_ARROW: load("res://Assets/UI/raccoon_hand.png"),

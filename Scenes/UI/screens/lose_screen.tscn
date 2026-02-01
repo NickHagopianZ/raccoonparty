@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4mbgmth5c2rb"]
+
+[ext_resource type="Texture2D" uid="uid://c2nj27gjjr2em" path="res://Assets/Entity/Player/lose_screen.png" id="1_pixgk"]
+[ext_resource type="Script" uid="uid://blyvpse4wgj4p" path="res://Scenes/UI/screens/lose_screen.gd" id="2_3gm7y"]
+
+[node name="LoseScreen" type="TextureRect" node_paths=PackedStringArray("try_again_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pixgk")
+expand_mode = 2
+script = ExtResource("2_3gm7y")
+try_again_button = NodePath("Button")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 197.0
+offset_bottom = 37.0
+text = "Try Again"

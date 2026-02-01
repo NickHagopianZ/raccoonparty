@@ -100,7 +100,8 @@ func _on_interactable_dialogue_option_selected(interactable_resource : Interacta
 	for card_resource : CardResource in interactable_resource.reward_cards:
 		GameManager.player_deck.add_card_to_deck(card_resource)
 
-	for card_resource : RumorCardResource in interactable_resource.rumor_cards:
+	for card_resource : CardResource in interactable_resource.rumor_cards:
+		print("Adding rumor card: " + card_resource.title)
 		GameManager.player_deck.add_card_to_rumor_deck(card_resource, card_resource.rumor_targets)
 
 	# Apply penalties

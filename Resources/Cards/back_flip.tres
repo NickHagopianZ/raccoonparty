@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://db68hbq3aobxp"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dp7cwjfuhnc7x"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_m4tn1"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_f38n1"]
