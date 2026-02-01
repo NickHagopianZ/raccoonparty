@@ -1,0 +1,22 @@
+extends AudioStreamPlayer3D
+
+func _ready():
+	GameManager.starting_battle.connect(_handle_start_battle)
+	GameManager.ending_battle.connect(_handle_end_battle)
+	GameManager.continue_music_from.connect(_music_start_position)
+
+
+func _handle_start_battle(_enemy):
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(self, "volume_db", -80.0, 1.0).from(0.0)
+	tween.chain().tween_callback(self.stop)
+
+
+func _handle_end_battle():
+	self.play()
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(self, "volume_db", 0.0, 1.0).from(-80.0)
+
+
+func _music_start_position(from: float):
+	self.play(from)

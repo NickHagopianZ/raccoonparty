@@ -72,12 +72,12 @@ var rotation_bounce_speed : float = randf_range(0.05, 0.2)
 func bounce(delta: float) -> void:
 	var scale_bounce_amount : float = delta * scale_bounce_speed
 	var rotation_bounce_amount : float = delta * rotation_bounce_speed
-	
+
 	if abs(total_scale_bounce) >= MAX_SCALE_BOUNCE_VALUE or total_scale_bounce < 0.0:
 		scale_bounce_direction *= -1
 	if abs(total_rotation_bounce) >= MAX_ROTATION_BOUNCE_VALUE or total_rotation_bounce < -MAX_ROTATION_BOUNCE_VALUE:
 		rotation_bounce_direction *= -1
-	
+
 	scale_bounce_amount *= scale_bounce_direction
 	rotation_bounce_amount *= rotation_bounce_direction
 

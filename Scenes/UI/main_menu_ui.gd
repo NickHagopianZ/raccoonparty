@@ -9,6 +9,10 @@ func _ready() -> void:
 
 func _on_quit_to_title() -> void:
 	visible = true
+	$Music.play()
+
 
 func _on_start_game() -> void:
 	visible = false
+	GameManager.continue_music_from.emit($Music.get_playback_position())
+	$Music.stop()

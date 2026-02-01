@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 
 func play() -> void:
 	if GameManager.can_play_cards:
+		GameManager.play_sfx.emit(GameManager.SFX.Interact)
 		playing_card.emit()
 
 

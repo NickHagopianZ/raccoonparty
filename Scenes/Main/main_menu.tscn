@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brl2op24s51p6"]
+[gd_scene load_steps=8 format=3 uid="uid://brl2op24s51p6"]
 
 [ext_resource type="Script" uid="uid://d05shp8sase2b" path="res://Scenes/UI/main_menu_ui.gd" id="1_7gkfm"]
 [ext_resource type="Script" uid="uid://lplu2v80ahop" path="res://Scenes/UI/game_manager_caller.gd" id="2_gsnsu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="3_xw16n"]
 [ext_resource type="PackedScene" uid="uid://o0k7eykfiqqg" path="res://Scenes/UI/settings.tscn" id="4_6moem"]
 [ext_resource type="PackedScene" uid="uid://du66x7ynh5jdl" path="res://Scenes/UI/credits.tscn" id="5_1ahfh"]
+[ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="7_xw16n"]
 
 [node name="MainMenu" type="Control"]
 z_index = 1
@@ -69,3 +70,8 @@ layout_mode = 2
 text = "Quit"
 script = ExtResource("2_gsnsu")
 method_name = "quit_to_desktop"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xw16n")
+autoplay = true
+bus = &"Music"
