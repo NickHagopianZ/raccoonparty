@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_g5arw"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_7fyur"]
+
+[sub_resource type="Resource" id="Resource_muh1y"]
+script = ExtResource("1_g5arw")
+
+[sub_resource type="Resource" id="Resource_h7rqt"]
+script = ExtResource("1_g5arw")
+
+[resource]
+script = ExtResource("2_7fyur")
+title = "Not the Podcasts"
+description = "I've got some podcasts that I think would really open your mind
+
+-1 Vibes
++1 Fear"
+actions = Array[ExtResource("1_g5arw")]([SubResource("Resource_muh1y"), SubResource("Resource_h7rqt")])

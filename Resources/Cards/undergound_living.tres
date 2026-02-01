@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_4e16o"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_61t3a"]
+
+[sub_resource type="Resource" id="Resource_h6asm"]
+script = ExtResource("1_4e16o")
+
+[sub_resource type="Resource" id="Resource_s7dml"]
+script = ExtResource("1_4e16o")
+
+[resource]
+script = ExtResource("2_61t3a")
+title = "Undergound Living"
+description = "Yeah, I've been living in this really nice sewer right off 5th street for about 3 years...
+
++2 Fear
+-1 Sus"
+actions = Array[ExtResource("1_4e16o")]([SubResource("Resource_h6asm"), SubResource("Resource_s7dml")])

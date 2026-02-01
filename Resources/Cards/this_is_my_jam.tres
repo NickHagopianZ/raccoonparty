@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_d7cs7"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_76r8a"]
+
+[sub_resource type="Resource" id="Resource_m65gx"]
+script = ExtResource("1_d7cs7")
+
+[sub_resource type="Resource" id="Resource_cjv23"]
+script = ExtResource("1_d7cs7")
+
+[sub_resource type="Resource" id="Resource_wct0w"]
+script = ExtResource("1_d7cs7")
+
+[resource]
+script = ExtResource("2_76r8a")
+title = "This is My Jam"
+description = "This. Is. My. JAM!
+
++1 Vibes
+-1 Fear
+D1 Sus"
+actions = Array[ExtResource("1_d7cs7")]([SubResource("Resource_m65gx"), SubResource("Resource_cjv23"), SubResource("Resource_wct0w")])

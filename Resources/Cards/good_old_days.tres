@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_d4rl4"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_poybk"]
+
+[sub_resource type="Resource" id="Resource_4kiif"]
+script = ExtResource("1_d4rl4")
+
+[sub_resource type="Resource" id="Resource_javex"]
+script = ExtResource("1_d4rl4")
+
+[sub_resource type="Resource" id="Resource_aklj3"]
+script = ExtResource("1_d4rl4")
+
+[resource]
+script = ExtResource("2_poybk")
+title = "Good Old Days"
+description = "Remember when this city used to have its trash just right on the street? Those were the days
+
+-1 Vibes
+-1 Fear
+-1 Sus"
+actions = Array[ExtResource("1_d4rl4")]([SubResource("Resource_4kiif"), SubResource("Resource_javex"), SubResource("Resource_aklj3")])

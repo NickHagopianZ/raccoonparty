@@ -12,12 +12,13 @@ def clean_bbcode(text):
 def translate_csv_to_godot(data):
     reader = csv.DictReader(io.StringIO(data.strip()))
 
-    print("extends Node")
+    print("extends Resource")
     print()
     print("class_name AllPossibleCards")
     print()
     print()
 
+    titles = []
     for row in reader:
         var_name = row["name"]
         title = row["title"]
@@ -59,6 +60,13 @@ def translate_csv_to_godot(data):
             f")"
         )
         print(godot_block)
+        titles.append(title)
+    
+    print()
+    print("var card_list : Array[CardResource] = [\n" +
+            ", ".join([f"\t{t},\n" for t in titles]) + " ]")
+    
+
 
 
 if __name__ == "__main__":

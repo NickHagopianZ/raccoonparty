@@ -1,10 +1,10 @@
 extends Resource
 class_name CardResource
 
-var title: String
-var description: String
-var dialogue: String
-var actions: Array[BattleScores]
+@export var title: String
+@export var description: String
+@export var dialogue: String
+@export var actions: Array[BattleScores]
 
 # A Resource still needs a parameterless constructor to save/load properly,
 # so we give the arguments default values.

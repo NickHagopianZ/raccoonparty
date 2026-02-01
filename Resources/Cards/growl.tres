@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_u622p"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_njdy3"]
+
+[sub_resource type="Resource" id="Resource_spsug"]
+script = ExtResource("1_u622p")
+
+[sub_resource type="Resource" id="Resource_m1bdu"]
+script = ExtResource("1_u622p")
+
+[resource]
+script = ExtResource("2_njdy3")
+title = "Growl"
+description = "grrrrrrrrrrrrrr
+
++2 Fear
+-1 Sus"
+actions = Array[ExtResource("1_u622p")]([SubResource("Resource_spsug"), SubResource("Resource_m1bdu")])
