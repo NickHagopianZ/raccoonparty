@@ -104,7 +104,10 @@ func display_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 
 func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
 	print("[COMBAT] Resolving status effects (Defend, Nullify, Discard, Weaken, Strengthen)...")
-	print("[COMBAT] Current statuses - Vibes: %s, Fear: %s, Sus: %s" % [statuses[BattleScores.ScoreCategories.Vibes], statuses[BattleScores.ScoreCategories.Fear], statuses[BattleScores.ScoreCategories.Sus]])
+	print(
+		"[COMBAT] Current statuses - Vibes: %s, Fear: %s, Sus: %s"
+		% [statuses[BattleScores.ScoreCategories.Vibes], statuses[BattleScores.ScoreCategories.Fear], statuses[BattleScores.ScoreCategories.Sus]]
+	)
 	var tween : Tween = create_tween()
 	npc_speech_bubble.trigger_actions(
 		tween,
@@ -152,8 +155,11 @@ func perform_action(action: BattleScores) -> void:
 	else:
 		perform_status_effect(action)
 
-func perform_status_effect(action: BattleScores) -> void:
-	print("[COMBAT] Applying status effect: %s to %s (amount: %d)" % [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount])
+func perform_status_effect(action: BattleScores.Action) -> void:
+	print(
+		"[COMBAT] Applying status effect: %s to %s (amount: %d)"
+		% [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount]
+	)
 	if action.effect == BattleScores.Effects.Discard:
 		cards_to_discard = min(
 			cards_to_discard + action.amount,
@@ -211,7 +217,10 @@ func round_end() -> void:
 	print("[COMBAT] === ROUND END ===")
 	turns_remaining -= 1
 	print("[COMBAT] Turns remaining: ", turns_remaining)
-	print("[COMBAT] Final scores - Vibes: %d, Fear: %d, Sus: %d" % [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]])
+	print(
+		"[COMBAT] Final scores - Vibes: %d, Fear: %d, Sus: %d"
+		% [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]]
+	)
 	turn_counter.text = str(turns_remaining) + " turns to survive"
 	if (scores[BattleScores.ScoreCategories.Vibes] >= WINNING_SCORE
 		or scores[BattleScores.ScoreCategories.Fear] >= WINNING_SCORE
@@ -251,8 +260,8 @@ func _reset_scores():
 
 func _round_reset_sliders() -> void:
 	for status in statuses.keys():
-		for slider in sliders.values():
-			slider.update_slider(scores[status], statuses[status])
+		var slider = sliders[status]
+		slider.update_slider(scores[status], statuses[status])
 
 
 func _on_starting_battle(enemy : NPCEntity) -> void:
