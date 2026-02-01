@@ -255,10 +255,10 @@ horizontal_alignment = 1
 
 [node name="ScoreTutorialBox" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 796.3698
-offset_top = 323.79855
-offset_right = 1127.3452
-offset_bottom = 457.4718
+offset_left = 819.41925
+offset_top = 292.22977
+offset_right = 1122.5865
+offset_bottom = 426.97452
 rotation = -0.13788101
 color = Color(0, 0, 0, 1)
 

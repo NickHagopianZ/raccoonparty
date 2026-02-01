@@ -17,6 +17,14 @@ var battle_manager : Control = null
 
 func reset() -> void:
 	for display in active_displays.values():
+		# TODO: Nick: Below line errors when you lose battle and click on a dialogue option to restart
+		# E 0:02:58:235   ActionDisplay.reset: Invalid call. Nonexistent function 'queue_free' in base 'Array'.
+		#   <GDScript Source>action_visuals.gd:20 @ ActionDisplay.reset()
+		#   <Stack Trace> action_visuals.gd:20 @ reset()
+		#                 battle_manager.gd:279 @ _on_starting_battle()
+		#                 game_manager.gd:30 @ start_battle()
+		#                 dialogue_manger.gd:63 @ _on_npc_dialogue_option_selected()
+
 		display.queue_free()
 	active_displays.clear()
 
@@ -24,10 +32,14 @@ func reset() -> void:
 func display_actions(
 	tween: Tween,
 	actions: Array[BattleScores],
+	allowed_delay: float
 	) -> void:
+	var num_things_to_do = 0
+	for action in actions:
+		num_things_to_do += abs(action.amount)
 	tween.parallel()
 	for action in actions:
-		for count in range(action.amount):
+		for count in range(abs(action.amount)):
 			var texture_rect = TextureRect.new()
 			texture_rect.top_level = true
 			match action.effect:
@@ -58,7 +70,7 @@ func display_actions(
 					texture_rect.modulate = Color(1, 0, 1)
 				_: # Don't create anything outside of these
 					continue
-			
+
 			if action.effect in [
 				BattleScores.Effects.Nullify,
 				BattleScores.Effects.Defend,
@@ -90,7 +102,7 @@ func display_actions(
 			texture_rect.modulate.a = 0.0
 			add_child(texture_rect)
 			tween.tween_property(
-				texture_rect, "modulate:a", 1.0, .3).set_delay(randf_range(0.0, 0.5))
+				texture_rect, "modulate:a", 1.0, allowed_delay / num_things_to_do * 0.5).set_delay(randf_range(0.0, 1.0) * allowed_delay / num_things_to_do * 0.5)
 			if action.effect not in active_displays:
 				active_displays[action.effect] = []
 			active_displays[action.effect].append(texture_rect)
@@ -99,9 +111,12 @@ func display_actions(
 func trigger_actions(
 	tween: Tween,
 	actions: Array[BattleScores],
-	action_subset : Array[BattleScores.Effects]
-	) -> void:
-	tween.parallel()
+	action_subset : Array[BattleScores.Effects],
+	allowed_delay: float
+) -> void:
+	var num_things_to_do = 0
+	for action in actions:
+		num_things_to_do += abs(action.amount)
 	for action in actions:
 		for count in range(abs(action.amount)):
 			if action.amount > 0:
@@ -115,9 +130,10 @@ func trigger_actions(
 				target_global_position += Vector2(
 					randf_range(0, target_region.size.x),
 					randf_range(0, target_region.size.y)) * .5
+				tween.parallel()
 				tween.tween_property(
-					display, "global_position", target_global_position, 0.5
-				).set_delay(randf_range(0.0, 0.5))
+					display, "global_position", target_global_position, allowed_delay / 2.0 / num_things_to_do
+				).set_delay(randf_range(0.0, 1.0) / num_things_to_do * allowed_delay / 2.0)
 				tween.tween_callback(display.queue_free)
 				tween.tween_callback(battle_manager.perform_action.bind(action))
 				active_displays[action.effect].erase(display)

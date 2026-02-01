@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=27 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bmqjq4djfa8p" path="res://Assets/Levels/House1/fence1.png" id="5_plxmk"]
 [ext_resource type="PackedScene" uid="uid://d1dsjt2ayjonv" path="res://Scenes/Entity/Interactable/interactable.tscn" id="7_kb6k1"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
+[ext_resource type="Script" uid="uid://65pvhgad43g3" path="res://Scenes/Entity/Resources/interactable_resource.gd" id="8_e5nhg"]
 [ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="9_plxmk"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
 
@@ -74,6 +75,9 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk47r"]
 size = Vector3(100, 2, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5nhg"]
+size = Vector3(10, 1, 8.199)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0, 0)
@@ -177,10 +181,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.381946, 3.5219755, 8.381946
 [node name="Node2D3" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45497194, 5.1891394, 0.45497194)
 
+[node name="Bouncer" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.514662, 1.4164085, 7.3338304)
+entity_name = "Bouncer"
+archetype = 1
+
+[node name="BouncerWall" type="StaticBody3D" parent="NPCs/Bouncer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Bouncer/BouncerWall"]
+transform = Transform3D(-8.940697e-08, 1, -4.3711395e-08, 0, -4.371139e-08, -1, -1, -8.940697e-08, 0, 2.4258041, 2.0586562, -0.70681953)
+shape = SubResource("BoxShape3D_e5nhg")
+
 [node name="Furniture" type="Node3D" parent="."]
 
 [node name="Interactable" parent="Furniture" instance=ExtResource("7_kb6k1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.339094, 1.7883925, 13.910271)
+dialogue_options = Array[ExtResource("8_e5nhg")]([])
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -26.914143, 1.6656284, 29.857647)

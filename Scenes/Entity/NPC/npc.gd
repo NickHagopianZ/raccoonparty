@@ -42,7 +42,12 @@ func _ready():
 	while len(actions) > 5:
 		actions.pop_at(randi() % len(actions))
 
-	actions.append(NpcAction.new("Do you always dress like that?", ["-1 Sus"]))
+	if archetype == Archetype.TutorialBouncer:
+		actions = [
+			NpcAction.new("Are you on the list?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
+			NpcAction.new("Is there anyone who can vouch for you?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
+			NpcAction.new("I'm normally a bouncer at YooHoo Tavern...", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
+		]
 
 func choose_battler_action():
 	return actions.pick_random()

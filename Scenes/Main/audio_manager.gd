@@ -30,7 +30,7 @@ func _handle_start_battle(_enemy):
 	$BattleMusic.play()
 	tween.tween_property($BattleMusic, "volume_db", BATTLE_MUSIC_DB, MUSIC_FADE_TIMER).from(SILENCE_DB)
 
-func _handle_end_battle():
+func _handle_end_battle(_was_victory: bool):
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property($BattleMusic, "volume_db", SILENCE_DB, MUSIC_FADE_TIMER).from(BATTLE_MUSIC_DB)
 	tween.chain().tween_callback($BattleMusic.stop)

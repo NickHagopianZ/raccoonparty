@@ -98,11 +98,16 @@ func display_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 	print("[COMBAT] Displaying card effects...")
 	var tween : Tween = create_tween()
 
-	npc_speech_bubble.display_actions(tween, curr_enemy_action.actions)
+	for _action in curr_enemy_action.actions:
+		print("Displaying NPC effect : ", _action.to_display_string())
+	for _action in card_resource.actions:
+		print("Displaying card effect: ", _action.to_display_string())
+	var delay = 3.0 * tween_time_multiplier
+	npc_speech_bubble.display_actions(tween, curr_enemy_action.actions, delay * 0.4)
 	tween.set_parallel(true)
-	player_speech_bubble.display_actions(tween, card_resource.actions)
+	player_speech_bubble.display_actions(tween, card_resource.actions, delay * 0.4)
 
-	tween.tween_callback(resolve_card_statuses.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
+	tween.tween_callback(resolve_card_statuses.bind(card_resource)).set_delay(delay)
 
 
 func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
@@ -112,6 +117,7 @@ func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to 
 		% [statuses[BattleScores.ScoreCategories.Vibes], statuses[BattleScores.ScoreCategories.Fear], statuses[BattleScores.ScoreCategories.Sus]]
 	)
 	var tween : Tween = create_tween()
+	var delay = 3.0 * tween_time_multiplier
 	npc_speech_bubble.trigger_actions(
 		tween,
 		curr_enemy_action.actions,
@@ -119,7 +125,8 @@ func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to 
 		BattleScores.Effects.Nullify,
 		BattleScores.Effects.Discard,
 		BattleScores.Effects.Weaken,
-		BattleScores.Effects.Strengthen]
+		BattleScores.Effects.Strengthen],
+		delay * 0.4,
 	)
 	player_speech_bubble.trigger_actions(
 		tween,
@@ -128,24 +135,28 @@ func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to 
 		BattleScores.Effects.Nullify,
 		BattleScores.Effects.Discard,
 		BattleScores.Effects.Weaken,
-		BattleScores.Effects.Strengthen]
+		BattleScores.Effects.Strengthen],
+		delay * 0.4
 	)
-	tween.tween_callback(resolve_card_effects.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
+	tween.tween_callback(resolve_card_effects.bind(card_resource)).set_delay(delay)
 
 func resolve_card_effects(card_resource : CardResource) -> void:  # Untyped to avoid tween callback type conversion issue
 	print("[COMBAT] Resolving Change effects (damage/healing)...")
 	var tween : Tween = create_tween()
+	var delay = 3.0 * tween_time_multiplier
 	npc_speech_bubble.trigger_actions(
 		tween,
 		curr_enemy_action.actions,
-		[BattleScores.Effects.Change]
+		[BattleScores.Effects.Change],
+		delay * 0.4,
 	)
 	player_speech_bubble.trigger_actions(
 		tween,
 		card_resource.actions,
-		[BattleScores.Effects.Change]
+		[BattleScores.Effects.Change],
+		delay * 0.4
 	)
-	tween.tween_callback(round_end).set_delay(3.0)
+	tween.tween_callback(round_end).set_delay(delay)
 
 var statuses := {
 	BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores],
@@ -160,10 +171,7 @@ func perform_action(action: BattleScores) -> void:
 
 
 func perform_status_effect(action: BattleScores) -> void:
-	print(
-		"[COMBAT] Applying status effect: %s to %s (amount: %d)"
-		% [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount]
-	)
+	print("[COMBAT] Applying status effect: %s" % action.to_display_string())
 	if action.effect == BattleScores.Effects.Discard:
 		cards_to_discard = min(
 			cards_to_discard + action.amount,
@@ -185,7 +193,7 @@ func perform_change_effect(action: BattleScores) -> void:
 	var slider = sliders[action.category]
 	var original_amount = action.amount
 	var amount = action.amount
-	print("[COMBAT] Change effect on %s: base amount = %d" % [BattleScores.ScoreCategories.keys()[action.category], amount])
+	print("[COMBAT] Change effect %s" % action.to_display_string())
 
 	for status : BattleScores in statuses[action.category]:
 		if status.effect == BattleScores.Effects.Weaken and amount < 0: # take more damage
@@ -231,12 +239,12 @@ func round_end() -> void:
 		or scores[BattleScores.ScoreCategories.Sus] >= WINNING_SCORE
 		or turns_remaining <= 0):
 		print("[COMBAT] *** VICTORY! ***")
-		GameManager.ending_battle.emit()
+		GameManager.ending_battle.emit(true)
 	elif (scores[BattleScores.ScoreCategories.Vibes] <= 0
 		or scores[BattleScores.ScoreCategories.Fear] <= 0
 		or scores[BattleScores.ScoreCategories.Sus] <= 0):
 		print("[COMBAT] *** DEFEAT! ***")
-		GameManager.ending_battle.emit()
+		GameManager.ending_battle.emit(false)
 
 	start_round()
 
@@ -288,6 +296,11 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	start_round()
 
 
-func _on_ending_battle() -> void:
+func _on_ending_battle(was_victory: bool) -> void:
 	GameManager.first_battle = false
 	visible = false
+	if was_victory and curr_enemy.archetype == curr_enemy.Archetype.TutorialBouncer:
+		# Remove invisible wall blocking party
+		for child in curr_enemy.get_children():
+			if child.name == "BouncerWall":
+				child.queue_free()

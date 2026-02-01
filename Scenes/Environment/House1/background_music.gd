@@ -20,7 +20,7 @@ func _handle_start_battle(_enemy):
 	tween.chain().tween_callback(self.stop)
 
 
-func _handle_end_battle():
+func _handle_end_battle(_was_victory: bool):
 	self.play()
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "volume_db", 0.0, 1.0).from(-80.0)

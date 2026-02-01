@@ -34,7 +34,7 @@ func _on_starting_battle(_enemy : NPCEntity) -> void:
 	visible = false
 
 
-func _on_ending_battle() -> void:
+func _on_ending_battle(_was_victory: bool) -> void:
 	# TODO defeat lines?
 	visible = true
 
@@ -95,7 +95,7 @@ func _on_interactable_dialogue_option_selected(interactable_resource : Interacta
 	# Give rewards
 	for card_resource : CardResource in interactable_resource.reward_cards:
 		GameManager.player_deck.add_card_to_deck(card_resource)
-		
+
 	for card_resource : RumorCardResource in interactable_resource.rumor_cards:
 		GameManager.player_deck.add_card_to_rumor_deck(card_resource, card_resource.rumor_targets)
 

@@ -2,7 +2,7 @@ extends Node
 
 
 signal starting_battle(enemy : NPCEntity)
-signal ending_battle
+signal ending_battle(was_victory: bool)
 signal starting_interaction(interaction_partner : Entity)
 signal ending_interaction
 signal starting_game
@@ -28,10 +28,6 @@ enum SFX {
 func start_battle(enemy : NPCEntity) -> void:
 	player_deck.reset_deck(enemy.name)
 	starting_battle.emit(enemy)
-
-
-func end_battle() -> void:
-	ending_battle.emit()
 
 
 func start_interaction(interaction_partner : Entity) -> void:
