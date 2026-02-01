@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://qqlhvh58txfs" path="res://Scenes/Main/interaction_visuals.tscn" id="3_aw1lf"]
-[ext_resource type="PackedScene" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
+[ext_resource type="PackedScene" uid="uid://lqiwp8ptw1dv" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
 [ext_resource type="PackedScene" uid="uid://ugfkrkq6m8my" path="res://Scenes/Main/battle_manager.tscn" id="4_5s61s"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://c0jxc3g5sncd1" path="res://Scenes/Main/pause_screen.tscn" id="6_7npjy"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d4mbgmth5c2rb" path="res://Scenes/UI/screens/lose_screen.tscn" id="9_18xdc"]
 [ext_resource type="AudioStream" uid="uid://diyvpawxg0f0h" path="res://Assets/Audio/Interact-2.wav" id="10_dvlhv"]
 [ext_resource type="AudioStream" uid="uid://cyr7h0xttifkj" path="res://Assets/Audio/Descent.wav" id="11_wgovn"]
-[ext_resource type="AudioStream" uid="uid://c8p6esldgvdrd" path="res://Assets/Audio/Arpeggio.ogg" id="12_wgovn"]
+[ext_resource type="AudioStream" uid="uid://d3pxcqc1ggo8g" path="res://Assets/Audio/Battle.ogg" id="15_5ci8a"]
 
 [node name="Main" type="Node"]
 
@@ -70,7 +70,6 @@ bus = &"SFX"
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="AudioManager"]
 process_mode = 3
-stream = ExtResource("12_wgovn")
-volume_db = -15.744
+stream = ExtResource("15_5ci8a")
 bus = &"Music"
 parameters/looping = true
