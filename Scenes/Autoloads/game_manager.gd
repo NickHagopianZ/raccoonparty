@@ -10,6 +10,7 @@ signal quitting_to_title
 signal pausing
 signal unpausing
 signal play_sfx(which: SFX)
+signal continue_music_from(duration: float)
 
 var player_node : PlayerEntity
 # Kevin : player deck can be stored here as a globally accessible variable

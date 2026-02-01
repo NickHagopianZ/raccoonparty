@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1deiakb00w8l"]
+[gd_scene load_steps=13 format=3 uid="uid://b1deiakb00w8l"]
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://qqlhvh58txfs" path="res://Scenes/Main/interaction_visuals.tscn" id="3_aw1lf"]
@@ -11,7 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://cgojgt2ls0bfi" path="res://Assets/Audio/Interact-1.wav" id="9_7npjy"]
 [ext_resource type="AudioStream" uid="uid://diyvpawxg0f0h" path="res://Assets/Audio/Interact-2.wav" id="10_dvlhv"]
 [ext_resource type="AudioStream" uid="uid://cyr7h0xttifkj" path="res://Assets/Audio/Descent.wav" id="11_wgovn"]
-[ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="12_cv8e0"]
 [ext_resource type="AudioStream" uid="uid://c8p6esldgvdrd" path="res://Assets/Audio/Arpeggio.ogg" id="12_wgovn"]
 
 [node name="Main" type="Node"]
@@ -57,12 +56,6 @@ bus = &"SFX"
 stream = ExtResource("11_wgovn")
 volume_db = -15.266
 bus = &"SFX"
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="AudioManager"]
-stream = ExtResource("12_cv8e0")
-volume_db = -2.386
-bus = &"Music"
-parameters/looping = true
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource("12_wgovn")

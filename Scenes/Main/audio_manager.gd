@@ -14,7 +14,7 @@ func _ready():
 	GameManager.unpausing.connect(_handle_unpause)
 	GameManager.starting_battle.connect(_handle_start_battle)
 	GameManager.ending_battle.connect(_handle_end_battle)
-	$BackgroundMusic.play()
+	#$BackgroundMusic.play()
 
 func play_sfx(which: GameManager.SFX):
 	if which == GameManager.SFX.Interact:
@@ -24,19 +24,12 @@ func play_sfx(which: GameManager.SFX):
 
 func _handle_start_battle(_enemy):
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property($BackgroundMusic, "volume_db", SILENCE_DB, MUSIC_FADE_TIMER).from(BG_MUSIC_DB)
 	$BattleMusic.play()
 	tween.tween_property($BattleMusic, "volume_db", BATTLE_MUSIC_DB, MUSIC_FADE_TIMER).from(SILENCE_DB)
-	tween.chain().tween_callback($BackgroundMusic.stop)
-
-	#$BackgroundMusic.stop()
-	#$BattleMusic.play()
 
 func _handle_end_battle():
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property($BattleMusic, "volume_db", SILENCE_DB, MUSIC_FADE_TIMER).from(BATTLE_MUSIC_DB)
-	$BackgroundMusic.play()
-	tween.tween_property($BackgroundMusic, "volume_db", BG_MUSIC_DB, MUSIC_FADE_TIMER).from(SILENCE_DB)
 	tween.chain().tween_callback($BattleMusic.stop)
 
 func _handle_pause():

@@ -261,6 +261,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	visible = true
 	$ScoreTutorialBox.visible = GameManager.first_battle
 	_reset_statuses()
+	_reset_scores()
 	curr_enemy = enemy
 	turns_remaining = STARTING_TURNS
 	turn_counter.text = str(turns_remaining) + " turns to survive"

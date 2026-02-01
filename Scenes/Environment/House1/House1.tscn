@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=25 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bmqjq4djfa8p" path="res://Assets/Levels/House1/fence1.png" id="5_plxmk"]
 [ext_resource type="PackedScene" uid="uid://d1dsjt2ayjonv" path="res://Scenes/Entity/Interactable/interactable.tscn" id="7_kb6k1"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
+[ext_resource type="AudioStream" uid="uid://cm12jdfaqt7d5" path="res://Assets/Audio/Masqurade3.ogg" id="9_plxmk"]
+[ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -184,3 +186,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.339094, 1.7883925, 13.9102
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -26.914143, 1.6656284, 29.857647)
 top_level = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
+current = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.2934544, 1.1948075, 7.5160627)
+stream = ExtResource("9_plxmk")
+max_db = 0.0
+autoplay = true
+panning_strength = 0.25
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("10_e5nhg")
