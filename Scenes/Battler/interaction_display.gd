@@ -16,7 +16,7 @@ func _on_starting_interaction(interactable : Entity) -> void:
 		opposing_sprite.scale = Vector2.ONE * 4.0
 		opposing_sprite.global_position.y = player_sprite.global_position.y + 20.0
 	opposing_sprite.sprite_frames = interactable.sprite_frames
-	opposing_npc_name_label.text = interactable.name
+	opposing_npc_name_label.text = interactable.entity_name
 	player_sprite.sprite_frames = GameManager.player_node.sprite_frames
 	if opposing_sprite.sprite_frames.has_animation("Interact"):
 		opposing_sprite.play("Interact")

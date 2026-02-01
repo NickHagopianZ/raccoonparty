@@ -4,16 +4,14 @@ class_name ActionDisplay
 @export var spawn_box : Vector2 = Vector2(200, 200)
 @export var target_region : Control
 # creates floating text visuals for each action in the spawn box
-const temp_visual = preload("res://Assets/UI/InteractBox.png")
 const sus_visual = preload("res://Assets/Actions/sus_icon.png")
-# const vibes_visual = preload("res://Assets/Actions/vibes_icon.png")
+const vibes_visual = preload("res://Assets/Actions/vibes_icon.png")
 const fear_visual = preload("res://Assets/Actions/fear_icon.png")
-# const nullify_icon = preload("res://Assets/Actions/nullify_icon.png")
+const nullify_icon = preload("res://Assets/Actions/nullify_icon.png")
 const defend_icon = preload("res://Assets/Actions/defend_icon.png")
-# const change_icon = preload("res://Assets/Actions/change_icon.png")
-# const weaken_icon = preload("res://Assets/Actions/weaken_icon.png")
-# const strengthen_icon = preload("res://Assets/Actions/strengthen_icon.png")
-# const discard_icon = preload("res://Assets/Actions/discard_icon.png")
+const weaken_icon = preload("res://Assets/Actions/weaken_icon.png")
+const strengthen_icon = preload("res://Assets/Actions/strengthen_icon.png")
+const discard_icon = preload("res://Assets/Actions/discard_icon.png")
 var active_displays : Dictionary = {}
 var battle_manager : Control = null
 
@@ -34,14 +32,14 @@ func display_actions(
 			texture_rect.top_level = true
 			match action.effect:
 				BattleScores.Effects.Nullify:
-					texture_rect.texture = temp_visual
+					texture_rect.texture = nullify_icon
 					texture_rect.modulate = Color(1, 0, 0)
 				BattleScores.Effects.Defend:
 					texture_rect.texture = defend_icon
 					texture_rect.modulate = Color(0, 1, 0)
 				BattleScores.Effects.Change:
 					if action.category == BattleScores.ScoreCategories.Vibes:
-						texture_rect.texture = temp_visual
+						texture_rect.texture = vibes_visual
 						texture_rect.modulate = Color(1, 0.5, 0)
 					elif action.category == BattleScores.ScoreCategories.Fear:
 						texture_rect.texture = fear_visual
@@ -50,13 +48,13 @@ func display_actions(
 						texture_rect.texture = sus_visual
 						texture_rect.modulate = Color(1, 1, 1)
 				BattleScores.Effects.Weaken:
-					texture_rect.texture = temp_visual
+					texture_rect.texture = weaken_icon
 					texture_rect.modulate = Color(1, 1, 0)
 				BattleScores.Effects.Strengthen:
-					texture_rect.texture = temp_visual
+					texture_rect.texture = strengthen_icon
 					texture_rect.modulate = Color(0, 1, 1)
 				BattleScores.Effects.Discard:
-					texture_rect.texture = temp_visual
+					texture_rect.texture = discard_icon
 					texture_rect.modulate = Color(1, 0, 1)
 				_: # Don't create anything outside of these
 					continue
@@ -79,8 +77,8 @@ func display_actions(
 						label.text += " Fear"
 					elif action.category == BattleScores.ScoreCategories.Sus:
 						label.text += " Sus"
-				label.position.x += 40
-				label.position.y -= 40
+				label.position.x += 35
+				label.position.y -= 35
 				texture_rect.add_child(label)
 
 			# texture_rect.scale *= 3.0

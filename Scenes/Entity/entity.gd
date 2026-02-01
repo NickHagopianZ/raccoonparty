@@ -3,7 +3,8 @@ class_name Entity
 
 @export var sprite_frames : SpriteFrames
 @export var sprite : AnimatedSprite3D
-@export_multiline var flavor_dialogue : String
+@export var entity_name : String = ""
+@export_multiline var flavor_text : String
 
 func _ready() -> void:
 	sprite.sprite_frames = sprite_frames

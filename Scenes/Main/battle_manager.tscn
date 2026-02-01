@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ugfkrkq6m8my"]
+[gd_scene load_steps=11 format=3 uid="uid://ugfkrkq6m8my"]
 
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
 [ext_resource type="Texture2D" uid="uid://kqpyixbvxan5" path="res://Assets/UI/speech bubble.png" id="2_d17o4"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://3bs6upc61ue2" path="res://Scenes/Main/hand.gd" id="3_d17o4"]
 [ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
 [ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
+[ext_resource type="Texture2D" uid="uid://dkbtyjl5jwu5i" path="res://Assets/Actions/sus_icon.png" id="7_eb7cl"]
+[ext_resource type="Texture2D" uid="uid://dcosatfp8eb1k" path="res://Assets/Actions/vibes_icon.png" id="9_k65yc"]
+[ext_resource type="Texture2D" uid="uid://66aiwnuqlh5n" path="res://Assets/Actions/fear_icon.png" id="10_72lxj"]
 
 [node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "turn_counter", "sliders")]
 layout_mode = 3
@@ -188,41 +191,62 @@ alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_eb7cl")
+stretch_mode = 3
+
 [node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 text = "Sus"
 horizontal_alignment = 1
 
 [node name="SusSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 4.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_k65yc")
+
 [node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 text = "Vibes"
 horizontal_alignment = 1
 
 [node name="VibesSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 4.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_72lxj")
+stretch_mode = 3
+
 [node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 text = "Fear"
 horizontal_alignment = 1
 
 [node name="FearSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3" instance=ExtResource("6_vduqv")]
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 4.0
 
 [node name="TurnCounter" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
 layout_mode = 2

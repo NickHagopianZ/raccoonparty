@@ -72,10 +72,38 @@ func _on_starting_interaction(_interaction_partner : Entity) -> void:
 		end_interaction_button.text = goodbye_text_options[goodbye_text_index]
 		goodbye_text_index = (goodbye_text_index + 1) % goodbye_text_options.size()
 	else:
+		setup_interactable_dialogue(_interaction_partner)
 		edit_deck.visible = false
 		end_interaction_button.text = "Maybe Later"
 	visible = true
 
+func setup_interactable_dialogue(interactable_entity : Entity) -> void:
+	var interactable : Interactable = interactable_entity as Interactable
+	var interactable_resources : Array[InteractableResource] = interactable.dialogue_options
+	for interactable_resource in interactable_resources:
+		var button : Button = Button.new()
+		button.text = interactable_resource.dialogue
+		button.pressed.connect(_on_interactable_dialogue_option_selected.bind(interactable_resource))
+		dialogue_choices_container.add_child(button)
+
+	dialogue_choices_container.move_child(
+		end_interaction_button,
+		-1
+	)
+
+func _on_interactable_dialogue_option_selected(interactable_resource : InteractableResource) -> void:
+	# Give rewards
+	for card_resource : CardResource in interactable_resource.reward_cards:
+		GameManager.player_deck.add_card_to_deck(card_resource)
+		
+	for card_resource : RumorCardResource in interactable_resource.rumor_cards:
+		GameManager.player_deck.add_card_to_rumor_deck(card_resource, card_resource.rumor_targets)
+
+	# Apply penalties
+	for card_resource : CardResource in interactable_resource.penalty_cards:
+		GameManager.player_deck.add_card_to_penalty_deck(card_resource)
+	# End interaction after selection
+	GameManager.end_interaction()
 
 func _on_ending_interaction() -> void:
 	visible = false
