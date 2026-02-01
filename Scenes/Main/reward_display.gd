@@ -8,12 +8,16 @@ func _ready() -> void:
 	close_button.pressed.connect(_on_close_button_pressed)
 
 func _on_close_button_pressed() -> void:
+	GameManager.can_play_cards = true
 	visible = false
 	# End interaction after selection
 	GameManager.end_interaction()
+	GameManager.food_counter += 1
 
 
 func display_cards(cards : Array[CardResource]) -> void:
+	GameManager.can_play_cards = true
+
 	visible = true
 	# clear children
 	for child in card_display_container.get_children():

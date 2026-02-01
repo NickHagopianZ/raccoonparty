@@ -8,6 +8,7 @@ enum Archetype {
 	Bully,
 }
 
+@export var rewards : Array[CardResource] = []
 var actions: Array[NpcAction] = []
 
 class NpcAction:

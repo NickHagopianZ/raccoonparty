@@ -100,10 +100,6 @@ size_flags_stretch_ratio = 4.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
 visible = false
 clip_contents = true
@@ -115,6 +111,10 @@ patch_margin_top = 56
 patch_margin_right = 59
 patch_margin_bottom = 54
 
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -125,6 +125,7 @@ layout_mode = 2
 text = "Bye"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
