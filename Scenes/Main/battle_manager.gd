@@ -32,7 +32,7 @@ var tween_time_multiplier = 0.5
 @export var npc_speech_bubble : ActionDisplay
 @export var player_speech_label : RichTextLabel
 @export var player_speech_bubble : ActionDisplay
-func start_round():
+func start_round() -> Tween:
 	print("[COMBAT] === ROUND START ===")
 	print("[COMBAT] Turns remaining: ", turns_remaining)
 	print(
@@ -49,7 +49,7 @@ func start_round():
 	print("[COMBAT] Enemy chose action: ", curr_enemy_action.message)
 	print("[COMBAT] Enemy actions: ", curr_enemy_action.actions)
 	npc_speech_label.text = curr_enemy_action.message
-	pop_speech_bubble(npc_speech_bubble, npc_speech_label)
+	return pop_speech_bubble(npc_speech_bubble, npc_speech_label)
 
 
 func pop_speech_bubble(speech_bubble: Control, rich_text_label: RichTextLabel):
@@ -83,13 +83,15 @@ func _on_card_played(card: CardContainer) -> void:
 
 # after player plays a card
 func resolve_player_turn(card: CardContainer):
+	resolve_player_turn_card_resource(card.card_resource)
+
+func resolve_player_turn_card_resource(card_resource: CardResource) -> void:
 	print("[COMBAT] === RESOLVING PLAYER TURN ===")
-	print("[COMBAT] Player card: ", card.card_resource.title)
-	print("[COMBAT] Card actions: ", card.card_resource.actions)
+	print("[COMBAT] Player card: ", card_resource.title)
+	print("[COMBAT] Card actions: ", card_resource.actions)
 	GameManager.can_play_cards = false
-	player_speech_label.text = card.card_resource.dialogue
+	player_speech_label.text = card_resource.dialogue
 	# Store the card_resource since the card may be freed before the callback
-	var card_resource : CardResource = card.card_resource
 	var tween = pop_speech_bubble(player_speech_bubble, player_speech_label)
 	tween.tween_callback(display_card_effects.bind(card_resource)).set_delay(3.0 * tween_time_multiplier)
 
@@ -293,7 +295,23 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 		slider.reset(STARTING_SCORE, WINNING_SCORE)
 
 	print("[COMBAT] All sliders reset to ", STARTING_SCORE)
-	start_round()
+	var tween : Tween = start_round()
+	# if no cards in player's deck, end battle immediately with defeat
+	if (GameManager.player_deck.draw_pile.size() + 
+		GameManager.player_deck.discard.size() +
+		GameManager.player_deck.hand.size()) == 0:
+		print("[COMBAT] Player has no cards in deck! Immediate defeat.")
+		var no_cards = resolve_player_turn_card_resource.bind(CardResource.new(
+				"Make Something Up",
+				"Darren",
+				[],
+				"Oh... Uh... Darren",
+			)
+		)
+		tween.set_parallel(false)
+		tween.tween_callback(no_cards)
+
+	
 
 
 func _on_ending_battle(was_victory: bool) -> void:

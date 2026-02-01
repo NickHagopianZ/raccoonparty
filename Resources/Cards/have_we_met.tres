@@ -16,4 +16,5 @@ description = "Weren't we in Nocturnal Studies together?
 
 D1 Fear
 +1 Sus"
+dialogue = "Weren't we in Nocturnal Studies together?"
 actions = Array[ExtResource("1_4bhqq")]([SubResource("Resource_vt8qg"), SubResource("Resource_koxi8")])

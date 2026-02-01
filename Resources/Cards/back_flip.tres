@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cvv8b02f5txsc"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://db68hbq3aobxp"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_m4tn1"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_f38n1"]
@@ -18,4 +18,7 @@ description = "Could a raccoon do this??
 
 +1 Vibes
 D1 Sus"
+dialogue = "Could a raccoon do this??
+
+*backflips*"
 actions = Array[ExtResource("1_m4tn1")]([SubResource("Resource_snnri"), SubResource("Resource_h0jh0")])

@@ -20,4 +20,5 @@ description = "Look behind you! Is that John Wayne at the punch bowl?
 D1 Vibes
 D1 Fear
 D1 Sus"
+dialogue = "Look behind you! Is that John Wayne at the punch bowl?"
 actions = Array[ExtResource("1_ijl0u")]([SubResource("Resource_4662q"), SubResource("Resource_jffj0"), SubResource("Resource_rfo4h")])

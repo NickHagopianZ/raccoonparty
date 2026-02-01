@@ -20,4 +20,5 @@ description = "This. Is. My. JAM!
 +1 Vibes
 -1 Fear
 D1 Sus"
+dialogue = "This. Is. My. JAM!"
 actions = Array[ExtResource("1_d7cs7")]([SubResource("Resource_m65gx"), SubResource("Resource_cjv23"), SubResource("Resource_wct0w")])

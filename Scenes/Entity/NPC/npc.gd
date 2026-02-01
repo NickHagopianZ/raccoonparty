@@ -51,9 +51,8 @@ func _ready():
 
 	if archetype == Archetype.TutorialBouncer:
 		actions = [
-			NpcAction.new("Are you on the list?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
-			NpcAction.new("Is there anyone who can vouch for you?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
-			NpcAction.new("I'm normally a bouncer at YooHoo Tavern...", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
+			NpcAction.new("Who do you know?", ["-5 Sus"]),
+			NpcAction.new("Is there anyone who can vouch for you?", ["-5 Sus"]),
 		]
 
 	GameManager.ending_battle.connect(_on_ending_battle)

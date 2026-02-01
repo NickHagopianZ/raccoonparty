@@ -16,4 +16,5 @@ description = "Take sips of your drink with your weird, weird, hands.
 
 +2 Vibes
 -1 Sus"
+dialogue = "Take sips of your drink with your weird, weird, hands."
 actions = Array[ExtResource("1_0buve")]([SubResource("Resource_78wvg"), SubResource("Resource_irh3h")])

@@ -20,4 +20,5 @@ description = "Mhmmm. Yeah. Of course.
 +1 Vibes
 D1 Fear
 D1 Sus"
+dialogue = "Mhmmm. Yeah. Of course."
 actions = Array[ExtResource("1_b6d8m")]([SubResource("Resource_7alr1"), SubResource("Resource_oxaey"), SubResource("Resource_2ljmf")])

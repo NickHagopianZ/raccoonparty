@@ -16,4 +16,5 @@ description = "I think height is a choice.
 
 -1 Vibes
 +2 Fear"
+dialogue = "I think height is a choice."
 actions = Array[ExtResource("1_umb8x")]([SubResource("Resource_jvjlg"), SubResource("Resource_e11vv")])

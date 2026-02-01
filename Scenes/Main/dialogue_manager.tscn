@@ -162,7 +162,7 @@ text = "Weaknesses"
 layout_mode = 2
 text = "Strengths"
 
-[node name="RewardDisplay" type="VBoxContainer" parent="." node_paths=PackedStringArray("close_button", "card_container")]
+[node name="RewardDisplay" type="VBoxContainer" parent="." node_paths=PackedStringArray("close_button", "card_display_container")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,7 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_87261")
 close_button = NodePath("Control3/HBoxContainer/CloseReward")
-card_container = NodePath("Control3/HBoxContainer/RewardHand")
+card_display_container = NodePath("Control3/HBoxContainer/RewardHand")
 
 [node name="Control" type="Control" parent="RewardDisplay"]
 layout_mode = 2

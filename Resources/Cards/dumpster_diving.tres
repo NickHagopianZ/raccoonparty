@@ -15,9 +15,10 @@ script = ExtResource("1_coksq")
 [resource]
 script = ExtResource("2_kv8n2")
 title = "Dumpster Diving"
-description = "This one time, when dumpster diving, I found this really juicy donut
+description = "One time, when dumpster diving, I found a really juicy donut
 
 -1 Vibes
 -1 Fear
 -1 Sus"
+dialogue = "One time, when dumpster diving, I found a really juicy donut"
 actions = Array[ExtResource("1_coksq")]([SubResource("Resource_uytc6"), SubResource("Resource_0u34u"), SubResource("Resource_r2hn1")])

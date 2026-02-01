@@ -20,4 +20,5 @@ description = "Shots! Shots! Shots!
 +1 Vibes
 -1 Fear
 D1 Sus"
+dialogue = "Shots! Shots! Shots!"
 actions = Array[ExtResource("1_m75wn")]([SubResource("Resource_3mkut"), SubResource("Resource_xiqyq"), SubResource("Resource_7gqg2")])

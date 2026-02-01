@@ -12,8 +12,9 @@ script = ExtResource("1_4e16o")
 [resource]
 script = ExtResource("2_61t3a")
 title = "Undergound Living"
-description = "Yeah, I've been living in this really nice sewer right off 5th street for about 3 years...
+description = "I live in this nice place under 5th street...
 
 +2 Fear
 -1 Sus"
+dialogue = "I live in this nice place under 5th street..."
 actions = Array[ExtResource("1_4e16o")]([SubResource("Resource_h6asm"), SubResource("Resource_s7dml")])

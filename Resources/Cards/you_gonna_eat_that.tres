@@ -20,4 +20,5 @@ description = "I could take that half eaten mushroom slider off your hands
 -1 Vibes
 +2 Fear
 -1 Sus"
+dialogue = "I could take that half eaten mushroom slider off your hands"
 actions = Array[ExtResource("1_6l4he")]([SubResource("Resource_6dxsk"), SubResource("Resource_ljdkg"), SubResource("Resource_ekbe7")])

@@ -15,9 +15,10 @@ script = ExtResource("1_d4rl4")
 [resource]
 script = ExtResource("2_poybk")
 title = "Good Old Days"
-description = "Remember when this city used to have its trash just right on the street? Those were the days
+description = "This city used to have trash bags lying around everywhere...
 
 -1 Vibes
 -1 Fear
 -1 Sus"
+dialogue = "This city used to have trash bags lying around everywhere..."
 actions = Array[ExtResource("1_d4rl4")]([SubResource("Resource_4kiif"), SubResource("Resource_javex"), SubResource("Resource_aklj3")])

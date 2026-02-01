@@ -16,4 +16,5 @@ description = "I like those shoes, are they gucci?
 
 +1 Vibes
 D1 Sus"
+dialogue = "I like those shoes, are they gucci?"
 actions = Array[ExtResource("1_vbcna")]([SubResource("Resource_8h52s"), SubResource("Resource_l661x")])

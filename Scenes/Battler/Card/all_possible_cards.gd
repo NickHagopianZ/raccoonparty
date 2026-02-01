@@ -19,7 +19,26 @@ var card_list : Array[CardResource] = [
 	distraction,
 	good_old_days,
 	dumpster,
+	suzanne,
+	dimitri,
 ]
+
+static var suzanne = RumorCardResource.new(
+	"Suzanne",
+	"The mailbox letter was being sent by Suzanne",
+	[BattleScores.new("+2 Vibes"), BattleScores.new("-1 Sus")],
+	"Suzanne and I are close buds.",
+	["Bouncer"]
+)
+static var dimitri = RumorCardResource.new(
+	"Dimitri",
+	"The mailbox letter was being sent to Dimitri",
+	[BattleScores.new("+2 Vibes"), BattleScores.new("+1 Sus")],
+	"Dimitri and I go waaayyy back.",
+	["Bouncer"]
+)
+
+
 
 static var sip_drink = CardResource.new(
 	"Sip Drink",

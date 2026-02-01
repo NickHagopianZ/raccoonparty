@@ -16,4 +16,5 @@ description = "Of course I don't eat trash, that would be pretty weird...
 
 +1 Fear
 +1 Sus"
+dialogue = "Of course I don't eat trash, that would be pretty weird..."
 actions = Array[ExtResource("1_kdsjq")]([SubResource("Resource_ir0ob"), SubResource("Resource_amo2p")])

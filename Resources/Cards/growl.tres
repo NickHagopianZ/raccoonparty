@@ -16,4 +16,5 @@ description = "grrrrrrrrrrrrrr
 
 +2 Fear
 -1 Sus"
+dialogue = "grrrrrrrrrrrrrr"
 actions = Array[ExtResource("1_u622p")]([SubResource("Resource_spsug"), SubResource("Resource_m1bdu")])

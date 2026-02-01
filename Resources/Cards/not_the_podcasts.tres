@@ -16,4 +16,5 @@ description = "I've got some podcasts that I think would really open your mind
 
 -1 Vibes
 +1 Fear"
+dialogue = "I've got some podcasts that I think would really open your mind"
 actions = Array[ExtResource("1_g5arw")]([SubResource("Resource_muh1y"), SubResource("Resource_h7rqt")])
