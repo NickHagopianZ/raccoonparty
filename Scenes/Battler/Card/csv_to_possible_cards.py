@@ -55,7 +55,8 @@ def translate_csv_to_godot(data):
             f"static var {var_name} = CardResource.new(\n"
             f'\t"{title}",\n'
             f'\t"{full_description}",\n'
-            f"\t[{actions}]\n"
+            f"\t[{actions}],\n"
+            f'\t"{desc_base}",\n'
             f")"
         )
         print(godot_block)

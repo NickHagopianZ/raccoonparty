@@ -39,7 +39,7 @@ func save_deck() -> void:
 	for child in flow_container.get_children():
 		if child is CardCollectionSlot:
 			var card_slot : CardCollectionSlot = child
-			var card_resource : CardResource = card_slot.card_container.card_resource
+			var card_resource :  = card_slot.card_container.card_resource
 			if collection_type == 0:
 				deck.add_card_to_deck(card_resource)
 			else:

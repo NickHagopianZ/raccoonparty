@@ -54,9 +54,12 @@ func _init(p_input: String = ""):
 	else:
 		push_error("Failed to parse Action string: " + p_input)
 
-
-
-
 	self.effect = effect
 	self.category = category
 	self.amount = amount
+
+
+func to_display_string() -> String:
+	var effect_str = Effects.keys()[effect]
+	var category_str = ScoreCategories.keys()[category]
+	return "Category: " + category_str + ", Effect: " + effect_str + ", Amount: " + str(amount)

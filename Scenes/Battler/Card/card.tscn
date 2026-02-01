@@ -21,8 +21,8 @@ card_visualizer = NodePath("CardVisualizer")
 
 [node name="CardVisualizer" type="ColorRect" parent="."]
 layout_mode = 1
-offset_right = 250.0
-offset_bottom = 350.0
+offset_right = 187.5
+offset_bottom = 262.5
 mouse_filter = 1
 color = Color(0.4038569, 0.09624099, 0.33439413, 1)
 script = ExtResource("2_2a71a")
@@ -45,14 +45,18 @@ layout_mode = 2
 [node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Super long card title"
+theme_override_font_sizes/font_size = 42
+text = "You gonna eat that?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Description" type="RichTextLabel" parent="CardVisualizer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Card [u][i][b]Description[/b][/i][/u]."
+text = "I live in this nice place under 5th street...
+
++2 Fear
+-1 Sus"
 fit_content = true
