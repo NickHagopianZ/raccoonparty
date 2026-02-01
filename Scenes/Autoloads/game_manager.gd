@@ -11,6 +11,7 @@ signal pausing
 signal unpausing
 signal play_sfx(which: SFX)
 signal continue_music_from(duration: float)
+var interaction_partner : Entity = null
 
 var player_node : PlayerEntity
 # Kevin : player deck can be stored here as a globally accessible variable
@@ -30,13 +31,14 @@ func start_battle(enemy : NPCEntity) -> void:
 	starting_battle.emit(enemy)
 
 
-func start_interaction(interaction_partner : Entity) -> void:
-	starting_interaction.emit(interaction_partner)
+func start_interaction(_interaction_partner : Entity) -> void:
+	interaction_partner = _interaction_partner
+	starting_interaction.emit(_interaction_partner)
 
 
 func end_interaction() -> void:
 	ending_interaction.emit()
-
+	interaction_partner = null
 
 func start_game() -> void:
 	starting_game.emit()

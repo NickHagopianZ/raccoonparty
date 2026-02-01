@@ -28,12 +28,12 @@ func update_slider(final_amount: float, statuses: Array[BattleScores]) -> void:
 	
 	# Apply defense effects
 	var defense_amount : float = 0
-	# var nullify_amount : float = 0
+	var nullify_amount : float = 0
 	for status in statuses:
 		if status.effect == BattleScores.Effects.Defend:
 			defense_amount += status.amount
-		# elif status.effect == BattleScores.Effects.Nullify:
-			# nullify_amount += status.amount
+		elif status.effect == BattleScores.Effects.Nullify:
+			nullify_amount += status.amount
 	if defense_amount > 0:
 		defense_amount += final_amount
 		defense_lerp_tween = create_tween()
@@ -41,13 +41,18 @@ func update_slider(final_amount: float, statuses: Array[BattleScores]) -> void:
 			defense_slider, "value", defense_amount, lerp_speed)
 	else:
 		defense_slider.value = 0
+	
+	if nullify_amount > 0:
+		nullify_slider.value = clamped_value
+	else:
+		nullify_slider.value = 0
 
 	if clamped_value > health_slider.value: # Healing or increase
 		healing_lerp_tween = create_tween()
 		healing_lerp_tween.tween_property(health_slider, "value", clamped_value, lerp_speed)
-	else: # Damage or decrease
+	elif clamped_value < health_slider.value + nullify_amount: # Damage or decrease
 		damage_lerp_slider.value = health_slider.value
-		health_slider.value = clamped_value
+		health_slider.value = clamped_value - nullify_amount
 		damage_lerp_tween = create_tween()
 		damage_lerp_tween.tween_property(damage_lerp_slider, "value", health_slider.value, lerp_speed)
 
@@ -68,4 +73,5 @@ func reset(_value : float, _max_value : float) -> void:
 
 func turn_end() -> void:
 	defense_slider.value = 0
+	health_slider.value = nullify_slider.value
 	nullify_slider.value = 0

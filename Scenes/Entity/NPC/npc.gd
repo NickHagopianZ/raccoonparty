@@ -48,6 +48,9 @@ func _ready():
 			NpcAction.new("Is there anyone who can vouch for you?", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
 			NpcAction.new("I'm normally a bouncer at YooHoo Tavern...", ["+5 Sus", "+5 Vibes", "+5 Fear"]),
 		]
+	
+	GameManager.ending_battle.connect(_on_ending_battle)
+	update_sprites()
 
 func choose_battler_action():
 	return actions.pick_random()
@@ -95,30 +98,62 @@ func bounce(delta: float) -> void:
 	sprite.rotation.z = total_rotation_bounce
 
 
+var is_defeated : bool = false
+func _on_ending_battle(_was_victory: bool) -> void:
+	if GameManager.interaction_partner == self and _was_victory:
+		defeated()
+
+func defeated() -> void:
+	is_defeated = true
+	set_collision_layer_value(2, false) # disable interaction layer
+
 
 func focus(by_entity: CharacterEntity) -> void:
 	look_target = by_entity
 	look_duration = 0.5
 
-func interact(by_entity: CharacterEntity) -> void:
-	# NPC interacted with by an entity (e.g., player)
-	var camera = get_viewport().get_camera_3d()
 
-	var meet_positions : Array[Vector3] = [
-		by_entity.global_position + camera.transform.basis.x * 3.5,
-		by_entity.global_position - camera.transform.basis.x * 3.5
-	]
-	# validate positions
-	var shortest_path : float = 6000.0
+func interact(by_entity: CharacterEntity, move_player : bool = false) -> void:
+	if move_player:
+		# NPC interacted with by an entity (e.g., player)
+		var camera = get_viewport().get_camera_3d()
 
-	var shortest_position : Vector3 = global_position
-	for pos in meet_positions:
-		by_entity.move_to_target(pos)
-		# get path length
-		var path_length = navigation_agent.get_path_length()
-		if path_length < shortest_path:
-			shortest_path = path_length
-			shortest_position = pos
+		var meet_positions : Array[Vector3] = [
+			by_entity.global_position + camera.transform.basis.x * 3.5,
+			by_entity.global_position - camera.transform.basis.x * 3.5
+		]
+		# validate positions
+		var shortest_path : float = 6000.0
 
-	by_entity.move_to_target(shortest_position)
+		var shortest_position : Vector3 = global_position
+		for pos in meet_positions:
+			by_entity.move_to_target(pos)
+			# get path length
+			var path_length = navigation_agent.get_path_length()
+			if path_length < shortest_path:
+				shortest_path = path_length
+				shortest_position = pos
+
+		by_entity.move_to_target(shortest_position)
+
 	GameManager.start_interaction(self)
+
+
+const body_adjustment : float = 0.2
+func update_sprites() -> void:
+	# every body is beautiful
+	scale.y = 1.0 + randf_range(-body_adjustment, body_adjustment)
+	scale.x = 1.2 + randf_range(-body_adjustment, body_adjustment)
+	scale.z = 1.2 + randf_range(-body_adjustment, body_adjustment)
+	if sprite_frames == null: # set generic background color
+		sprite_frames = sprite.sprite_frames
+		play_animation("Idle")
+		sprite.modulate = Color(
+			randf_range(0.3, 0.6),
+			randf_range(0.3, 0.6), 
+			randf_range(0.6, 1.0)
+			)
+		set_collision_layer_value(2, false) # disable interaction layer
+	else:
+		sprite.sprite_frames = sprite_frames
+		play_animation("Idle")

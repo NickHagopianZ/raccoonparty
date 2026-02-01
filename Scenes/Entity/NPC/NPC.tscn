@@ -1,29 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvolo5qyv4kb7"]
+[gd_scene load_steps=9 format=3 uid="uid://cvolo5qyv4kb7"]
 
 [ext_resource type="Script" uid="uid://67u4dedxrwy1" path="res://Scenes/Entity/NPC/npc.gd" id="1_h3yth"]
-[ext_resource type="Texture2D" uid="uid://dvwlpwmxd4eks" path="res://Assets/Entity/NPC/temp_human.png" id="2_ivpoq"]
+[ext_resource type="Texture2D" uid="uid://6ec7hdsa4qoq" path="res://Assets/Entity/NPC/background_a.png" id="2_nql03"]
+[ext_resource type="Texture2D" uid="uid://coh4jkwur5fo0" path="res://Assets/Entity/NPC/background_b.png" id="3_clah4"]
+[ext_resource type="Texture2D" uid="uid://bpbp1kkomolhe" path="res://Assets/Entity/NPC/background_c.png" id="4_wp0jp"]
+[ext_resource type="Texture2D" uid="uid://bpha8l7wqyoob" path="res://Assets/Entity/NPC/background_e.png" id="5_bc7vl"]
+[ext_resource type="Texture2D" uid="uid://cbquic41x4blx" path="res://Assets/Entity/NPC/background_d.png" id="6_i0dbi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
+size = Vector3(1, 4, 0.1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jhwq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ivpoq")
+"texture": ExtResource("2_nql03")
 }],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
+"loop": false,
+"name": &"Idle_1",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ivpoq")
+"texture": ExtResource("3_clah4")
 }],
-"loop": true,
-"name": &"Interact",
-"speed": 5.0
+"loop": false,
+"name": &"Idle_2",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wp0jp")
+}],
+"loop": false,
+"name": &"Idle_3",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_bc7vl")
+}],
+"loop": false,
+"name": &"Idle_4",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_i0dbi")
+}],
+"loop": false,
+"name": &"Idle_5",
+"speed": 0.0
 }]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h3yth"]
-size = Vector3(1, 2.4, 0.1)
 
 [node name="NPC" type="CharacterBody3D" node_paths=PackedStringArray("sprite_parent", "navigation_agent", "sprite")]
 collision_layer = 2
@@ -31,7 +59,6 @@ script = ExtResource("1_h3yth")
 speed = 5.0
 sprite_parent = NodePath("Node3D2")
 navigation_agent = NodePath("NavigationAgent3D")
-sprite_frames = SubResource("SpriteFrames_1jhwq")
 sprite = NodePath("Node3D2/AnimatedSprite3D")
 
 [node name="CollisionPolygon2D" type="CollisionShape3D" parent="."]
@@ -43,7 +70,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Node3D2"]
 pixel_size = 0.004
 sprite_frames = SubResource("SpriteFrames_1jhwq")
-animation = &"Idle"
+animation = &"Idle_4"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
