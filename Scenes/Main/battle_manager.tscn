@@ -115,7 +115,7 @@ theme_override_constants/margin_bottom = 5
 [node name="PlayerDialogueBox" type="RichTextLabel" parent="Control2/PlayerSpeechBubble/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "NPC Dialogue Box"
+text = "Player Dialogue Box"
 scroll_active = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -254,13 +254,13 @@ text = "10 turns to survive"
 horizontal_alignment = 1
 
 [node name="ScoreTutorialBox" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 782.8794
-offset_top = 351.74466
-offset_right = 1131.0582
-offset_bottom = 476.42453
+offset_left = 796.3698
+offset_top = 323.79855
+offset_right = 1127.3452
+offset_bottom = 457.4718
 rotation = -0.13788101
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ScoreTutorialBox"]
 layout_mode = 1
@@ -269,14 +269,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
-[node name="Label" type="Label" parent="ScoreTutorialBox/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="ScoreTutorialBox/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreTutorialBox/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="ScoreTutorialBox/MarginContainer/ColorRect/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Fill any bar to WIN the conversation. You LOSE if any bar runs empty!"
+text = "Fill any bar or survive long enough to WIN the conversation. You LOSE if any bar runs empty!"
 autowrap_mode = 2
