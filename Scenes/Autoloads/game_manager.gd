@@ -11,6 +11,7 @@ signal pausing
 signal unpausing
 signal play_sfx(which: SFX)
 signal continue_music_from(duration: float)
+signal all_food_found
 var interaction_partner : Entity = null
 
 var player_node : PlayerEntity
