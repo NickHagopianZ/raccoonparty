@@ -69,6 +69,7 @@ volume_db = -15.266
 bus = &"SFX"
 
 [node name="BattleMusic" type="AudioStreamPlayer" parent="AudioManager"]
+process_mode = 3
 stream = ExtResource("12_wgovn")
 volume_db = -15.744
 bus = &"Music"

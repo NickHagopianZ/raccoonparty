@@ -51,6 +51,14 @@ animations = [{
 "loop": false,
 "name": &"Idle_5",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nql03")
+}],
+"loop": true,
+"name": &"empty_animation",
+"speed": 5.0
 }]
 
 [node name="NPC" type="CharacterBody3D" node_paths=PackedStringArray("sprite_parent", "navigation_agent", "sprite")]
@@ -70,7 +78,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.21015793, 0)
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Node3D2"]
 pixel_size = 0.004
 sprite_frames = SubResource("SpriteFrames_1jhwq")
-animation = &"Idle_4"
+animation = &"empty_animation"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.1
