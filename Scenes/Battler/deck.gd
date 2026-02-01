@@ -8,7 +8,7 @@ var sideboard: Array[CardResource]
 var deck: Array[CardResource]
 var penalty_deck: Array[CardResource]
 # Dictionary[npc_name: String, Array[CardResource]]
-var rumor_deck: Dictionary 
+var rumor_deck: Dictionary
 var hand: Array[CardContainer]
 var discard: Array[CardResource]
 var draw_pile: Array[CardResource]

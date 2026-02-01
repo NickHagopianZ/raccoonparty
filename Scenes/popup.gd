@@ -15,5 +15,6 @@ func _input(event):
 		close()
 
 func close() -> void:
+	GameManager.play_sfx.emit(GameManager.SFX.Interact)
 	visible = false
 	queue_free()

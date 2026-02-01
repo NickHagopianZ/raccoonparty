@@ -8,6 +8,7 @@ func _ready() -> void:
 	target_parent.child_order_changed.connect(_on_child_order_changed)
 
 func _pressed() -> void:
+	GameManager.play_sfx.emit(GameManager.SFX.Interact)
 	var new_ui_instance = new_scene.instantiate()
 	for child in target_parent.get_children():
 		child.visible = false

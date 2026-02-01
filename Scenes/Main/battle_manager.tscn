@@ -44,8 +44,8 @@ source = "Enemy"
 layout_mode = 1
 offset_left = -224.0
 offset_top = -220.0
-offset_right = 1824.0
-offset_bottom = 1828.0
+offset_right = 2199.0771
+offset_bottom = 2056.923
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("2_d17o4")
 
@@ -54,10 +54,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 500.0
-offset_top = 523.07697
-offset_right = -1397.994
-offset_bottom = -1361.9165
+offset_left = 507.69247
+offset_top = 546.1539
+offset_right = -1726.3772
+offset_bottom = -1541.7616
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(7.692, 7.692)
@@ -69,7 +69,7 @@ theme_override_constants/margin_bottom = 5
 [node name="NpcDialogueBox" type="RichTextLabel" parent="Control/NPCSpeechBubble/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "NPC Dialogue Box"
+text = "I moved here to be closer to family, but I don't like my family."
 scroll_active = false
 
 [node name="Control2" type="Control" parent="." node_paths=PackedStringArray("target_region")]

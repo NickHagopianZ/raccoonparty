@@ -9,6 +9,7 @@ signal starting_game
 signal quitting_to_title
 signal pausing
 signal unpausing
+signal play_sfx(which: SFX)
 
 var player_node : PlayerEntity
 # Kevin : player deck can be stored here as a globally accessible variable
@@ -17,6 +18,11 @@ var game_started : bool = false
 var round_timer_running: bool = true
 var can_play_cards: bool = true
 var first_battle: bool = true
+
+enum SFX {
+	Interact,
+	Descent,
+}
 
 func start_battle(enemy : NPCEntity) -> void:
 	player_deck.reset_deck(enemy.name)
@@ -50,8 +56,8 @@ func quit_to_desktop() -> void:
 
 func pause() -> void:
 	if game_started:
-		pausing.emit()
 		get_tree().paused = true
+		pausing.emit()
 
 
 func unpause() -> void:

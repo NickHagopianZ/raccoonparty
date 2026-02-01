@@ -36,7 +36,7 @@ func start_round():
 	print("[COMBAT] Turns remaining: ", turns_remaining)
 	print("[COMBAT] Current scores - Vibes: %d, Fear: %d, Sus: %d" % [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]])
 	_reset_statuses()
-	_reset_scores()
+	#_reset_scores()
 	_round_reset_sliders()
 	GameManager.player_deck.fill_hand_if_needed()
 	GameManager.can_play_cards = true
@@ -52,7 +52,7 @@ func pop_speech_bubble(speech_bubble: Control, rich_text_label: RichTextLabel):
 	speech_bubble.visible = true
 	rich_text_label.visible_ratio = 0.0
 	speech_bubble.scale = Vector2(0.0, 0.0)
-	
+
 	var tween = create_tween()
 	tween.tween_property(speech_bubble, "scale", Vector2(1.0, 1.0), 1.0).set_trans(
 		Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
@@ -97,7 +97,7 @@ func display_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 	npc_speech_bubble.display_actions(tween, curr_enemy_action.actions)
 	tween.set_parallel(true)
 	player_speech_bubble.display_actions(tween, card_resource.actions)
-	
+
 	tween.tween_callback(resolve_card_statuses.bind(card_resource)).set_delay(3.0)
 
 
@@ -106,20 +106,20 @@ func resolve_card_statuses(card_resource : CardResource) -> void:  # Untyped to 
 	print("[COMBAT] Current statuses - Vibes: %s, Fear: %s, Sus: %s" % [statuses[BattleScores.ScoreCategories.Vibes], statuses[BattleScores.ScoreCategories.Fear], statuses[BattleScores.ScoreCategories.Sus]])
 	var tween : Tween = create_tween()
 	npc_speech_bubble.trigger_actions(
-		tween, 
+		tween,
 		curr_enemy_action.actions,
-		[BattleScores.Effects.Defend, 
-		BattleScores.Effects.Nullify, 
-		BattleScores.Effects.Discard, 
-		BattleScores.Effects.Weaken, 
+		[BattleScores.Effects.Defend,
+		BattleScores.Effects.Nullify,
+		BattleScores.Effects.Discard,
+		BattleScores.Effects.Weaken,
 		BattleScores.Effects.Strengthen]
 	)
 	player_speech_bubble.trigger_actions(
-		tween, 
+		tween,
 		card_resource.actions,
-		[BattleScores.Effects.Defend, 
-		BattleScores.Effects.Nullify, 
-		BattleScores.Effects.Discard, 
+		[BattleScores.Effects.Defend,
+		BattleScores.Effects.Nullify,
+		BattleScores.Effects.Discard,
 		BattleScores.Effects.Weaken,
 		BattleScores.Effects.Strengthen]
 	)
@@ -129,7 +129,7 @@ func resolve_card_effects(card_resource : CardResource) -> void:  # Untyped to a
 	print("[COMBAT] Resolving Change effects (damage/healing)...")
 	var tween : Tween = create_tween()
 	npc_speech_bubble.trigger_actions(
-		tween, 
+		tween,
 		curr_enemy_action.actions,
 		[BattleScores.Effects.Change]
 	)
@@ -144,7 +144,7 @@ var statuses := {
 	BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores.Action],
 	BattleScores.ScoreCategories.Fear: [] as Array[BattleScores.Action],
 	BattleScores.ScoreCategories.Sus: [] as Array[BattleScores.Action],
-} 
+}
 func perform_action(action: BattleScores.Action) -> void:
 	if action.effect == BattleScores.Effects.Change:
 		perform_change_effect(action)
@@ -155,7 +155,7 @@ func perform_status_effect(action: BattleScores.Action) -> void:
 	print("[COMBAT] Applying status effect: %s to %s (amount: %d)" % [BattleScores.Effects.keys()[action.effect], BattleScores.ScoreCategories.keys()[action.category], action.amount])
 	if action.effect == BattleScores.Effects.Discard:
 		cards_to_discard = min(
-			cards_to_discard + action.amount, 
+			cards_to_discard + action.amount,
 			GameManager.player_deck.hand.size())
 		print("[COMBAT] Player must discard %d cards" % cards_to_discard)
 		if discarding_hint:
@@ -197,7 +197,7 @@ func perform_change_effect(action: BattleScores.Action) -> void:
 			var old_amount = amount
 			amount = int(amount * 1.5)
 			print("[COMBAT]   Strengthen applied: %d -> %d" % [old_amount, amount])
-	
+
 	print("[COMBAT]   Final change: %d (was %d), new score: %d" % [amount, original_amount, scores[action.category] + amount])
 	scores[action.category] += amount
 	slider.update_slider(scores[action.category], statuses[action.category])
@@ -212,14 +212,14 @@ func round_end() -> void:
 	print("[COMBAT] Turns remaining: ", turns_remaining)
 	print("[COMBAT] Final scores - Vibes: %d, Fear: %d, Sus: %d" % [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]])
 	turn_counter.text = str(turns_remaining) + " turns to survive"
-	if (scores[BattleScores.ScoreCategories.Vibes] >= WINNING_SCORE 
-		or scores[BattleScores.ScoreCategories.Fear] >= WINNING_SCORE 
+	if (scores[BattleScores.ScoreCategories.Vibes] >= WINNING_SCORE
+		or scores[BattleScores.ScoreCategories.Fear] >= WINNING_SCORE
 		or scores[BattleScores.ScoreCategories.Sus] >= WINNING_SCORE
 		or turns_remaining <= 0):
 		print("[COMBAT] *** VICTORY! ***")
 		GameManager.ending_battle.emit()
-	elif (scores[BattleScores.ScoreCategories.Vibes] <= 0 
-		or scores[BattleScores.ScoreCategories.Fear] <= 0 
+	elif (scores[BattleScores.ScoreCategories.Vibes] <= 0
+		or scores[BattleScores.ScoreCategories.Fear] <= 0
 		or scores[BattleScores.ScoreCategories.Sus] <= 0):
 		print("[COMBAT] *** DEFEAT! ***")
 		GameManager.ending_battle.emit()
@@ -268,7 +268,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	npc_speech_bubble.reset()
 	for slider in sliders.values():
 		slider.reset(STARTING_SCORE, WINNING_SCORE)
-	
+
 	print("[COMBAT] All sliders reset to ", STARTING_SCORE)
 	start_round()
 
