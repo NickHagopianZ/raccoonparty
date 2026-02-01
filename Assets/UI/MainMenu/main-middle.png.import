@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://to8xy8r5v7tf"
-path="res://.godot/imported/Raccoon_Party_Main_Menu-5.png-467da759f112565c53f0db3874d93175.ctex"
+uid="uid://d4eewmhypc4bm"
+path="res://.godot/imported/main-middle.png-0233066fdca227616f1d2907a03f502f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/MainMenu/Raccoon_Party_Main_Menu-5.png"
-dest_files=["res://.godot/imported/Raccoon_Party_Main_Menu-5.png-467da759f112565c53f0db3874d93175.ctex"]
+source_file="res://Assets/UI/MainMenu/main-middle.png"
+dest_files=["res://.godot/imported/main-middle.png-0233066fdca227616f1d2907a03f502f.ctex"]
 
 [params]
 
