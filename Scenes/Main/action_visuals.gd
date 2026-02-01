@@ -107,6 +107,7 @@ func display_actions(
 				active_displays[action.effect] = []
 			active_displays[action.effect].append(texture_rect)
 
+
 @export_enum("Player", "Enemy") var source : String = "Player"
 func trigger_actions(
 	tween: Tween,
@@ -118,11 +119,13 @@ func trigger_actions(
 	for action in actions:
 		num_things_to_do += abs(action.amount)
 	for action in actions:
-		for count in range(abs(action.amount)):
-			if action.amount > 0:
-				action.amount = 1  # Process one at a time for visuals
-			else:
-				action.amount = -1
+		var original_amount = action.amount  # Store original amount before loop
+		for count in range(abs(original_amount)):
+			# Create a single-amount action for the callback instead of mutating the original
+			var single_action = BattleScores.new()
+			single_action.effect = action.effect
+			single_action.category = action.category
+			single_action.amount = 1 if original_amount > 0 else -1
 
 			if (action_subset == [] or action.effect in action_subset) and action.effect in active_displays:
 				var display = active_displays[action.effect][0]
@@ -135,7 +138,7 @@ func trigger_actions(
 					display, "global_position", target_global_position, allowed_delay / 2.0 / num_things_to_do
 				).set_delay(randf_range(0.0, 1.0) / num_things_to_do * allowed_delay / 2.0)
 				tween.tween_callback(display.queue_free)
-				tween.tween_callback(battle_manager.perform_action.bind(action))
+				tween.tween_callback(battle_manager.perform_action.bind(single_action))
 				active_displays[action.effect].erase(display)
 				if active_displays[action.effect].size() == 0:
 					active_displays.erase(action.effect)

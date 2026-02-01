@@ -212,7 +212,7 @@ size_flags_stretch_ratio = 4.0
 layout_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("9_k65yc")

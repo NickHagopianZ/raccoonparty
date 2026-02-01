@@ -64,13 +64,14 @@ func _on_npc_dialogue_option_selected() -> void:
 	if interaction_partner:
 		GameManager.start_battle(interaction_partner)
 
-
 var interaction_partner : Entity = null
 func _on_starting_interaction(_interaction_partner : Entity) -> void:
 	interaction_partner = _interaction_partner
+	flavor_text.text = _interaction_partner.flavor_text
+
 	if _interaction_partner is NPCEntity:
 		generate_npc_dialogue_options(default_dialogue_options)
-		edit_deck.visible = true
+		edit_deck.visible = GameManager.player_deck.deck.size() > Deck.MIN_DECK_SIZE
 		end_interaction_button.text = goodbye_text_options[goodbye_text_index]
 		goodbye_text_index = (goodbye_text_index + 1) % goodbye_text_options.size()
 	else:

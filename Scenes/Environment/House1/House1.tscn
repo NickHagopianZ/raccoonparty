@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=38 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -10,11 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://d1dsjt2ayjonv" path="res://Scenes/Entity/Interactable/interactable.tscn" id="7_kb6k1"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
 [ext_resource type="Script" uid="uid://65pvhgad43g3" path="res://Scenes/Entity/Resources/interactable_resource.gd" id="8_7rlhx"]
+[ext_resource type="Texture2D" uid="uid://bue4bwn4esuwj" path="res://Assets/Entity/NPC/bouncer.png" id="8_dyf8k"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="9_bncmn"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
+[ext_resource type="Resource" uid="uid://cvv8b02f5txsc" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
 [ext_resource type="AudioStream" uid="uid://cblr77o1bb3" path="res://Assets/Audio/Masquerade4.ogg" id="12_bncmn"]
+[ext_resource type="Texture2D" uid="uid://dskjp0q6xju17" path="res://Assets/Furniture/FridgeClosed.png" id="13_nf05j"]
 [ext_resource type="AudioStream" uid="uid://6npkqgcl8jxu" path="res://Assets/Audio/Talking.ogg" id="14_1keso"]
-[ext_resource type="Script" uid="uid://dlalejdblq73g" path="res://Scenes/Environment/House1/chatter.gd" id="15_guh7j"]
+[ext_resource type="Texture2D" uid="uid://cc5jrnqchvsyj" path="res://Assets/Furniture/FridgeOpen.png" id="14_utp64"]
+[ext_resource type="Script" path="res://Scenes/Environment/House1/chatter.gd" id="15_guh7j"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -83,10 +87,41 @@ size = Vector3(100, 2, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5nhg"]
 size = Vector3(10, 1, 8.199)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dyf8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dyf8k")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
 [sub_resource type="Resource" id="Resource_1keso"]
 script = ExtResource("8_7rlhx")
 dialogue = "option 1"
+reward_cards = Array[ExtResource("9_bncmn")]([ExtResource("11_1keso"), ExtResource("11_1keso")])
 metadata/_custom_type_script = "uid://65pvhgad43g3"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xwva"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_nf05j")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_utp64")
+}],
+"loop": true,
+"name": &"Interact",
+"speed": 5.0
+}]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 0, 0, 0)
@@ -207,26 +242,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45497194, 5.1891394, 0.4549
 
 [node name="Bouncer" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.514662, 1.9717503, 7.33383)
-entity_name = "Bouncer"
 archetype = 1
+sprite_frames = SubResource("SpriteFrames_dyf8k")
+entity_name = "Bouncer"
+flavor_text = "You start to enter the party but are stopped by the bouner..."
 
 [node name="Furniture" type="Node3D" parent="."]
 
 [node name="Fridge" parent="Furniture" instance=ExtResource("7_kb6k1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.339094, 1.7883925, 13.910271)
 dialogue_options = Array[ExtResource("8_7rlhx")]([SubResource("Resource_1keso")])
-entity_name = "Kitchen Fridge"
-flavor_text = "As your approach the fridge the smell of year old yogurt wafts towards you. You only have time to grab the first thing you see"
+sprite_frames = SubResource("SpriteFrames_7xwva")
+entity_name = "Fridge"
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -26.914143, 1.6656284, 29.857647)
 top_level = true
 
-[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
-current = true
+[node name="Music" type="Node3D" parent="."]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.29345465, 1.1948075, 7.5160627)
 
-[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0.2934544, 1.1948075, 7.5160627)
+[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="Music"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 stream = ExtResource("12_bncmn")
 max_db = 0.0
 autoplay = true
@@ -235,9 +272,9 @@ bus = &"Music"
 parameters/looping = true
 script = ExtResource("10_e5nhg")
 
-[node name="Chatter1" type="AudioStreamPlayer3D" parent="."]
+[node name="Chatter1" type="AudioStreamPlayer3D" parent="Music"]
 process_mode = 3
-transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 2.1449416, 8.472935, -5.9367905)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 1.8514867, 7.278127, -13.452848)
 stream = ExtResource("14_1keso")
 volume_db = -8.0
 max_db = 0.0
@@ -246,9 +283,9 @@ max_distance = 40.0
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
-[node name="Chatter2" type="AudioStreamPlayer3D" parent="."]
+[node name="Chatter2" type="AudioStreamPlayer3D" parent="Music"]
 process_mode = 3
-transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -3.0885906, 6.599704, 21.787474)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -3.3820453, 5.4048963, 14.271408)
 stream = ExtResource("14_1keso")
 volume_db = -8.0
 max_db = 0.0
@@ -257,9 +294,9 @@ max_distance = 40.0
 parameters/looping = true
 script = ExtResource("15_guh7j")
 
-[node name="Chatter3" type="AudioStreamPlayer3D" parent="."]
+[node name="Chatter3" type="AudioStreamPlayer3D" parent="Music"]
 process_mode = 3
-transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 19.424557, 6.7776213, 11.236105)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 19.131096, 5.5828137, 3.7200408)
 stream = ExtResource("14_1keso")
 volume_db = -8.0
 max_db = 0.0

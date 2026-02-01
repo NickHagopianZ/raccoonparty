@@ -20,8 +20,8 @@ func update_card_count() -> void:
 		return
 	var card_count = flow_container.get_child_count()
 	if collection_type == 0:
-		card_count_node.text = str(card_count) + " / " + str(Deck.MAX_DECK_SIZE)
-		if card_count < Deck.MAX_DECK_SIZE:
+		card_count_node.text = str(card_count) + " / " + str(Deck.MIN_DECK_SIZE)
+		if card_count < Deck.MIN_DECK_SIZE:
 			card_count_node.add_theme_color_override("font_color", Color(1, 0, 0))
 			close_button.disabled = true
 		else:

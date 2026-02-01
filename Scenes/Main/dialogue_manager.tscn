@@ -18,7 +18,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_4vhfm")
 Button/styles/normal = SubResource("StyleBoxEmpty_dvlhv")
 Button/styles/pressed = SubResource("StyleBoxEmpty_wgovn")
 
-[node name="DialogueManager" type="Control" node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button")]
+[node name="DialogueManager" type="Control" node_paths=PackedStringArray("edit_deck", "flavor_text", "dialogue_choices_container", "partner_stats", "end_interaction_button", "reward_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,7 @@ flavor_text = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContai
 dialogue_choices_container = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer")
 partner_stats = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data")
 end_interaction_button = NodePath("VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/Dialogue/VBoxContainer/EndInteraction")
+reward_display = NodePath("RewardDisplay")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

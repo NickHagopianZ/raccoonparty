@@ -4,18 +4,12 @@ class_name Entity
 @export var sprite_frames : SpriteFrames
 @export var sprite : AnimatedSprite3D
 @export var entity_name : String = ""
-@export var archetype : Archetype
 @export_multiline var flavor_text : String
 
-enum Archetype {
-	Rando,
-	TutorialBouncer,
-	Bully,
-}
-
 func _ready() -> void:
-	sprite.sprite_frames = sprite_frames
-	play_animation("Idle")
+	if sprite_frames:
+		sprite.sprite_frames = sprite_frames
+		play_animation("Idle")
 
 
 func play_animation(requested_animation: String) -> void:

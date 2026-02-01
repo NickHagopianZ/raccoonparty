@@ -1,6 +1,13 @@
 extends CharacterEntity
 class_name NPCEntity
 
+@export var archetype : Archetype
+enum Archetype {
+	Rando,
+	TutorialBouncer,
+	Bully,
+}
+
 var actions: Array[NpcAction] = []
 
 class NpcAction:
