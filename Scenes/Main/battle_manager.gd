@@ -35,7 +35,10 @@ var tween_time_multiplier = 0.5
 func start_round():
 	print("[COMBAT] === ROUND START ===")
 	print("[COMBAT] Turns remaining: ", turns_remaining)
-	print("[COMBAT] Current scores - Vibes: %d, Fear: %d, Sus: %d" % [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]])
+	print(
+		"[COMBAT] Current scores - Vibes: %d, Fear: %d, Sus: %d"
+		% [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]]
+	)
 	_reset_statuses()
 	#_reset_scores()
 	_round_reset_sliders()
@@ -84,7 +87,7 @@ func resolve_player_turn(card: CardContainer):
 	print("[COMBAT] Player card: ", card.card_resource.title)
 	print("[COMBAT] Card actions: ", card.card_resource.actions)
 	GameManager.can_play_cards = false
-	player_speech_label.text = card.card_resource.description
+	player_speech_label.text = card.card_resource.dialogue
 	# Store the card_resource since the card may be freed before the callback
 	var card_resource : CardResource = card.card_resource
 	var tween = pop_speech_bubble(player_speech_bubble, player_speech_label)

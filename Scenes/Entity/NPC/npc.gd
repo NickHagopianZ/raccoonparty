@@ -42,6 +42,8 @@ func _ready():
 	while len(actions) > 5:
 		actions.pop_at(randi() % len(actions))
 
+	actions.append(NpcAction.new("Do you always dress like that?", ["-1 Sus"]))
+
 func choose_battler_action():
 	return actions.pick_random()
 
