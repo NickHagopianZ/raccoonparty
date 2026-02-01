@@ -297,7 +297,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	print("[COMBAT] All sliders reset to ", STARTING_SCORE)
 	var tween : Tween = start_round()
 	# if no cards in player's deck, end battle immediately with defeat
-	if (GameManager.player_deck.draw_pile.size() + 
+	if (GameManager.player_deck.draw_pile.size() +
 		GameManager.player_deck.discard.size() +
 		GameManager.player_deck.hand.size()) == 0:
 		print("[COMBAT] Player has no cards in deck! Immediate defeat.")
@@ -311,7 +311,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 		tween.set_parallel(false)
 		tween.tween_callback(no_cards)
 
-	
+
 
 
 func _on_ending_battle(was_victory: bool) -> void:

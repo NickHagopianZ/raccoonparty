@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=45 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
 [ext_resource type="Script" uid="uid://65pvhgad43g3" path="res://Scenes/Entity/Resources/interactable_resource.gd" id="8_7rlhx"]
 [ext_resource type="Texture2D" uid="uid://bue4bwn4esuwj" path="res://Assets/Entity/NPC/bouncer.png" id="8_dyf8k"]
+[ext_resource type="Texture2D" uid="uid://c7ctajbig7875" path="res://Assets/Entity/NPC/fella_1b.png" id="8_rsk27"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="9_bncmn"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
 [ext_resource type="Resource" uid="uid://db68hbq3aobxp" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
@@ -89,6 +90,17 @@ size = Vector3(100, 2, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5nhg"]
 size = Vector3(10, 1, 8.199)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15l0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rsk27")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dyf8k"]
 animations = [{
@@ -259,14 +271,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, -8.881784e-15, -1.7763568e-15, 1, 0.62
 
 [node name="NPCs" type="Node3D" parent="."]
 
-[node name="Node2D" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.903376, 1.859498, -0.20759141)
+[node name="NonInteractable" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3981485, 2.9489245, -2.1918545)
 
-[node name="Node2D2" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.381946, 3.5219755, 8.381946)
+[node name="NonInteractable2" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2859263, 2.9489245, -3.5901418)
 
-[node name="Node2D3" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45497194, 5.1891394, 0.45497194)
+[node name="NonInteractable3" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.873481, 4.188058, -3.963537)
+
+[node name="Interactable" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1075296, 3.5219755, 0.39691997)
+sprite_frames = SubResource("SpriteFrames_15l0q")
+flavor_text = "Oh ho ho! Who have we here?"
+
+[node name="NonInteractable4" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.935254, 4.188058, 7.4211807)
+
+[node name="NonInteractable5" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7494216, 4.188058, 9.235348)
+
+[node name="NonInteractable6" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.437577, 2.195304, 16.036346)
+
+[node name="Interactable2" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.278742, 3.5219755, 18.36351)
+sprite_frames = SubResource("SpriteFrames_15l0q")
+flavor_text = "I was hoping to find some delectable little mini weenies in here."
 
 [node name="Bouncer" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.514662, 1.9717503, 7.33383)
@@ -290,7 +321,7 @@ sprite_frames = SubResource("SpriteFrames_nf05j")
 flavor_text = "It's federal offense to open mail, but maybe the mailbox was open when you found it? You spy a letter in the maibox"
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -26.914143, 1.6656284, 29.857647)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 6.5109367, 1.6656284, 12.32933)
 top_level = true
 
 [node name="Music" type="Node3D" parent="."]
