@@ -78,11 +78,12 @@ func display_actions(
 				BattleScores.Effects.Weaken,
 				BattleScores.Effects.Strengthen]:
 				var label : Label = Label.new()
-				if action.amount < 0:
-					label.text = "-"
+				if BattleScores.Effects.Change == action.effect:
+					if action.amount < 0:
+						label.text = "-"
+					else:
+						label.text = "+"
 				else:
-					label.text = "+"
-				if BattleScores.Effects.Change != action.effect:
 					if action.category == BattleScores.ScoreCategories.Vibes:
 						label.text += " Vibes"
 					elif action.category == BattleScores.ScoreCategories.Fear:
@@ -122,10 +123,11 @@ func trigger_actions(
 		var original_amount = action.amount  # Store original amount before loop
 		for count in range(abs(original_amount)):
 			# Create a single-amount action for the callback instead of mutating the original
-			var single_action = BattleScores.new()
-			single_action.effect = action.effect
-			single_action.category = action.category
-			single_action.amount = 1 if original_amount > 0 else -1
+			var single_action = BattleScores.new(
+				BattleScores.enum_to_string(action.effect, BattleScores.Effects),
+				BattleScores.enum_to_string(action.category, BattleScores.ScoreCategories),
+				1 if original_amount > 0 else -1
+			)
 
 			if (action_subset == [] or action.effect in action_subset) and action.effect in active_displays:
 				var display = active_displays[action.effect][0]

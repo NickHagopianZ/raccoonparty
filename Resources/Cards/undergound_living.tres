@@ -5,9 +5,13 @@
 
 [sub_resource type="Resource" id="Resource_h6asm"]
 script = ExtResource("1_4e16o")
+category = 1
+amount = 2
 
 [sub_resource type="Resource" id="Resource_s7dml"]
 script = ExtResource("1_4e16o")
+category = 2
+amount = -1
 
 [resource]
 script = ExtResource("2_61t3a")

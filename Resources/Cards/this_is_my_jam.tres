@@ -5,12 +5,18 @@
 
 [sub_resource type="Resource" id="Resource_m65gx"]
 script = ExtResource("1_d7cs7")
+amount = 1
 
 [sub_resource type="Resource" id="Resource_cjv23"]
 script = ExtResource("1_d7cs7")
+category = 1
+amount = -1
 
 [sub_resource type="Resource" id="Resource_wct0w"]
 script = ExtResource("1_d7cs7")
+effect = 1
+category = 2
+amount = 1
 
 [resource]
 script = ExtResource("2_76r8a")

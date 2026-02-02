@@ -12,6 +12,7 @@ var rumor_deck: Dictionary
 var hand: Array[CardContainer]
 var discard: Array[CardResource]
 var draw_pile: Array[CardResource]
+var cards_discarded : int = 0
 
 signal update_cards
 signal card_played(card: CardContainer)
@@ -33,21 +34,6 @@ func add_card_to_deck(card_resource: CardResource):
 # called as constructor
 func _init():
 	deck = []
-	# add_card_to_deck(AllPossibleCards.sip_drink)
-	# add_card_to_deck(AllPossibleCards.back_flip)
-	# add_card_to_deck(AllPossibleCards.jam)
-	# add_card_to_deck(AllPossibleCards.nice_shoes)
-	# add_card_to_deck(AllPossibleCards.nod_along)
-	# add_card_to_deck(AllPossibleCards.shots)
-	# add_card_to_deck(AllPossibleCards.podcasts)
-	# add_card_to_deck(AllPossibleCards.sewer)
-	# add_card_to_deck(AllPossibleCards.growl)
-	# add_card_to_deck(AllPossibleCards.hot_take)
-	# add_card_to_deck(AllPossibleCards.gonna_eat_that)
-	# add_card_to_deck(AllPossibleCards.garbage_man)
-	# add_card_to_deck(AllPossibleCards.have_we_met)
-	# add_card_to_deck(AllPossibleCards.distraction)
-	# add_card_to_deck(AllPossibleCards.good_old_days)
 
 func _ready():
 	reset_deck()
@@ -73,14 +59,18 @@ func draw_card() -> bool:
 		shuffle_in_discard_pile()
 	var card_resource = draw_pile.pop_back()
 
-	var card: CardContainer = CARD_SCENE.instantiate()
-	card.set_card(card_resource)
-	card.played.connect(play_card)
-	#card.played.connect(GameManager.player_character_played_card)
+	var card: CardContainer = create_card_container(card_resource)
 
 	hand.append(card)
 	update_cards.emit()
 	return true
+
+
+func create_card_container(card_resource: CardResource) -> CardContainer:
+	var card: CardContainer = CARD_SCENE.instantiate()
+	card.set_card(card_resource)
+	card.played.connect(play_card)
+	return card
 
 
 func shuffle_in_discard_pile():
@@ -104,13 +94,13 @@ func fill_hand_if_needed():
 
 func play_card(card):
 	card_played.emit(card)
-	var exhause_card := false
+	var exhaust_card := false
 	for action in card.card_resource.actions:
 		if action.effect == BattleScores.Effects.Exhaust:
-			exhause_card = true
+			exhaust_card = true
 			break
 	hand.erase(card)
-	if exhause_card:
+	if exhaust_card:
 		if penalty_deck.has(card.card_resource):
 			penalty_deck.erase(card.card_resource)
 		elif deck.has(card.card_resource):

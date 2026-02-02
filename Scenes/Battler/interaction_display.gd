@@ -12,6 +12,7 @@ func _on_starting_interaction(interactable : Entity) -> void:
 	visible = true
 	if interactable is NPCEntity:
 		opposing_sprite.scale = Vector2.ONE * 0.5
+		opposing_sprite.global_position.y = player_sprite.global_position.y + 200.0
 	else:
 		opposing_sprite.scale = Vector2.ONE * 4.0
 		opposing_sprite.global_position.y = player_sprite.global_position.y + 20.0
@@ -27,7 +28,7 @@ func _on_starting_interaction(interactable : Entity) -> void:
 	opposing_sprite.global_position.x = viewport_size.x - player_sprite.global_position.x
 	opposing_sprite.flip_h = true
 	opposing_npc_name_label.text = interactable.entity_name
-	opposing_npc_name_label.global_position.x = opposing_sprite.global_position.x
+	opposing_npc_name_label.global_position.x = opposing_sprite.global_position.x - 100.0
 
 
 func _on_ending_interaction() -> void:

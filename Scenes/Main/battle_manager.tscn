@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ugfkrkq6m8my"]
+[gd_scene load_steps=13 format=3 uid="uid://ugfkrkq6m8my"]
 
 [ext_resource type="Script" uid="uid://bv2atp30i28rt" path="res://Scenes/Main/battle_manager.gd" id="1_h0sxb"]
 [ext_resource type="Texture2D" uid="uid://kqpyixbvxan5" path="res://Assets/UI/speech bubble.png" id="2_d17o4"]
@@ -8,10 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://nyj6tstv6mby" path="res://Assets/UI/card-board.png" id="4_d17o4"]
 [ext_resource type="PackedScene" uid="uid://csts6flwtyak7" path="res://Scenes/UI/lerp_slider.tscn" id="6_vduqv"]
 [ext_resource type="Texture2D" uid="uid://dkbtyjl5jwu5i" path="res://Assets/Actions/sus_icon.png" id="7_eb7cl"]
+[ext_resource type="Texture2D" uid="uid://vl612y4ijrh" path="res://Assets/Actions/weaken_icon.png" id="8_h26jm"]
 [ext_resource type="Texture2D" uid="uid://dcosatfp8eb1k" path="res://Assets/Actions/vibes_icon.png" id="9_k65yc"]
 [ext_resource type="Texture2D" uid="uid://66aiwnuqlh5n" path="res://Assets/Actions/fear_icon.png" id="10_72lxj"]
 
-[node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "turn_counter", "sliders")]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k65yc"]
+load_path = "res://.godot/imported/strengthen_icon.png-04faa65ffb875d47ac4d9028f1e531dd.ctex"
+
+[node name="BattleManager" type="Control" node_paths=PackedStringArray("npc_speech_label", "npc_speech_bubble", "player_speech_label", "player_speech_bubble", "discarding_hint", "vibes_effect_displays", "fear_effect_displays", "sus_effect_displays", "turn_counter", "sliders")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,11 +29,24 @@ npc_speech_label = NodePath("Control/NPCSpeechBubble/MarginContainer/NpcDialogue
 npc_speech_bubble = NodePath("Control")
 player_speech_label = NodePath("Control2/PlayerSpeechBubble/MarginContainer/PlayerDialogueBox")
 player_speech_bubble = NodePath("Control2")
-turn_counter = NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/TurnCounter")
+discarding_hint = NodePath("DiscardHintLabel")
+vibes_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Strengthen")
+}
+fear_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Strengthen")
+}
+sus_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Strengthen")
+}
+turn_counter = NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/TurnCounter")
 sliders = {
-0: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3/FearSlider"),
-1: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2/VibesSlider"),
-2: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer/SusSlider")
+0: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/VibesSlider"),
+1: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/FearSlider"),
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/SusSlider")
 }
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("target_region")]
@@ -40,7 +57,7 @@ offset_right = 794.0
 offset_bottom = 233.0
 script = ExtResource("2_vduqv")
 spawn_box = Vector2(-200, -200)
-target_region = NodePath("../VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats")
+target_region = NodePath("../VBoxContainer/Control/HBoxContainer/Stats/Stats2")
 source = "Enemy"
 
 [node name="NPCSpeechBubble" type="TextureRect" parent="Control"]
@@ -83,7 +100,7 @@ offset_top = 159.0
 offset_right = 414.0
 offset_bottom = 176.0
 script = ExtResource("2_vduqv")
-target_region = NodePath("../VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats")
+target_region = NodePath("../VBoxContainer/Control/HBoxContainer/Stats/Stats2")
 
 [node name="PlayerSpeechBubble" type="TextureRect" parent="Control2"]
 layout_mode = 1
@@ -132,23 +149,31 @@ grow_vertical = 2
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
 script = ExtResource("2_poj46")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -520.0
+offset_top = -250.0
+offset_right = -520.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1)
 texture = ExtResource("4_d17o4")
 
-[node name="SideboardBackground" type="ColorRect" parent="VBoxContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.3529412, 1, 1, 0)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,104 +181,288 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cards" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer"]
-custom_minimum_size = Vector2(800, 0)
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 6.0
 
-[node name="Hand" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Cards"]
+[node name="Hand" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Cards"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource("3_d17o4")
 
-[node name="Stats" type="ColorRect" parent="VBoxContainer/TextureRect/HBoxContainer"]
+[node name="Stats" type="ColorRect" parent="VBoxContainer/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.0
+size_flags_stretch_ratio = 4.0
 color = Color(0.7019608, 0.0627451, 0.4, 0)
 
-[node name="Stats" type="MarginContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats"]
+[node name="Stats2" type="VBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
 
-[node name="Stats" type="VBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2"]
 layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
+[node name="Vibes" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("7_eb7cl")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Sus"
-horizontal_alignment = 1
-
-[node name="SusSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer" instance=ExtResource("6_vduqv")]
-layout_mode = 2
-size_flags_stretch_ratio = 4.0
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
-layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("9_k65yc")
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "Vibes"
 horizontal_alignment = 1
 
-[node name="VibesSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2" instance=ExtResource("6_vduqv")]
+[node name="VibesSlider" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes" instance=ExtResource("6_vduqv")]
 layout_mode = 2
 size_flags_stretch_ratio = 4.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3"]
+[node name="Strengthen" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+texture = SubResource("CompressedTexture2D_k65yc")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Strengthen"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weaken" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("8_h26jm")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Weaken"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Your card increases are
+strengthened for the next
+3 cards you play"
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fear" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("10_72lxj")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "Fear"
 horizontal_alignment = 1
 
-[node name="FearSlider" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3" instance=ExtResource("6_vduqv")]
+[node name="FearSlider" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear" instance=ExtResource("6_vduqv")]
 layout_mode = 2
 size_flags_stretch_ratio = 4.0
 
-[node name="TurnCounter" type="Label" parent="VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Strengthen" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+texture = SubResource("CompressedTexture2D_k65yc")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Strengthen"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weaken" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("8_h26jm")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Weaken"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Your card increases are
+strengthened for the next
+3 cards you play"
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blend" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_eb7cl")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Blend"
+horizontal_alignment = 1
+
+[node name="SusSlider" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend" instance=ExtResource("6_vduqv")]
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Strengthen" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+texture = SubResource("CompressedTexture2D_k65yc")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Strengthen"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weaken" type="TextureRect" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("8_h26jm")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Weaken"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Your card increases are
+strengthened for the next
+3 cards you play"
+mouse_filter = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "x3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnCounter" type="Label" parent="VBoxContainer/Control/HBoxContainer/Stats/Stats2"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Win the game by surviving
+the conversation"
+mouse_filter = 1
 text = "10 turns to survive"
 horizontal_alignment = 1
+
+[node name="DiscardHintLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -14.5
+offset_right = 43.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 200
+text = "Discard"
+vertical_alignment = 1
 
 [node name="ScoreTutorialBox" type="ColorRect" parent="."]
 layout_mode = 0

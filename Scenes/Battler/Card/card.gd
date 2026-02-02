@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 class_name Card
 
 var hovered : bool = false

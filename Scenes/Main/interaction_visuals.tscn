@@ -18,7 +18,7 @@ position = Vector2(300, 400)
 scale = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="AnimatedSprite2D" parent="."]
-position = Vector2(186, 500)
+position = Vector2(186, 600)
 scale = Vector2(0.5, 0.5)
 
 [node name="Label" type="Label" parent="."]
@@ -27,9 +27,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 733.0
+offset_left = 642.505
 offset_top = -1.0
-offset_right = 1172.0
+offset_right = 1081.5054
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2

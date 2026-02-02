@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cyq3awlkoojhg"]
+[gd_scene load_steps=82 format=3 uid="uid://cyq3awlkoojhg"]
 
 [ext_resource type="Shader" uid="uid://bamv2l6ka8nk2" path="res://Scenes/Environment/wall_pattern.gdshader" id="2_3i6dc"]
 [ext_resource type="Script" uid="uid://bvelny6f8aqyf" path="res://Scenes/Environment/wall_generator.gd" id="2_w5alb"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cvolo5qyv4kb7" path="res://Scenes/Entity/NPC/NPC.tscn" id="4_knbqb"]
 [ext_resource type="Texture2D" uid="uid://d4j3eo7nanyfe" path="res://Assets/Levels/House1/fence2.png" id="4_qtiir"]
 [ext_resource type="Texture2D" uid="uid://bmqjq4djfa8p" path="res://Assets/Levels/House1/fence1.png" id="5_plxmk"]
+[ext_resource type="Texture2D" uid="uid://bxfsbdo7plicm" path="res://Assets/Levels/tree.png" id="6_r67d1"]
 [ext_resource type="Script" uid="uid://diuqxwljpcydm" path="res://Scenes/Environment/House1/bouncer_wall.gd" id="7_bncmn"]
 [ext_resource type="PackedScene" uid="uid://d1dsjt2ayjonv" path="res://Scenes/Entity/Interactable/interactable.tscn" id="7_kb6k1"]
+[ext_resource type="Script" uid="uid://cmcl7s8181lf2" path="res://Scenes/Environment/trees.gd" id="7_rrf3d"]
 [ext_resource type="PackedScene" uid="uid://b8mvr2eo5xp3o" path="res://Scenes/Entity/Player/PlayerCharacter.tscn" id="8_0gx6c"]
 [ext_resource type="Script" uid="uid://65pvhgad43g3" path="res://Scenes/Entity/Resources/interactable_resource.gd" id="8_7rlhx"]
 [ext_resource type="Texture2D" uid="uid://bue4bwn4esuwj" path="res://Assets/Entity/NPC/bouncer.png" id="8_dyf8k"]
@@ -17,22 +19,36 @@
 [ext_resource type="Texture2D" uid="uid://c7ctajbig7875" path="res://Assets/Entity/NPC/fella_1b.png" id="9_jt07h"]
 [ext_resource type="Texture2D" uid="uid://ci1y3cikm4xsm" path="res://Assets/Entity/NPC/fella_1e.png" id="10_253sw"]
 [ext_resource type="Script" uid="uid://fbu3lni6b07j" path="res://Scenes/Environment/House1/background_music.gd" id="10_e5nhg"]
-[ext_resource type="Resource" uid="uid://dp7cwjfuhnc7x" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
+[ext_resource type="Resource" uid="uid://dl4vp0mqvtass" path="res://Resources/Cards/back_flip.tres" id="11_1keso"]
 [ext_resource type="Texture2D" uid="uid://cg8gs74v600sg" path="res://Assets/Entity/NPC/fella_1d.png" id="11_l5u3e"]
 [ext_resource type="Texture2D" uid="uid://b71cx1g00m6jg" path="res://Assets/Entity/NPC/fella_2a.png" id="11_pl33d"]
 [ext_resource type="AudioStream" uid="uid://cblr77o1bb3" path="res://Assets/Audio/Masquerade4.ogg" id="12_bncmn"]
+[ext_resource type="Resource" uid="uid://ccydo54ijwixc" path="res://Resources/Cards/distraction.tres" id="13_3dlyq"]
 [ext_resource type="Texture2D" uid="uid://dskjp0q6xju17" path="res://Assets/Furniture/FridgeClosed.png" id="13_nf05j"]
 [ext_resource type="AudioStream" uid="uid://6npkqgcl8jxu" path="res://Assets/Audio/Talking.ogg" id="14_1keso"]
 [ext_resource type="Texture2D" uid="uid://cj2x1ny88dids" path="res://Assets/Entity/NPC/fella_2b.png" id="14_dnjwd"]
 [ext_resource type="Texture2D" uid="uid://cc5jrnqchvsyj" path="res://Assets/Furniture/FridgeOpen.png" id="14_utp64"]
+[ext_resource type="Resource" uid="uid://4l46c2y6ko4d" path="res://Resources/Cards/dumpster_diving.tres" id="14_vxrdn"]
 [ext_resource type="Texture2D" uid="uid://djjv1txflrbln" path="res://Assets/Furniture/mail_closed.png" id="15_7xwva"]
-[ext_resource type="Resource" uid="uid://oh2ep07iaa8a" path="res://Resources/Cards/suzanne.tres" id="15_15l0q"]
+[ext_resource type="Resource" uid="uid://dbcwgdmnhdjvq" path="res://Resources/Cards/suzanne.tres" id="15_15l0q"]
 [ext_resource type="Script" uid="uid://dlalejdblq73g" path="res://Scenes/Environment/House1/chatter.gd" id="15_guh7j"]
 [ext_resource type="Texture2D" uid="uid://d1tqnfxleqd1h" path="res://Assets/Entity/NPC/fella_3d.png" id="15_pmixf"]
+[ext_resource type="Resource" uid="uid://cf2suynk16jmi" path="res://Resources/Cards/garbage_man.tres" id="15_r67d1"]
 [ext_resource type="Texture2D" uid="uid://biathid1a5l07" path="res://Assets/Entity/NPC/fella_4a.png" id="15_t7ua8"]
 [ext_resource type="Texture2D" uid="uid://dk4fjmtymod2t" path="res://Assets/Entity/NPC/fella_4e.png" id="16_00rwb"]
 [ext_resource type="Texture2D" uid="uid://dfp58imsfegs7" path="res://Assets/Furniture/mail_open.png" id="16_15l0q"]
+[ext_resource type="Resource" uid="uid://b8boxqw5vexby" path="res://Resources/Cards/good_old_days.tres" id="16_rrf3d"]
+[ext_resource type="Resource" uid="uid://drc00kmtwyvii" path="res://Resources/Cards/dimitri.tres" id="16_rsk27"]
 [ext_resource type="Texture2D" uid="uid://kvil57flvpf7" path="res://Assets/Entity/Player/Nemesis.png" id="17_n2iew"]
+[ext_resource type="Resource" uid="uid://dm76e053506fm" path="res://Resources/Cards/growl.tres" id="17_pdsn3"]
+[ext_resource type="Resource" uid="uid://cov3e5vmx1jhq" path="res://Resources/Cards/have_we_met.tres" id="18_dg5rt"]
+[ext_resource type="Resource" uid="uid://3hmtmte30ld1" path="res://Resources/Cards/hot_take.tres" id="19_ew232"]
+[ext_resource type="Resource" uid="uid://24l0hmbgiaqn" path="res://Resources/Cards/nice_shoes.tres" id="20_q5qu8"]
+[ext_resource type="Resource" uid="uid://cqnoi7cd06k3p" path="res://Resources/Cards/nod_along.tres" id="21_ddols"]
+[ext_resource type="Resource" uid="uid://bfxyy1so688qe" path="res://Resources/Cards/not_the_podcasts.tres" id="22_56w8p"]
+[ext_resource type="Resource" uid="uid://cpkt0vwfpbxar" path="res://Resources/Cards/shots!_shots!_shots!.tres" id="23_7o2ps"]
+[ext_resource type="Resource" uid="uid://b42liomkuqsns" path="res://Resources/Cards/shots_shots_shots.tres" id="24_kgedh"]
+[ext_resource type="Resource" uid="uid://nf828bf18mk4" path="res://Resources/Cards/sip_drink.tres" id="28_a0qeq"]
 
 [sub_resource type="Environment" id="Environment_w5alb"]
 background_mode = 1
@@ -100,6 +116,56 @@ size = Vector3(100, 2, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5nhg"]
 size = Vector3(10, 1, 8.199)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2iew"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_t7ua8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmixf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_00rwb")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbakf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_n2iew")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_lbakf"]
+script = ExtResource("8_7rlhx")
+dialogue = "Take the tickets"
+reward_cards = Array[ExtResource("9_bncmn")]([ExtResource("11_1keso"), ExtResource("13_3dlyq"), ExtResource("14_vxrdn"), ExtResource("15_r67d1"), ExtResource("16_rrf3d"), ExtResource("17_pdsn3"), ExtResource("18_dg5rt"), ExtResource("19_ew232"), ExtResource("20_q5qu8"), ExtResource("21_ddols"), ExtResource("22_56w8p"), ExtResource("23_7o2ps"), ExtResource("24_kgedh"), ExtResource("28_a0qeq")])
+metadata/_custom_type_script = "uid://65pvhgad43g3"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dyf8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dyf8k")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a2hww"]
 animations = [{
@@ -189,50 +255,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n2iew"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_t7ua8")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pmixf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("16_00rwb")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lbakf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("17_n2iew")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dyf8k"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_dyf8k")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
 [sub_resource type="Resource" id="Resource_1keso"]
 script = ExtResource("8_7rlhx")
 dialogue = "option 1"
@@ -260,8 +282,8 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_7xwva"]
 script = ExtResource("8_7rlhx")
-dialogue = "Look at letter"
-rumor_cards = Array[ExtResource("9_bncmn")]([ExtResource("15_15l0q"), ExtResource("15_15l0q")])
+dialogue = "Look at the letter"
+rumor_cards = Array[ExtResource("9_bncmn")]([ExtResource("16_rsk27"), ExtResource("15_15l0q")])
 metadata/_custom_type_script = "uid://65pvhgad43g3"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nf05j"]
@@ -319,6 +341,188 @@ skeleton = NodePath("../..")
 transform = Transform3D(-8.742279e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0, 2, 30.63, 18, -15.757)
 mesh = SubResource("QuadMesh_1keso")
 skeleton = NodePath("../..")
+
+[node name="Forest" type="Node3D" parent="Meshes"]
+
+[node name="Trees" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -7.023145, 5, -21.59035)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees2" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 0.5, 0, 0.70710677, 0, 0.70710677, -12.909002, 5, -27.476)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees3" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -1.1584044, 5, -31.140076)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees4" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 8.765698, 5, -31.446404)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees5" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 18.847038, 5, -28.772617)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees6" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.8941832, 5, -24.016747)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees7" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 11.577848, 5, -20.68651)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees8" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -19.161823, 5, -23.513893)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees9" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -23.396555, 5, -14.69108)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees10" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -27.966864, 5, -28.669489)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees11" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -28.093552, 5, -7.43382)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees12" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 41.452473, 5, -32.625324)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees13" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 27.776346, 5, -27.796919)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees14" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 47.135963, 5, -24.507896)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees15" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 37.366547, 5, -14.738478)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees16" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 43.755043, 5, -8.35)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees17" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 34.669754, 5, 0.7352829)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees18" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 40.632072, 5, -0.8388462)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees19" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 35.722504, 5, 14.66551)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
+
+[node name="Trees20" type="Sprite3D" parent="Meshes/Forest"]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 43.26924, 5, 7.1187725)
+pixel_size = 0.03
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture = ExtResource("6_r67d1")
+script = ExtResource("7_rrf3d")
 
 [node name="Collisions" type="Node3D" parent="."]
 
@@ -391,28 +595,84 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, -8.881784e-15, -1.7763568e-15, 1, 0.62
 
 [node name="NPCs" type="Node3D" parent="."]
 
-[node name="NonInteractable" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3981485, 2.9489245, -2.1918545)
+[node name="NonInteractable16" type="Node3D" parent="NPCs"]
 
-[node name="NonInteractable2" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2859263, 2.9489245, -3.5901418)
+[node name="NonInteractable" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3981488, 2.9489245, -2.1918547)
 
-[node name="NonInteractable3" parent="NPCs" instance=ExtResource("4_knbqb")]
+[node name="NonInteractable2" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.285927, 2.9489245, -3.5901423)
+
+[node name="NonInteractable3" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.873481, 4.188058, -3.963537)
+
+[node name="NonInteractable4" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9352546, 4.188058, 7.421181)
+
+[node name="NonInteractable5" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7494216, 4.188058, 9.235348)
+
+[node name="NonInteractable6" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.437576, 2.195304, 16.036346)
+
+[node name="NonInteractable7" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.960904, 2.195304, -4.800462)
+
+[node name="NonInteractable8" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.802592, 2.195304, 15.405597)
+
+[node name="NonInteractable9" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2006717, 2.195304, 19.02145)
+
+[node name="NonInteractable10" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.667025, 2.195304, 18.56324)
+
+[node name="NonInteractable11" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.406102, 2.195304, 23.012695)
+
+[node name="NonInteractable12" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.859999, 2.195304, 23.507294)
+
+[node name="NonInteractable13" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.61167, 2.195304, 4.3911934)
+
+[node name="NonInteractable14" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.284046, 2.195304, 8.063568)
+
+[node name="NonInteractable15" parent="NPCs/NonInteractable16" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.399616, 2.195304, 4.031829)
+
+[node name="Interactable9" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.629463, 2.2385707, 26.854534)
+sprite_frames = SubResource("SpriteFrames_n2iew")
+entity_name = "Lennox"
+flavor_text = "We always wear the same clothes. Isn't that fun?"
+
+[node name="Interactable10" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.181479, 2.2385707, 26.937944)
+sprite_frames = SubResource("SpriteFrames_pmixf")
+entity_name = "Raphael"
+flavor_text = "He always makes me wear the same thing as him..."
+
+[node name="Interactable11" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.169243, 2.2385707, 24.494997)
+sprite_frames = SubResource("SpriteFrames_lbakf")
+flavor_text = "This house is my turf, buddy!"
+
+[node name="Bouncer" parent="NPCs" instance=ExtResource("4_knbqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.514662, 1.9717503, 7.33383)
+collision_layer = 0
+archetype = 1
+rewards = SubResource("Resource_lbakf")
+defeat_dialogue = "Sounds like you really know someone who lives here. Come on in. Oh... And here are some drink tickets"
+sprite_frames = SubResource("SpriteFrames_dyf8k")
+entity_name = "Bouncer"
+flavor_text = "You start to enter the party but are stopped by the bouncer..."
 
 [node name="Interactable" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1075296, 3.5219755, 0.39691997)
 sprite_frames = SubResource("SpriteFrames_a2hww")
 flavor_text = "Oh ho ho! Who have we here?"
-
-[node name="NonInteractable4" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.935254, 4.188058, 7.4211807)
-
-[node name="NonInteractable5" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7494216, 4.188058, 9.235348)
-
-[node name="NonInteractable6" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.437577, 2.195304, 16.036346)
 
 [node name="Interactable2" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.818623, 3.5219755, 18.82363)
@@ -424,38 +684,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.039642, 3.5219755, 16.5929
 sprite_frames = SubResource("SpriteFrames_pl33d")
 flavor_text = "I'm new in town."
 
-[node name="NonInteractable7" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9609036, 2.195304, -4.8004622)
-
 [node name="Interactable4" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3974657, 2.2385707, -2.4703948)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3974667, 2.2385707, -2.4703953)
 sprite_frames = SubResource("SpriteFrames_253sw")
 flavor_text = "I was hoping that this room would be a little more private..."
-
-[node name="NonInteractable8" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.802591, 2.195304, 15.405596)
-
-[node name="NonInteractable9" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2006717, 2.195304, 19.02145)
-
-[node name="NonInteractable10" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.667026, 2.195304, 18.56324)
 
 [node name="Interactable5" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.398649, 2.2385707, 14.765615)
 sprite_frames = SubResource("SpriteFrames_jt07h")
 flavor_text = "I see you brought your own cards to the game, that's fun!"
 
-[node name="NonInteractable11" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.406102, 2.195304, 23.012695)
-
 [node name="Interactable6" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.972737, 2.2385707, 25.05038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.972738, 2.2385707, 25.050383)
 sprite_frames = SubResource("SpriteFrames_dnjwd")
 flavor_text = "Just freshening up in here. Everyone just come on in, I suppose!"
-
-[node name="NonInteractable12" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8599973, 2.195304, 23.507292)
 
 [node name="Interactable7" parent="NPCs" instance=ExtResource("4_knbqb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6447372, 2.2385707, 28.052795)
@@ -463,40 +705,9 @@ sprite_frames = SubResource("SpriteFrames_t7ua8")
 flavor_text = "Shots! Shots! Shots!"
 
 [node name="Interactable8" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.164704, 2.2385707, 25.633213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.164705, 2.2385707, 25.633215)
 sprite_frames = SubResource("SpriteFrames_a0qeq")
 flavor_text = "Let's turn it UP!"
-
-[node name="NonInteractable13" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.61167, 2.195304, 4.3911934)
-
-[node name="NonInteractable14" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.284046, 2.195304, 8.063569)
-
-[node name="NonInteractable15" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.399616, 2.195304, 4.031829)
-
-[node name="Interactable9" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.629463, 2.2385707, 26.854534)
-sprite_frames = SubResource("SpriteFrames_n2iew")
-flavor_text = "We always wear the same clothes. Isn't that fun?"
-
-[node name="Interactable10" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.181479, 2.2385707, 26.937944)
-sprite_frames = SubResource("SpriteFrames_pmixf")
-flavor_text = "He always makes me wear the same thing as him..."
-
-[node name="Interactable11" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.169243, 2.2385707, 24.494997)
-sprite_frames = SubResource("SpriteFrames_lbakf")
-flavor_text = "This house is my turf, buddy!"
-
-[node name="Bouncer" parent="NPCs" instance=ExtResource("4_knbqb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.514662, 1.9717503, 7.33383)
-archetype = 1
-sprite_frames = SubResource("SpriteFrames_dyf8k")
-entity_name = "Bouncer"
-flavor_text = "You start to enter the party but are stopped by the bouner..."
 
 [node name="Furniture" type="Node3D" parent="."]
 
@@ -508,12 +719,13 @@ entity_name = "Fridge"
 
 [node name="Mailbox" parent="Furniture" instance=ExtResource("7_kb6k1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.032486, 1.5677242, 18.325993)
+interaction_point = Vector3(0, 0, 2)
 dialogue_options = Array[ExtResource("8_7rlhx")]([SubResource("Resource_7xwva")])
 sprite_frames = SubResource("SpriteFrames_nf05j")
-flavor_text = "It's federal offense to open mail, but maybe the mailbox was open when you found it? You spy a letter in the maibox"
+flavor_text = "It's federal offense to open someone's mail... but maybe the mailbox was open when you found it? You spy a letter in the maibox"
 
 [node name="Player" parent="." instance=ExtResource("8_0gx6c")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 4.315399, 1.6656284, 1.5195675)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -34.71438, 1.6656284, 20.804167)
 top_level = true
 
 [node name="Music" type="Node3D" parent="."]

@@ -11,3 +11,4 @@ func save_all_possible_cards() -> void:
 		var card_name = card.title.replace(" ", "_").replace("?", "").replace("!", "").replace(".", "").to_lower()
 		var file_path = "res://Resources/Cards/%s.tres" % card_name
 		ResourceSaver.save(card, file_path)
+	get_tree().quit()

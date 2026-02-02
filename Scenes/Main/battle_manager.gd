@@ -39,8 +39,7 @@ func start_round() -> Tween:
 		"[COMBAT] Current scores - Vibes: %d, Fear: %d, Sus: %d"
 		% [scores[BattleScores.ScoreCategories.Vibes], scores[BattleScores.ScoreCategories.Fear], scores[BattleScores.ScoreCategories.Sus]]
 	)
-	_reset_statuses()
-	#_reset_scores()
+	_round_reset_statuses()
 	_round_reset_sliders()
 	GameManager.player_deck.fill_hand_if_needed()
 	GameManager.can_play_cards = true
@@ -65,10 +64,8 @@ func pop_speech_bubble(speech_bubble: Control, rich_text_label: RichTextLabel):
 	return tween
 
 
-
-
-var cards_to_discard : int = 0
 @export var discarding_hint : Label
+var cards_to_discard : int = 0
 func _on_card_played(card: CardContainer) -> void:
 	print("[COMBAT] Card played: ", card.card_resource.title)
 	if cards_to_discard > 0:
@@ -164,12 +161,44 @@ var statuses := {
 	BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores],
 	BattleScores.ScoreCategories.Fear: [] as Array[BattleScores],
 	BattleScores.ScoreCategories.Sus: [] as Array[BattleScores],
+	BattleScores.ScoreCategories.NONE: [] as Array[BattleScores],
 }
 func perform_action(action: BattleScores) -> void:
 	if action.effect == BattleScores.Effects.Change:
 		perform_change_effect(action)
 	else:
 		perform_status_effect(action)
+
+@export var vibes_effect_displays : Dictionary[BattleScores.Effects, TextureRect]
+@export var fear_effect_displays : Dictionary[BattleScores.Effects, TextureRect]
+@export var sus_effect_displays : Dictionary[BattleScores.Effects, TextureRect]
+var effect_displays : Dictionary = {
+	BattleScores.ScoreCategories.Vibes: vibes_effect_displays,
+	BattleScores.ScoreCategories.Fear: fear_effect_displays,
+	BattleScores.ScoreCategories.Sus: sus_effect_displays,
+}
+func update_status_effect_displays() -> void:
+	for category in effect_displays.keys():
+		for effect in effect_displays[category].keys():
+			var texture_rect : TextureRect = effect_displays[category][effect] as TextureRect
+			if not texture_rect:
+				continue
+			var label : Label = texture_rect.get_node("Label") as Label
+			texture_rect.visible = false
+			# Find the status effect for this category
+			for status in statuses[category]:
+				if status.effect == effect:
+					texture_rect.visible = true
+					if effect == BattleScores.Effects.Weaken:
+						texture_rect.tooltip_text = ("Your weakened and enemy \n" +
+							"attacks against you are \ninreased for " + str(status.amount) + " turns")
+					elif effect == BattleScores.Effects.Strengthen:
+						texture_rect.tooltip_text = ("Your card increases are \nstrengthened" +
+							"for " + str(status.amount) + " turns")
+					if label:
+						label.text = "x" + str(status.amount)
+					break
+
 
 
 func perform_status_effect(action: BattleScores) -> void:
@@ -183,12 +212,34 @@ func perform_status_effect(action: BattleScores) -> void:
 			discarding_hint.visible = true
 			discarding_hint.text = "Discard " + str(cards_to_discard) + " cards"
 		return  # No status to apply
-	statuses[action.category].append(action)
-
-	var slider = sliders[action.category]
-	var score = scores[action.category]
-	var status_list = statuses[action.category]
-	slider.update_slider(score, status_list)
+	elif action.effect in [
+		BattleScores.Effects.Weaken,
+		BattleScores.Effects.Strengthen]:
+		# Find existing effect of same type for this category and stack turns
+		var found = false
+		for effect in statuses[action.category]:
+			if effect.effect == action.effect:
+				effect.amount += action.amount
+				found = true
+				break
+		if not found:
+			statuses[action.category].append(action)
+		print("[COMBAT] %s on %s now at %d turns" % [
+			BattleScores.enum_to_string(action.effect, BattleScores.Effects),
+			BattleScores.enum_to_string(action.category, BattleScores.ScoreCategories),
+			action.amount
+		])
+	elif action.effect in [
+		BattleScores.Effects.Defend,
+		BattleScores.Effects.Nullify]:
+		statuses[action.category].append(action)
+	
+	# Update slider for all status effects (not just Defend/Nullify)
+	if action.category in sliders and sliders[action.category]:
+		var slider = sliders[action.category]
+		var score = scores[action.category]
+		var status_list = statuses[action.category]
+		slider.update_slider(score, status_list)
 
 
 func perform_change_effect(action: BattleScores) -> void:
@@ -200,7 +251,7 @@ func perform_change_effect(action: BattleScores) -> void:
 	for status : BattleScores in statuses[action.category]:
 		if status.effect == BattleScores.Effects.Weaken and amount < 0: # take more damage
 			var old_amount = amount
-			amount = int(amount * 1.5)
+			amount = int(amount * 2)
 			print("[COMBAT]   Weaken applied: %d -> %d" % [old_amount, amount])
 		elif status.effect == BattleScores.Effects.Defend and amount < 0:
 			var old_amount = amount
@@ -216,7 +267,7 @@ func perform_change_effect(action: BattleScores) -> void:
 			statuses[action.category].erase(status)
 		elif status.effect == BattleScores.Effects.Strengthen and amount > 0: # heal more
 			var old_amount = amount
-			amount = int(amount * 1.5)
+			amount = int(amount * 2)
 			print("[COMBAT]   Strengthen applied: %d -> %d" % [old_amount, amount])
 
 	print("[COMBAT]   Final change: %d (was %d), new score: %d" % [amount, original_amount, scores[action.category] + amount])
@@ -256,11 +307,32 @@ func round_end() -> void:
 	BattleScores.ScoreCategories.Fear: null,
 	BattleScores.ScoreCategories.Vibes: null,
 }
+
+# reduce strengthen and weaken statuses and remove defend, nullify. Ignore and discard statuses
+func _round_reset_statuses() -> void:
+	for status in statuses.keys():
+		var new_statuses : Array[BattleScores] = []
+		for status_effect in statuses[status]:
+			if status_effect.effect in [
+				BattleScores.Effects.Defend,
+				BattleScores.Effects.Nullify]:
+				# these expire at end of round
+				continue
+			elif status_effect.effect in [
+				BattleScores.Effects.Strengthen,
+				BattleScores.Effects.Weaken]:
+				status_effect.amount -= 1
+				if status_effect.amount > 0:
+					new_statuses.append(status_effect)
+		statuses[status] = new_statuses
+	update_status_effect_displays()
+
 func _reset_statuses():
 	statuses = {
 		BattleScores.ScoreCategories.Vibes: [] as Array[BattleScores],
 		BattleScores.ScoreCategories.Fear: [] as Array[BattleScores],
 		BattleScores.ScoreCategories.Sus: [] as Array[BattleScores],
+		BattleScores.ScoreCategories.NONE: [] as Array[BattleScores],
 	}
 
 
@@ -273,9 +345,10 @@ func _reset_scores():
 
 
 func _round_reset_sliders() -> void:
-	for status in statuses.keys():
-		var slider = sliders[status]
-		slider.update_slider(scores[status], statuses[status])
+	for category in sliders.keys():
+		var slider = sliders[category]
+		if slider and category in scores and category in statuses:
+			slider.update_slider(scores[category], statuses[category])
 
 
 func _on_starting_battle(enemy : NPCEntity) -> void:
@@ -286,6 +359,7 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	$ScoreTutorialBox.visible = GameManager.first_battle
 	_reset_statuses()
 	_reset_scores()
+	update_status_effect_displays()
 	curr_enemy = enemy
 	turns_remaining = STARTING_TURNS
 	turn_counter.text = str(turns_remaining) + " turns to survive"
@@ -297,11 +371,9 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 	print("[COMBAT] All sliders reset to ", STARTING_SCORE)
 	var tween : Tween = start_round()
 	# if no cards in player's deck, end battle immediately with defeat
-	if (GameManager.player_deck.draw_pile.size() +
-		GameManager.player_deck.discard.size() +
-		GameManager.player_deck.hand.size()) == 0:
+	if enemy.name == "Bouncer" and no_cards_to_play():
 		print("[COMBAT] Player has no cards in deck! Immediate defeat.")
-		var no_cards = resolve_player_turn_card_resource.bind(CardResource.new(
+		var default_bouncer_card = resolve_player_turn_card_resource.bind(CardResource.new(
 				"Make Something Up",
 				"Darren",
 				[],
@@ -309,16 +381,28 @@ func _on_starting_battle(enemy : NPCEntity) -> void:
 			)
 		)
 		tween.set_parallel(false)
-		tween.tween_callback(no_cards)
+		tween.tween_callback(default_bouncer_card)
+	elif no_cards_to_play():
+		var fumble_card_resource = CardResource.new(
+			"Fumble",
+			"Is this all you've got?",
+			[
+				BattleScores.new("Change", "Sus", -2),
+				BattleScores.new("Change", "Fear", -2),
+				BattleScores.new("Change", "Vibes", -2),
+			],
+			"Oh gosh, I forgot what I was going to say!",
+		)
+		GameManager.player_deck.draw_pile = [fumble_card_resource]
+		GameManager.player_deck.fill_hand_if_needed()
 
 
+func no_cards_to_play() -> bool:
+	return (GameManager.player_deck.hand.size() == 0
+		and GameManager.player_deck.draw_pile.size() == 0
+		and GameManager.player_deck.discard.size() == 0)
 
 
-func _on_ending_battle(was_victory: bool) -> void:
+func _on_ending_battle(_was_victory: bool) -> void:
 	GameManager.first_battle = false
 	visible = false
-	if was_victory and curr_enemy.archetype == curr_enemy.Archetype.TutorialBouncer:
-		# Remove invisible wall blocking party
-		for child in curr_enemy.get_children():
-			if child.name == "BouncerWall":
-				child.queue_free()

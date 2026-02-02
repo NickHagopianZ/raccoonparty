@@ -151,17 +151,9 @@ alignment = 1
 layout_mode = 2
 text = "Name"
 
-[node name="Stats" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
+[node name="Difficulty" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
 layout_mode = 2
-text = "Stats"
-
-[node name="Weaknesses" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
-layout_mode = 2
-text = "Weaknesses"
-
-[node name="Strengths" type="Label" parent="VBoxContainer/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/MarginContainer/NinePatchRect/Data"]
-layout_mode = 2
-text = "Strengths"
+text = "Difficulty"
 
 [node name="RewardDisplay" type="VBoxContainer" parent="." node_paths=PackedStringArray("close_button", "card_display_container")]
 layout_mode = 1

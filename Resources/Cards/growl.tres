@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dm76e053506fm"]
 
-[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_u622p"]
-[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_njdy3"]
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_u622p"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_njdy3"]
 
 [sub_resource type="Resource" id="Resource_spsug"]
 script = ExtResource("1_u622p")
+category = 1
+amount = 2
 
 [sub_resource type="Resource" id="Resource_m1bdu"]
 script = ExtResource("1_u622p")
+category = 2
+amount = -1
 
 [resource]
 script = ExtResource("2_njdy3")

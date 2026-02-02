@@ -5,6 +5,7 @@ class_name Interactable
 @export var dialogue_options : Array[InteractableResource] = []
 
 func _ready():
+	super()  # Call parent Entity._ready() to set up sprite
 	GameManager.total_food_available += 1
 
 func disable_interaction() -> void:

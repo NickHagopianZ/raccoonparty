@@ -35,8 +35,20 @@ func _on_starting_battle(_enemy : NPCEntity) -> void:
 	visible = false
 
 
-func _on_ending_battle(_was_victory: bool) -> void:
-	# TODO defeat lines?
+func _on_ending_battle(was_victory: bool) -> void:
+	if was_victory and interaction_partner:
+		clear_dialogue_options()
+		flavor_text.text = interaction_partner.defeat_dialogue
+		var button : Button = Button.new()
+		button.text = interaction_partner.rewards.dialogue
+		# if was vibes victory
+		# Wow you're pretty cool!
+		# You seem like a nice person.
+		# I feel like we really learned a lot about each other.
+		button.pressed.connect(_on_interactable_dialogue_option_selected.bind(interaction_partner.rewards))
+		dialogue_choices_container.add_child(button)
+		end_interaction_button.visible = false
+
 	visible = true
 
 
@@ -68,6 +80,7 @@ var interaction_partner : Entity = null
 func _on_starting_interaction(_interaction_partner : Entity) -> void:
 	interaction_partner = _interaction_partner
 	flavor_text.text = _interaction_partner.flavor_text
+	end_interaction_button.visible = true
 
 	if _interaction_partner is NPCEntity:
 		generate_npc_dialogue_options(default_dialogue_options)
@@ -95,7 +108,8 @@ func setup_interactable_dialogue(interactable_entity : Entity) -> void:
 	)
 
 func _on_interactable_dialogue_option_selected(interactable_resource : InteractableResource) -> void:
-	interaction_partner.disable_interaction()
+	if interaction_partner.has_method("disable_interaction"):
+		interaction_partner.disable_interaction()
 	# Give rewards
 	for card_resource : CardResource in interactable_resource.reward_cards:
 		GameManager.player_deck.add_card_to_deck(card_resource)
@@ -112,8 +126,11 @@ func _on_interactable_dialogue_option_selected(interactable_resource : Interacta
 
 func _on_ending_interaction() -> void:
 	visible = false
+	interaction_partner = null
+	clear_dialogue_options()
+
+func clear_dialogue_options() -> void:
 	for child in dialogue_choices_container.get_children():
 		if child == end_interaction_button:
 			continue
 		child.queue_free()
-	interaction_partner = null

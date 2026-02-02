@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0jxc3g5sncd1"]
+[gd_scene load_steps=6 format=3 uid="uid://c0jxc3g5sncd1"]
 
 [ext_resource type="Script" uid="uid://cjikpkjr52g0i" path="res://Scenes/UI/pause_ui.gd" id="1_q3y6t"]
 [ext_resource type="Script" uid="uid://lplu2v80ahop" path="res://Scenes/UI/game_manager_caller.gd" id="2_ptoq4"]
 [ext_resource type="Script" uid="uid://b7ei0sww313mk" path="res://Scenes/UI/next_window.gd" id="3_pf2bj"]
 [ext_resource type="PackedScene" uid="uid://o0k7eykfiqqg" path="res://Scenes/UI/settings.tscn" id="4_e03kh"]
+[ext_resource type="PackedScene" uid="uid://sft20rq1nl1p" path="res://Scenes/UI/glossary.tscn" id="5_ptoq4"]
 
 [node name="PauseScreen" type="Control" node_paths=PackedStringArray("menu_container")]
 process_mode = 3
@@ -69,6 +70,13 @@ text = "Settings"
 script = ExtResource("3_pf2bj")
 target_parent = NodePath("../..")
 new_scene = ExtResource("4_e03kh")
+
+[node name="Glossary" type="Button" parent="VBoxContainer/Control/VBoxContainer" node_paths=PackedStringArray("target_parent")]
+layout_mode = 2
+text = "Glossary"
+script = ExtResource("3_pf2bj")
+target_parent = NodePath("../..")
+new_scene = ExtResource("5_ptoq4")
 
 [node name="Quit" type="Button" parent="VBoxContainer/Control/VBoxContainer"]
 layout_mode = 2

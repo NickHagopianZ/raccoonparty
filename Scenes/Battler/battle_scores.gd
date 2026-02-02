@@ -4,6 +4,7 @@ enum ScoreCategories {
 	Vibes,
 	Fear,
 	Sus,
+	NONE
 }
 enum Effects {
 	Change,
@@ -15,48 +16,32 @@ enum Effects {
 	Exhaust, # card is removed from the game, used for penalty cards
 }
 
-var effect: Effects
-var category: ScoreCategories
-var amount: int
+@export var effect: Effects
+@export var category: ScoreCategories
+@export var amount: int
 
-func _init(p_input: String = ""):
-	if p_input == "": return
 
-	# Pattern: ([+-D])? captures the prefix, (\d+) captures the number,
-	# and (\w+) captures the category name.
-	var regex = RegEx.new()
-	regex.compile("([+-D])(\\d+)\\s+(\\w+)")
+func _init(_effect : String = "", _category : String = "", _amount : int = 0) -> void:
+	if _effect != "":
+		effect = string_to_enum(_effect, Effects) as Effects
+	if _category != "":
+		category = string_to_enum(_category, ScoreCategories) as ScoreCategories
+	self.amount = _amount
 
-	var result = regex.search(p_input)
-	if result:
-		var prefix = result.get_string(1)
-		var val_str = result.get_string(2)
-		var cat_str = result.get_string(3)
 
-		# 1. Parse Effect
-		if prefix == "D":
-			effect = Effects.Defend
-		elif prefix in ['-', '+']:
-			effect = Effects.Change
-		else:
-			push_error("Unknown prefix for action string: " + prefix)
+static func string_to_enum(string, enum_map) -> int:
+	for key in enum_map.keys():
+		if key.to_lower() == string.to_lower():
+			return enum_map[key] as int
+	return -1
 
-		# 2. Parse Amount
-		amount = val_str.to_int()
-		if prefix == "-":
-			amount *= -1
 
-		# 3. Parse Category (Case-insensitive matching)
-		for key in ScoreCategories.keys():
-			if key.to_lower() == cat_str.to_lower():
-				category = ScoreCategories[key]
-				break
-	else:
-		push_error("Failed to parse Action string: " + p_input)
+static func enum_to_string(value: int, enum_map) -> String:
+	for key in enum_map.keys():
+		if enum_map[key] == value:
+			return key
+	return ""
 
-	self.effect = effect
-	self.category = category
-	self.amount = amount
 
 
 func to_display_string() -> String:

@@ -7,44 +7,49 @@ enum Archetype {
 	TutorialBouncer,
 	Bully,
 }
-
-@export var rewards : Array[CardResource] = []
+@export_range(1, 3) var difficulty: int
+@export var difficulty_node: Sprite3D
+@export var name_label: Label3D
+@export var rewards : InteractableResource
+@export_multiline var defeat_dialogue :String
 var actions: Array[NpcAction] = []
 
 class NpcAction:
 	var actions: Array[BattleScores]
 	var message: String
 
-	func _init(p_message: String, action_strs: Array[String]):
+	func _init(p_message: String, battle_actions : Array) -> void:
 		actions = []
-		for action_str in action_strs:
-			actions.append(BattleScores.new(action_str))
+		for battle_action in battle_actions:
+			actions.append(BattleScores.new(battle_action[0], battle_action[1], battle_action[2]))
 		message = p_message
 
 
 func _ready():
+	name_label.visible = false
+
 	# Targets Vibes
-	actions.append(NpcAction.new("I don't really know anyone here...", ["-1 Vibes"]))
-	actions.append(NpcAction.new("Honestly I'm more into, like, taller guys", ["-1 Vibes"]))
-	actions.append(NpcAction.new("I moved here to be closer to family, but I don't like my family.", ["-1 Vibes"]))
+	actions.append(NpcAction.new("I don't really know anyone here...", [["Change", "Vibes", -1]]))
+	actions.append(NpcAction.new("Honestly I'm more into, like, taller guys", [["Change", "Vibes", -1]]))
+	actions.append(NpcAction.new("I moved here to be closer to family, but I don't like my family.", [["Change", "Vibes", -1]]))
 
 	# Targets Sus
-	actions.append(NpcAction.new("Do you always dress like that?", ["-1 Sus"]))
-	actions.append(NpcAction.new("Your cologne is... intereseting. Very earthy. Compost-like.", ["D1 Vibes", "-1 Sus"]))
-	actions.append(NpcAction.new("Did I see you crawling out of a dumpster just before the party?", ["-1 Sus"]))
+	actions.append(NpcAction.new("Do you always dress like that?", [["Change", "Sus", -1]]))
+	actions.append(NpcAction.new("Your cologne is... intereseting. Very earthy. Compost-like.", [["Nullify", "Vibes", 1], ["Change", "Sus", -1]]))
+	actions.append(NpcAction.new("Did I see you crawling out of a dumpster just before the party?", [["Change", "Sus", -1]]))
 
 	# Targets Fear
-	actions.append(NpcAction.new("Your mask is SOOOO cute!", ["-1 Fear", "D1 Sus"]))
-	actions.append(NpcAction.new("Yeah, I can basically bench around 450 now", ["-1 Fear", "D1 Vibes"]))
+	actions.append(NpcAction.new("Your mask is SOOOO cute!", [["Change", "Fear", -1], ["Nullify", "Sus", 1]]))
+	actions.append(NpcAction.new("Yeah, I can basically bench around 450 now", [["Change", "Fear", -1], ["Nullify", "Vibes", 1]]))
 
 	# Defense
-	actions.append(NpcAction.new("Huh? Sorry. I was looking at my phone.", ["D1 Vibes", "D1 Fear"]))
-	actions.append(NpcAction.new("I've been getting more into bird watching recently", ["D1 Fear", "D1 Sus"]))
-	actions.append(NpcAction.new("So, uh, what do you do for work?", ["D1 Vibes"]))
-	actions.append(NpcAction.new("What kind of music do you listen to?", ["D1 Sus", "D1 Fear"]))
+	actions.append(NpcAction.new("Huh? Sorry. I was looking at my phone.", [["Nullify", "Vibes", 1], ["Nullify", "Fear", 1]]))
+	actions.append(NpcAction.new("I've been getting more into bird watching recently", [["Nullify", "Fear", 1], ["Nullify", "Sus", 1]]))
+	actions.append(NpcAction.new("So, uh, what do you do for work?", [["Nullify", "Vibes", 1]]))
+	actions.append(NpcAction.new("What kind of music do you listen to?", [["Nullify", "Sus", 1], ["Nullify", "Fear", 1]]))
 
 	# Misc
-	actions.append(NpcAction.new("Sorry! I thought you were someone's pet dog!", ["+1 Vibes", "-1 Fear", "-1 Sus"]))
+	actions.append(NpcAction.new("Sorry! I thought you were someone's pet dog!", [["Change", "Vibes", 1], ["Change", "Fear", -1], ["Change", "Sus", -1]]))
 
 	# Filter down to 5 actions randomly
 	while len(actions) > 5:
@@ -52,8 +57,7 @@ func _ready():
 
 	if archetype == Archetype.TutorialBouncer:
 		actions = [
-			NpcAction.new("Who do you know?", ["-5 Sus"]),
-			NpcAction.new("Is there anyone who can vouch for you?", ["-5 Sus"]),
+			NpcAction.new("Who do you know?", [["Change", "Sus", -5]]),
 		]
 
 	GameManager.ending_battle.connect(_on_ending_battle)
@@ -73,6 +77,7 @@ func _physics_process(delta: float) -> void:
 		look_duration -= delta
 		if look_duration <= 0.0:
 			look_target = null
+			name_label.visible = false
 
 
 var scale_bounce_direction : int = 1
@@ -112,12 +117,15 @@ func _on_ending_battle(_was_victory: bool) -> void:
 
 func defeated() -> void:
 	is_defeated = true
+	name_label.visible = false
+
 	set_collision_layer_value(2, false) # disable interaction layer
 
 
 func focus(by_entity: CharacterEntity) -> void:
 	look_target = by_entity
 	look_duration = 0.5
+	name_label.visible = true
 
 
 func interact(by_entity: CharacterEntity, move_player : bool = false) -> void:
@@ -165,3 +173,6 @@ func update_sprites() -> void:
 		sprite.sprite_frames = sprite_frames
 		play_animation("Idle")
 		GameManager.total_food_available += 1
+		if difficulty_node and difficulty > 0:
+			difficulty_node.frame = difficulty - 1
+		name_label.text = entity_name

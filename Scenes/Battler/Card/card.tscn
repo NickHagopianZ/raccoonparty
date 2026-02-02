@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://wcebbnp847ns"]
+[gd_scene load_steps=5 format=3 uid="uid://wcebbnp847ns"]
 
 [ext_resource type="Script" uid="uid://pc4c34qsr1cg" path="res://Scenes/Battler/Card/card_container.gd" id="1_kmdip"]
 [ext_resource type="Script" uid="uid://co4y7xgoyvi8g" path="res://Scenes/Battler/Card/card.gd" id="2_2a71a"]
+
+[sub_resource type="Gradient" id="Gradient_2a71a"]
+offsets = PackedFloat32Array(0.95, 0.96)
+colors = PackedColorArray(0.7445036, 0.17923622, 0.3475012, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1nlq5"]
+gradient = SubResource("Gradient_2a71a")
+width = 128
+height = 256
+fill = 2
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Card" type="Control" node_paths=PackedStringArray("description_label", "title_label", "card_visualizer")]
 layout_mode = 3
@@ -17,14 +28,13 @@ mouse_behavior_recursive = 2
 script = ExtResource("1_kmdip")
 description_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Description")
 title_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Title")
-card_visualizer = NodePath("CardVisualizer")
+card_visualizer = NodePath("")
 
-[node name="CardVisualizer" type="ColorRect" parent="."]
+[node name="CardVisualizer" type="TextureRect" parent="."]
 layout_mode = 1
 offset_right = 187.5
 offset_bottom = 262.5
-mouse_filter = 1
-color = Color(0.4038569, 0.09624099, 0.33439413, 1)
+texture = SubResource("GradientTexture2D_1nlq5")
 script = ExtResource("2_2a71a")
 
 [node name="MarginContainer" type="MarginContainer" parent="CardVisualizer"]
@@ -36,24 +46,28 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_behavior_recursive = 1
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CardVisualizer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = -10
 
 [node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/line_spacing = -3
 theme_override_font_sizes/font_size = 42
 text = "You gonna eat that?"
 horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Description" type="RichTextLabel" parent="CardVisualizer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "I live in this nice place under 5th street...
 

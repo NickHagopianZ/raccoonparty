@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3a2hr6atel5n" path="res://Scenes/Main/level_manager.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://qqlhvh58txfs" path="res://Scenes/Main/interaction_visuals.tscn" id="3_aw1lf"]
-[ext_resource type="PackedScene" uid="uid://lqiwp8ptw1dv" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
+[ext_resource type="PackedScene" path="res://Scenes/Main/food_ui_manager.tscn" id="3_cv8e0"]
 [ext_resource type="PackedScene" uid="uid://ugfkrkq6m8my" path="res://Scenes/Main/battle_manager.tscn" id="4_5s61s"]
 [ext_resource type="PackedScene" uid="uid://cyq3awlkoojhg" path="res://Scenes/Environment/House1/House1.tscn" id="4_o8wgc"]
 [ext_resource type="PackedScene" uid="uid://c0jxc3g5sncd1" path="res://Scenes/Main/pause_screen.tscn" id="6_7npjy"]
@@ -28,12 +28,24 @@ visible = false
 [node name="InteractionVisuals" parent="." instance=ExtResource("3_aw1lf")]
 visible = false
 
-[node name="BattleManager" parent="." node_paths=PackedStringArray("sliders") instance=ExtResource("4_5s61s")]
+[node name="BattleManager" parent="." node_paths=PackedStringArray("vibes_effect_displays", "fear_effect_displays", "sus_effect_displays", "sliders") instance=ExtResource("4_5s61s")]
 visible = false
+vibes_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/HBoxContainer/Strengthen")
+}
+fear_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/HBoxContainer2/Strengthen")
+}
+sus_effect_displays = {
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Weaken"),
+3: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/HBoxContainer3/Strengthen")
+}
 sliders = {
-0: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer3/FearSlider"),
-1: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer2/VibesSlider"),
-2: NodePath("VBoxContainer/TextureRect/HBoxContainer/Stats/Stats/Stats/HBoxContainer/SusSlider")
+0: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Vibes/VibesSlider"),
+1: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Fear/FearSlider"),
+2: NodePath("VBoxContainer/Control/HBoxContainer/Stats/Stats2/Blend/SusSlider")
 }
 
 [node name="DialogueManager" parent="." instance=ExtResource("7_cv8e0")]
@@ -42,8 +54,10 @@ visible = false
 [node name="PauseScreen" parent="." instance=ExtResource("6_7npjy")]
 
 [node name="WinScreen" parent="." instance=ExtResource("8_5ci8a")]
+visible = false
 
 [node name="LoseScreen" parent="." instance=ExtResource("9_18xdc")]
+visible = false
 
 [node name="MainMenu" parent="." instance=ExtResource("7_4vhfm")]
 visible = false

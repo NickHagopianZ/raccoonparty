@@ -15,7 +15,6 @@ signal all_food_found
 var interaction_partner : Entity = null
 
 var player_node : PlayerEntity
-# Kevin : player deck can be stored here as a globally accessible variable
 var player_deck : Deck = Deck.new()
 var game_started : bool = false
 var round_timer_running: bool = true
