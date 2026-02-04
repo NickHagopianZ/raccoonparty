@@ -8,13 +8,32 @@ var hand_index: int
 
 @export var description_label : RichTextLabel
 @export var title_label : Label
-@export var card_visualizer : ColorRect
+@export var card_visualizer : TextureRect
+@export var type_label : Label
+
+const card_colors : Dictionary = {
+	CardResource.CARDTYPE.NORMAL: Color(0.2, 0.6, 1.0),
+	CardResource.CARDTYPE.RUMOR:  Color(1.0, 0.8, 0.2),
+	CardResource.CARDTYPE.PENALTY: Color(0.147, 0.0, 0.007),
+}
 
 # Set the card's title and description (using BBCode format).
 func set_card(new_card: CardResource):
+	# Update card border
+	var gradient : GradientTexture2D = card_visualizer.texture as GradientTexture2D
+	gradient.gradient.colors[1] = card_colors[new_card.card_type]
+	
+	type_label.visible = true
+	if new_card.card_type == CardResource.CARDTYPE.PENALTY:
+		type_label.text = "penalty"
+	elif new_card.card_type == CardResource.CARDTYPE.RUMOR:
+		type_label.text = "rumor"
+	else:
+		type_label.visible = false
+	
 	card_resource = new_card
 	title_label.text = card_resource.title
-	description_label.text = card_resource.description
+	description_label.text = card_resource.get_description()
 
 
 func play_card():

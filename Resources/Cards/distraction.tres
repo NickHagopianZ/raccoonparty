@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://ccydo54ijwixc"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://cs5sxco4g0att"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_ijl0u"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_yd3lm"]
@@ -23,10 +23,6 @@ amount = 1
 [resource]
 script = ExtResource("2_yd3lm")
 title = "Distraction"
-description = "Look behind you! Is that John Wayne at the punch bowl?
-
-D1 Vibes
-D1 Fear
-D1 Sus"
+description = "Look behind you! Is that John Wayne at the punch bowl?"
 dialogue = "Look behind you! Is that John Wayne at the punch bowl?"
 actions = Array[ExtResource("1_ijl0u")]([SubResource("Resource_4662q"), SubResource("Resource_jffj0"), SubResource("Resource_rfo4h")])

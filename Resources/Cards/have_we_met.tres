@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cov3e5vmx1jhq"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://boflr31p78gji"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_4bhqq"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_psdm6"]
@@ -17,9 +17,6 @@ amount = 1
 [resource]
 script = ExtResource("2_psdm6")
 title = "Have We Met?"
-description = "Weren't we in Nocturnal Studies together?
-
-D1 Fear
-+1 Sus"
+description = "Weren't we in Nocturnal Studies together?"
 dialogue = "Weren't we in Nocturnal Studies together?"
 actions = Array[ExtResource("1_4bhqq")]([SubResource("Resource_vt8qg"), SubResource("Resource_koxi8")])

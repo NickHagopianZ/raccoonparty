@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://m0dc80a7r4rr"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_b6tcy"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_bryf5"]
+
+[sub_resource type="Resource" id="Resource_16v8p"]
+script = ExtResource("1_b6tcy")
+category = 1
+amount = 1
+
+[sub_resource type="Resource" id="Resource_u4jde"]
+script = ExtResource("1_b6tcy")
+effect = 3
+category = 1
+amount = 5
+
+[sub_resource type="Resource" id="Resource_t8stq"]
+script = ExtResource("1_b6tcy")
+amount = -1
+
+[resource]
+script = ExtResource("2_bryf5")
+title = "Fit check"
+description = "Raphael mentioned Lennox is into fashion"
+dialogue = "Florals? For Spring? Groundbreaking."
+display_effects = false
+actions = Array[ExtResource("1_b6tcy")]([SubResource("Resource_16v8p"), SubResource("Resource_u4jde"), SubResource("Resource_t8stq")])
+rumor_targets = Array[String](["Lennox"])

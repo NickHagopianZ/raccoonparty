@@ -35,10 +35,26 @@ func _on_starting_battle(_enemy : NPCEntity) -> void:
 	visible = false
 
 
+var text_tween : Tween = null
+
+func set_flavor_text(new_text : String) -> void:
+	if text_tween:
+		text_tween.kill()
+		text_tween = null
+	text_tween = create_tween()
+	flavor_text.visible_ratio = 0.0
+	text_tween.tween_property(
+		flavor_text,
+		"visible_ratio",
+		1.0,
+		1.5
+	).as_relative()
+	flavor_text.text = new_text
+
 func _on_ending_battle(was_victory: bool) -> void:
 	if was_victory and interaction_partner:
 		clear_dialogue_options()
-		flavor_text.text = interaction_partner.defeat_dialogue
+		set_flavor_text(interaction_partner.defeat_dialogue)
 		var button : Button = Button.new()
 		button.text = interaction_partner.rewards.dialogue
 		# if was vibes victory
@@ -79,7 +95,7 @@ func _on_npc_dialogue_option_selected() -> void:
 var interaction_partner : Entity = null
 func _on_starting_interaction(_interaction_partner : Entity) -> void:
 	interaction_partner = _interaction_partner
-	flavor_text.text = _interaction_partner.flavor_text
+	set_flavor_text(_interaction_partner.flavor_text)
 	end_interaction_button.visible = true
 
 	if _interaction_partner is NPCEntity:
@@ -112,6 +128,9 @@ func _on_interactable_dialogue_option_selected(interactable_resource : Interacta
 		interaction_partner.disable_interaction()
 	# Give rewards
 	for card_resource : CardResource in interactable_resource.reward_cards:
+		if GameManager.interaction_partner is NPCEntity:
+			card_resource.actions = AllPossibleCards.level_adjust_reward(
+				card_resource.actions, GameManager.interaction_partner.difficulty)
 		GameManager.player_deck.add_card_to_deck(card_resource)
 
 	for card_resource : CardResource in interactable_resource.rumor_cards:

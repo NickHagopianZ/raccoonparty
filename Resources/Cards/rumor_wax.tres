@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://3kgg3hdvh3dj"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_hf88j"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_chqmo"]
+
+[sub_resource type="Resource" id="Resource_3f7j4"]
+script = ExtResource("1_hf88j")
+amount = 3
+
+[sub_resource type="Resource" id="Resource_ywj50"]
+script = ExtResource("1_hf88j")
+category = 1
+amount = 1
+
+[sub_resource type="Resource" id="Resource_dxp6u"]
+script = ExtResource("1_hf88j")
+category = 2
+amount = 2
+
+[resource]
+script = ExtResource("2_chqmo")
+title = "Wax"
+description = "Jaxon mentioned Sutton likes poetry"
+dialogue = "What is man but an animal in a mask?"
+display_effects = false
+actions = Array[ExtResource("1_hf88j")]([SubResource("Resource_3f7j4"), SubResource("Resource_ywj50"), SubResource("Resource_dxp6u")])
+rumor_targets = Array[String](["Sutton"])

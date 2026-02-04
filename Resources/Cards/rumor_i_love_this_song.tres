@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://cbf1ey3tlkdkd"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_b5t6a"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_i0ujm"]
+
+[sub_resource type="Resource" id="Resource_0p31v"]
+script = ExtResource("1_b5t6a")
+amount = 3
+
+[sub_resource type="Resource" id="Resource_82f75"]
+script = ExtResource("1_b5t6a")
+effect = 1
+category = 2
+amount = 3
+
+[sub_resource type="Resource" id="Resource_lsb0k"]
+script = ExtResource("1_b5t6a")
+effect = 1
+category = 1
+amount = 3
+
+[resource]
+script = ExtResource("2_i0ujm")
+title = "I love this song!"
+description = "Alex mentioned Freya is into music"
+dialogue = "This. Is. My. Jam."
+display_effects = false
+actions = Array[ExtResource("1_b5t6a")]([SubResource("Resource_0p31v"), SubResource("Resource_82f75"), SubResource("Resource_lsb0k")])
+rumor_targets = Array[String](["Freya"])

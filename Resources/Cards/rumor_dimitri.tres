@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_go6vg"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_e2cqk"]
+
+[resource]
+script = ExtResource("2_e2cqk")
+title = "Dimitri"
+description = "The mailbox letter was being sent to Dimitri"
+dialogue = "Dimitri and I go waaayyy back."
+display_effects = false
+rumor_targets = Array[String](["Bouncer"])

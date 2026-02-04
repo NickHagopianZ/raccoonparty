@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://htj34eq78cc0"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_cad6y"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_sg5qg"]
+
+[sub_resource type="Resource" id="Resource_jb2l3"]
+script = ExtResource("1_cad6y")
+category = 2
+amount = -1
+
+[sub_resource type="Resource" id="Resource_c7j6t"]
+script = ExtResource("1_cad6y")
+amount = -2
+
+[sub_resource type="Resource" id="Resource_7cy7m"]
+script = ExtResource("1_cad6y")
+effect = 6
+category = 3
+
+[resource]
+script = ExtResource("2_sg5qg")
+title = "Stink"
+description = "It lingers"
+dialogue = "Whoever smelt it..."
+actions = Array[ExtResource("1_cad6y")]([SubResource("Resource_jb2l3"), SubResource("Resource_c7j6t"), SubResource("Resource_7cy7m")])

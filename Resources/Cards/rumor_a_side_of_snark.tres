@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://dp7id8scejhu0"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_4k877"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_eeyns"]
+
+[sub_resource type="Resource" id="Resource_k24oc"]
+script = ExtResource("1_4k877")
+amount = 4
+
+[sub_resource type="Resource" id="Resource_bsvqp"]
+script = ExtResource("1_4k877")
+effect = 2
+category = 2
+amount = 3
+
+[sub_resource type="Resource" id="Resource_sttg5"]
+script = ExtResource("1_4k877")
+effect = 1
+category = 1
+amount = 2
+
+[resource]
+script = ExtResource("2_eeyns")
+title = "A side of snark"
+description = "Mila mentioned Yesenia likes sarcasm"
+dialogue = "Yeah, I'm totally a raccoon."
+display_effects = false
+actions = Array[ExtResource("1_4k877")]([SubResource("Resource_k24oc"), SubResource("Resource_bsvqp"), SubResource("Resource_sttg5")])
+rumor_targets = Array[String](["Yesenia"])

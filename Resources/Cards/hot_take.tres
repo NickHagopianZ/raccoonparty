@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://3hmtmte30ld1"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://rjk473u6gw2p"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_umb8x"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_5eryc"]
@@ -15,9 +15,6 @@ amount = 2
 [resource]
 script = ExtResource("2_5eryc")
 title = "Hot Take"
-description = "I think height is a choice.
-
--1 Vibes
-+2 Fear"
+description = "I think height is a choice."
 dialogue = "I think height is a choice."
 actions = Array[ExtResource("1_umb8x")]([SubResource("Resource_jvjlg"), SubResource("Resource_e11vv")])

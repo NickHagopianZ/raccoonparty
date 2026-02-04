@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Battler/battle_scores.gd" id="1_3imo4"]
+[ext_resource type="Script" path="res://Scenes/Battler/Card/card_resource.gd" id="2_kkj1l"]
+
+[sub_resource type="Resource" id="Resource_tc8u5"]
+script = ExtResource("1_3imo4")
+category = 2
+amount = 10
+
+[sub_resource type="Resource" id="Resource_j36y1"]
+script = ExtResource("1_3imo4")
+amount = 5
+
+[resource]
+script = ExtResource("2_kkj1l")
+title = "Simone"
+description = "The mailbox letter was being sent by Simone"
+dialogue = "Simone and I are close buds."
+display_effects = false
+actions = Array[ExtResource("1_3imo4")]([SubResource("Resource_tc8u5"), SubResource("Resource_j36y1")])
+rumor_targets = Array[String](["Bouncer"])

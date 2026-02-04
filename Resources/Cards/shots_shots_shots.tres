@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b42liomkuqsns"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://bpgj08874sq4i"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_m75wn"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_u6wv2"]
@@ -21,10 +21,6 @@ amount = 1
 [resource]
 script = ExtResource("2_u6wv2")
 title = "Shots! Shots! Shots!"
-description = "Shots! Shots! Shots!
-
-+1 Vibes
--1 Fear
-D1 Sus"
+description = "Shots! Shots! Shots!"
 dialogue = "Shots! Shots! Shots!"
 actions = Array[ExtResource("1_m75wn")]([SubResource("Resource_3mkut"), SubResource("Resource_xiqyq"), SubResource("Resource_7gqg2")])

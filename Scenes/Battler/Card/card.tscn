@@ -5,7 +5,7 @@
 
 [sub_resource type="Gradient" id="Gradient_2a71a"]
 offsets = PackedFloat32Array(0.95, 0.96)
-colors = PackedColorArray(0.7445036, 0.17923622, 0.3475012, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.7445036, 0.17923622, 0.3475012, 1, 0.875035, 0.7501205, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1nlq5"]
 gradient = SubResource("Gradient_2a71a")
@@ -14,7 +14,7 @@ height = 256
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Card" type="Control" node_paths=PackedStringArray("description_label", "title_label", "card_visualizer")]
+[node name="Card" type="Control" node_paths=PackedStringArray("description_label", "title_label", "card_visualizer", "type_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,8 @@ mouse_behavior_recursive = 2
 script = ExtResource("1_kmdip")
 description_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Description")
 title_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/Title")
-card_visualizer = NodePath("")
+card_visualizer = NodePath("CardVisualizer")
+type_label = NodePath("CardVisualizer/MarginContainer/VBoxContainer/SpecialLabel")
 
 [node name="CardVisualizer" type="TextureRect" parent="."]
 layout_mode = 1
@@ -45,24 +46,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_behavior_recursive = 1
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CardVisualizer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = -10
+theme_override_constants/separation = 0
+
+[node name="SpecialLabel" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.32000002)
+text = "rumor"
+horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="CardVisualizer/MarginContainer/VBoxContainer" groups=["cards"]]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/line_spacing = -3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 42
 text = "You gonna eat that?"
 horizontal_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
 
 [node name="Description" type="RichTextLabel" parent="CardVisualizer/MarginContainer/VBoxContainer"]
 layout_mode = 2

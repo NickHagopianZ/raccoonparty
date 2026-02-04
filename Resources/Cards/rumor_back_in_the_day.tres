@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bv58l3pnjrvie"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_iye0y"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_kgnne"]
+
+[sub_resource type="Resource" id="Resource_js4ei"]
+script = ExtResource("1_iye0y")
+amount = 4
+
+[sub_resource type="Resource" id="Resource_0pjxy"]
+script = ExtResource("1_iye0y")
+effect = 3
+category = 2
+amount = 3
+
+[resource]
+script = ExtResource("2_kgnne")
+title = "Back in the day"
+description = "Emese mentioned Simone went to University of College"
+dialogue = "Didn't we meet at that party at University of College?"
+display_effects = false
+actions = Array[ExtResource("1_iye0y")]([SubResource("Resource_js4ei"), SubResource("Resource_0pjxy")])
+rumor_targets = Array[String](["Simone"])

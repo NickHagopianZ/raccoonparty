@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b0y8lwclhepyo"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_x2o1n"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_g4jny"]
+
+[sub_resource type="Resource" id="Resource_wticn"]
+script = ExtResource("1_x2o1n")
+amount = 2
+
+[sub_resource type="Resource" id="Resource_fktl7"]
+script = ExtResource("1_x2o1n")
+category = 1
+amount = 2
+
+[sub_resource type="Resource" id="Resource_l1j6m"]
+script = ExtResource("1_x2o1n")
+category = 2
+amount = 2
+
+[resource]
+script = ExtResource("2_g4jny")
+title = "Speech and debate"
+description = "Nolan mentioned Emese is logical"
+dialogue = "A well-constructed, 3 point argument."
+display_effects = false
+actions = Array[ExtResource("1_x2o1n")]([SubResource("Resource_wticn"), SubResource("Resource_fktl7"), SubResource("Resource_l1j6m")])
+rumor_targets = Array[String](["Emese"])

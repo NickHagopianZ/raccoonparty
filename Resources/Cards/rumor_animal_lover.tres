@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://db5ttbjyggaji"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_p0xtr"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_bqubp"]
+
+[sub_resource type="Resource" id="Resource_c85ab"]
+script = ExtResource("1_p0xtr")
+amount = 3
+
+[sub_resource type="Resource" id="Resource_mrpnc"]
+script = ExtResource("1_p0xtr")
+category = 1
+amount = 3
+
+[sub_resource type="Resource" id="Resource_ocmwd"]
+script = ExtResource("1_p0xtr")
+category = 2
+amount = -1
+
+[resource]
+script = ExtResource("2_bqubp")
+title = "Animal lover"
+description = "Dillon mentioned Cheyenne loves animals"
+dialogue = "I'm partial to raccoons myself"
+display_effects = false
+actions = Array[ExtResource("1_p0xtr")]([SubResource("Resource_c85ab"), SubResource("Resource_mrpnc"), SubResource("Resource_ocmwd")])
+rumor_targets = Array[String](["Cheyenne"])

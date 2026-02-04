@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cf2suynk16jmi"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cabva3f18h71r"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_kdsjq"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_e6e5x"]
@@ -16,9 +16,6 @@ amount = 1
 [resource]
 script = ExtResource("2_e6e5x")
 title = "Garbage Man"
-description = "Of course I don't eat trash, that would be pretty weird...
-
-+1 Fear
-+1 Sus"
+description = "Of course I don't eat trash, that would be pretty weird..."
 dialogue = "Of course I don't eat trash, that would be pretty weird..."
 actions = Array[ExtResource("1_kdsjq")]([SubResource("Resource_ir0ob"), SubResource("Resource_amo2p")])

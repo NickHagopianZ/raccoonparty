@@ -16,7 +16,7 @@ func _ready() -> void:
 
 var curr_enemy: NPCEntity
 
-var curr_enemy_action: NPCEntity.NpcAction
+var curr_enemy_action: NPCAction
 
 var scores := {
 	BattleScores.ScoreCategories.Vibes: 0,

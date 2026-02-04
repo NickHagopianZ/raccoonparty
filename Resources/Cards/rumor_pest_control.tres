@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://q0rbdxlfm83r"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_itgty"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_gidna"]
+
+[sub_resource type="Resource" id="Resource_r1p4a"]
+script = ExtResource("1_itgty")
+effect = 2
+category = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_tjtu7"]
+script = ExtResource("1_itgty")
+category = 1
+amount = 6
+
+[resource]
+script = ExtResource("2_gidna")
+title = "Pest control"
+description = "Dillon mentioned Alejandro hates animals"
+dialogue = "Animal control owes me a favor or two (-1 fear, -1 sus)"
+display_effects = false
+actions = Array[ExtResource("1_itgty")]([SubResource("Resource_r1p4a"), SubResource("Resource_tjtu7")])
+rumor_targets = Array[String](["Alejandro"])

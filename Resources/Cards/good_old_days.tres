@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b8boxqw5vexby"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://casf7tnp3o36w"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_d4rl4"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_poybk"]
@@ -20,10 +20,6 @@ amount = -1
 [resource]
 script = ExtResource("2_poybk")
 title = "Good Old Days"
-description = "This city used to have trash bags lying around everywhere...
-
--1 Vibes
--1 Fear
--1 Sus"
+description = "This city used to have trash bags lying around everywhere..."
 dialogue = "This city used to have trash bags lying around everywhere..."
 actions = Array[ExtResource("1_d4rl4")]([SubResource("Resource_4kiif"), SubResource("Resource_javex"), SubResource("Resource_aklj3")])

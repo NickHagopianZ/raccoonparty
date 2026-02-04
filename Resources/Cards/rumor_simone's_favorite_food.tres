@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://dc0au6rlwm1jb"]
+
+[ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_m5m76"]
+[ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_ptb8n"]
+
+[sub_resource type="Resource" id="Resource_ameu0"]
+script = ExtResource("1_m5m76")
+effect = 2
+category = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_tvffs"]
+script = ExtResource("1_m5m76")
+amount = 4
+
+[sub_resource type="Resource" id="Resource_6dbmo"]
+script = ExtResource("1_m5m76")
+category = 1
+amount = 3
+
+[resource]
+script = ExtResource("2_ptb8n")
+title = "Simone's Favorite Food"
+description = "Backyard Raccoon found this in Simone's trash"
+dialogue = "I got this for you"
+display_effects = false
+actions = Array[ExtResource("1_m5m76")]([SubResource("Resource_ameu0"), SubResource("Resource_tvffs"), SubResource("Resource_6dbmo")])
+rumor_targets = Array[String](["Simone"])

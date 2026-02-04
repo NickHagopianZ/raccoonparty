@@ -19,16 +19,19 @@ signal card_played(card: CardContainer)
 const CARD_SCENE = preload("res://Scenes/Battler/Card/card.tscn")
 
 func add_card_to_penalty_deck(card_resource: CardResource):
+	card_resource.card_type = CardResource.CARDTYPE.PENALTY
 	penalty_deck.append(card_resource)
 
 
 func add_card_to_rumor_deck(card_resource: CardResource, npc_names: Array[String]):
+	card_resource.card_type = CardResource.CARDTYPE.RUMOR
 	for npc_name in npc_names:
 		if not rumor_deck.has(npc_name):
 			rumor_deck[npc_name] = []
 		rumor_deck[npc_name].append(card_resource)
 
 func add_card_to_deck(card_resource: CardResource):
+	card_resource.card_type = CardResource.CARDTYPE.NORMAL
 	deck.append(card_resource)
 
 # called as constructor

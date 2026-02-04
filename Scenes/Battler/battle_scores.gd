@@ -47,4 +47,23 @@ static func enum_to_string(value: int, enum_map) -> String:
 func to_display_string() -> String:
 	var effect_str = Effects.keys()[effect]
 	var category_str = ScoreCategories.keys()[category]
-	return "Category: " + category_str + ", Effect: " + effect_str + ", Amount: " + str(amount)
+	var return_str = ""
+
+	if Effects.Change == effect:
+		if amount > 0:
+			return_str += "+"
+		else:
+			return_str += "-"
+		return_str += str(abs(amount)) + " "
+	else:
+		return_str += str(amount) + " "
+		return_str += effect_str + " "
+
+	if category == ScoreCategories.Vibes:
+		return_str += "Vibes"
+	elif category == ScoreCategories.Fear:
+		return_str += "Fear"
+	elif category == ScoreCategories.Sus:
+		return_str += "Blend"
+
+	return return_str

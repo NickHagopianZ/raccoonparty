@@ -1,12 +1,19 @@
 extends Resource
 class_name CardResource
 
+enum CARDTYPE {
+	NORMAL,
+	RUMOR,
+	PENALTY
+}
 @export var title: String
 @export var description: String
 @export var dialogue: String
+@export var display_effects: bool = true
 @export var actions: Array[BattleScores]
 @export var rumor_targets: Array[String]
 @export var play_effects : Array[int] = []
+@export var card_type : CARDTYPE = CARDTYPE.NORMAL
 
 # A Resource still needs a parameterless constructor to save/load properly,
 # so we give the arguments default values.
@@ -15,16 +22,28 @@ func _init(
 	p_description: String = "",
 	p_actions: Array[BattleScores] = [],
 	p_dialogue: String = "",
+	p_display_effects: bool = true,
 	p_rumor_targets: Array[String] = [],
 	p_play_effects : Array[int] = [],
+	p_card_type : CARDTYPE = CARDTYPE.NORMAL
 ):
 	title = p_title
 	description = p_description
 	actions = p_actions
 	dialogue = p_dialogue
+	display_effects = p_display_effects
 	rumor_targets = p_rumor_targets
 	play_effects = p_play_effects
+	card_type = p_card_type
 
+
+func get_description() -> String:
+	var new_description : String = description
+	for action in actions:
+		if new_description != "":
+			new_description += "\n"
+		new_description += action.to_display_string()
+	return new_description
 
 
 var play_effect_map : Dictionary = {

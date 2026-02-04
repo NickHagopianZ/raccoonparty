@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://nf828bf18mk4"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bnm8s3c85hg06"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_0buve"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_hs1y1"]
@@ -15,9 +15,6 @@ amount = -1
 [resource]
 script = ExtResource("2_hs1y1")
 title = "Sip Drink"
-description = "Take sips of your drink with your weird, weird, hands.
-
-+2 Vibes
--1 Sus"
+description = "Take sips of your drink with your weird, weird, hands."
 dialogue = "Take sips of your drink with your weird, weird, hands."
 actions = Array[ExtResource("1_0buve")]([SubResource("Resource_78wvg"), SubResource("Resource_irh3h")])

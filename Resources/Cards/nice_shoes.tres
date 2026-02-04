@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://24l0hmbgiaqn"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bltcxp87203j7"]
 
 [ext_resource type="Script" uid="uid://bj6cwuxsrm3cb" path="res://Scenes/Battler/battle_scores.gd" id="1_vbcna"]
 [ext_resource type="Script" uid="uid://bk85i66d0btf1" path="res://Scenes/Battler/Card/card_resource.gd" id="2_u5pti"]
@@ -16,9 +16,6 @@ amount = 1
 [resource]
 script = ExtResource("2_u5pti")
 title = "Nice Shoes"
-description = "I like those shoes, are they gucci?
-
-+1 Vibes
-D1 Sus"
+description = "I like those shoes, are they gucci?"
 dialogue = "I like those shoes, are they gucci?"
 actions = Array[ExtResource("1_vbcna")]([SubResource("Resource_8h52s"), SubResource("Resource_l661x")])

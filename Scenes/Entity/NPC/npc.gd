@@ -1,67 +1,29 @@
 extends CharacterEntity
 class_name NPCEntity
 
-@export var archetype : Archetype
-enum Archetype {
-	Rando,
-	TutorialBouncer,
-	Bully,
-}
-@export_range(1, 3) var difficulty: int
+@export_range(0, 4) var difficulty: int
 @export var difficulty_node: Sprite3D
 @export var name_label: Label3D
 @export var rewards : InteractableResource
 @export_multiline var defeat_dialogue :String
-var actions: Array[NpcAction] = []
-
-class NpcAction:
-	var actions: Array[BattleScores]
-	var message: String
-
-	func _init(p_message: String, battle_actions : Array) -> void:
-		actions = []
-		for battle_action in battle_actions:
-			actions.append(BattleScores.new(battle_action[0], battle_action[1], battle_action[2]))
-		message = p_message
-
+@export var init_flip : bool = false
+@export var actions: Array[NPCAction] = []
+@export var archetype : String = ""
 
 func _ready():
 	name_label.visible = false
 
-	# Targets Vibes
-	actions.append(NpcAction.new("I don't really know anyone here...", [["Change", "Vibes", -1]]))
-	actions.append(NpcAction.new("Honestly I'm more into, like, taller guys", [["Change", "Vibes", -1]]))
-	actions.append(NpcAction.new("I moved here to be closer to family, but I don't like my family.", [["Change", "Vibes", -1]]))
-
-	# Targets Sus
-	actions.append(NpcAction.new("Do you always dress like that?", [["Change", "Sus", -1]]))
-	actions.append(NpcAction.new("Your cologne is... intereseting. Very earthy. Compost-like.", [["Nullify", "Vibes", 1], ["Change", "Sus", -1]]))
-	actions.append(NpcAction.new("Did I see you crawling out of a dumpster just before the party?", [["Change", "Sus", -1]]))
-
-	# Targets Fear
-	actions.append(NpcAction.new("Your mask is SOOOO cute!", [["Change", "Fear", -1], ["Nullify", "Sus", 1]]))
-	actions.append(NpcAction.new("Yeah, I can basically bench around 450 now", [["Change", "Fear", -1], ["Nullify", "Vibes", 1]]))
-
-	# Defense
-	actions.append(NpcAction.new("Huh? Sorry. I was looking at my phone.", [["Nullify", "Vibes", 1], ["Nullify", "Fear", 1]]))
-	actions.append(NpcAction.new("I've been getting more into bird watching recently", [["Nullify", "Fear", 1], ["Nullify", "Sus", 1]]))
-	actions.append(NpcAction.new("So, uh, what do you do for work?", [["Nullify", "Vibes", 1]]))
-	actions.append(NpcAction.new("What kind of music do you listen to?", [["Nullify", "Sus", 1], ["Nullify", "Fear", 1]]))
-
-	# Misc
-	actions.append(NpcAction.new("Sorry! I thought you were someone's pet dog!", [["Change", "Vibes", 1], ["Change", "Fear", -1], ["Change", "Sus", -1]]))
-
-	# Filter down to 5 actions randomly
-	while len(actions) > 5:
-		actions.pop_at(randi() % len(actions))
-
-	if archetype == Archetype.TutorialBouncer:
-		actions = [
-			NpcAction.new("Who do you know?", [["Change", "Sus", -5]]),
-		]
-
 	GameManager.ending_battle.connect(_on_ending_battle)
 	update_sprites()
+	if not rewards:
+		rewards = InteractableResource.new()
+	rewards.fill_rewards_if_empty(1 + randi() % 2, difficulty)
+	actions = AllNPCActions.get_named_collection(entity_name)
+	if archetype != "" and actions.size() == 0:
+		actions = AllNPCActions.get_archetype_collection(archetype, difficulty)
+	elif actions.size() == 0:
+		# default action
+		actions = AllNPCActions.get_random_actions(5, difficulty)
 
 func choose_battler_action():
 	return actions.pick_random()
@@ -156,10 +118,12 @@ func interact(by_entity: CharacterEntity, move_player : bool = false) -> void:
 
 const body_adjustment : float = 0.2
 func update_sprites() -> void:
+	sprite.flip_h = init_flip
+
 	# every body is beautiful
-	scale.y = 1.0 + randf_range(-body_adjustment, body_adjustment)
-	scale.x = 1.2 + randf_range(-body_adjustment, body_adjustment)
-	scale.z = 1.2 + randf_range(-body_adjustment, body_adjustment)
+	sprite.scale.y = 1.0 + randf_range(-body_adjustment, body_adjustment)
+	sprite.scale.x = 1.2 + randf_range(-body_adjustment, body_adjustment)
+	sprite.scale.z = 1.2 + randf_range(-body_adjustment, body_adjustment)
 	if sprite_frames == null: # set generic background color
 		sprite_frames = sprite.sprite_frames
 		play_animation("Idle")

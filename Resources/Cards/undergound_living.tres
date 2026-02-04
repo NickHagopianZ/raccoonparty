@@ -16,9 +16,6 @@ amount = -1
 [resource]
 script = ExtResource("2_61t3a")
 title = "Undergound Living"
-description = "I live in this nice place under 5th street...
-
-+2 Fear
--1 Sus"
+description = "I live in this nice place under 5th street..."
 dialogue = "I live in this nice place under 5th street..."
 actions = Array[ExtResource("1_4e16o")]([SubResource("Resource_h6asm"), SubResource("Resource_s7dml")])
